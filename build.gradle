@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: "application"
 // not necessary
- mainClassName = "ru.eltex.koloskova.Main1"
+ mainClassName = "ru.eltex.Main1"
 
 // FOR ALL SPRING
 apply plugin: 'org.springframework.boot'
@@ -40,10 +40,6 @@ dependencies {
     // SPRING BOOT. REST
     compile("org.springframework.boot:spring-boot-starter-web")
     testCompile('org.springframework.boot:spring-boot-starter-test')
-
-    // SPRING DATA. MYSQL
-    compile "mysql:mysql-connector-java:8.0.17"
-    compile "org.springframework.boot:spring-boot-starter-data-jpa"
 
     // SPRING DATA. MONGODB
     compile "org.springframework.boot:spring-boot-starter-data-mongodb"

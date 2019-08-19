@@ -9,9 +9,17 @@ import java.util.ArrayList;
 
 @Getter
 @Setter
-@AllArgsConstructor
+
 @Document(collection = "students")
 public class Student extends User{
     Integer group;
     ArrayList<TestResult> tests;
+
+    public Student(Integer id, String login, String password,
+                   String email, String fio, String status,
+                   Integer group, ArrayList<TestResult> tests){
+        super(id,login,password,email, fio, status);
+        this.group = group;
+        this.tests = tests;
+    }
 }

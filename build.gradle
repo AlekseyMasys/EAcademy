@@ -1,65 +1,33 @@
-apply plugin: 'java'
-apply plugin: "application"
-// not necessary
- mainClassName = "ru.eltex.Main"
-
-// FOR ALL SPRING
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-
-run {
-    standardInput = System.in
+plugins {
+    id 'org.springframework.boot' version '2.1.7.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
 }
 
 repositories {
     mavenCentral()
 }
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.6.RELEASE")
-    }
-}
 //////////////////////////////////
 
 //SPRING BOOT. REST
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
 dependencies {
-    // Spring Security Config
-    compile group: 'org.springframework.security', name: 'spring-security-config', version: '5.1.5.RELEASE'
-    // Spring Security Core
-    compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.1.5.RELEASE'
-    // Spring Security Web
-    compile group: 'org.springframework.security', name: 'spring-security-web', version: '5.1.5.RELEASE'
-
-    // SPRING BOOT. REST
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
     compile("org.springframework.boot:spring-boot-starter-web")
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile("org.springframework.boot:spring-boot-starter-parent")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.springframework.boot:spring-boot-devtools")
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '5.1.8.RELEASE'
+    compile group: 'org.webjars', name: 'jquery', version: '3.4.0'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.9.2'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.9.9'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.9'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb', version: '2.1.6.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: '2.1.6.RELEASE', ext: 'pom'
 
-    // SPRING DATA. MYSQL
-    compile "mysql:mysql-connector-java:8.0.17"
-    compile "org.springframework.boot:spring-boot-starter-data-jpa"
-
-    // SPRING DATA. MONGODB
-    compile "org.springframework.boot:spring-boot-starter-data-mongodb"
-
-    // JACKSON
-    compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.+'
-    compile fileTree(dir: 'libs', include: '*.jar')
-
-    // LOMBOK
     compileOnly 'org.projectlombok:lombok:1.18.8'
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
-
-    // HIBERNATE
-    implementation 'org.hibernate:hibernate-core:5.4.3.Final'
-
-    // LOG4J
-    compile group: 'log4j', name: 'log4j', version: '1.2.17'
 }
 

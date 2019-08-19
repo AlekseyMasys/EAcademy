@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: "application"
 // not necessary
- mainClassName = "ru.eltex.koloskova.Main"
+// mainClassName = "ru.eltex.koloskova.Application"
 
 // FOR ALL SPRING
 apply plugin: 'org.springframework.boot'

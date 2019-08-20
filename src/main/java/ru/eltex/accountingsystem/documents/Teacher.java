@@ -6,19 +6,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import ru.eltex.accountingsystem.enums.Role;
 import ru.eltex.accountingsystem.User;
 
+import java.util.ArrayList;
+
 @Getter
 @Setter
 @Document(collection = "teachers")
 public class Teacher extends User {
-    private String[] groups;
-    private String[] subjects;
+    private ArrayList<Subject> subjects;
 
     public Teacher(String login, String password, String email,
                    String fio, Role role,
-                   String[] groups, String[] subjects) {
+                   ArrayList<Subject> subjects) {
         super(login, password, email, fio, role);
 
-        this.groups = groups;
         this.subjects = subjects;
     }
 }

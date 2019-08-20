@@ -15,7 +15,4 @@ public class JacksonConfiguration {
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
         return objectMapper;
     }
-
-
-
 }

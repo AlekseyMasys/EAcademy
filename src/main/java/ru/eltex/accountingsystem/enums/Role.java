@@ -1,6 +1,6 @@
 package ru.eltex.accountingsystem.enums;
 
-public enum Status {
+public enum Role {
     STUDENT,
     TEACHER,
     GRADUATE,

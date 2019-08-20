@@ -1,9 +1,9 @@
-package ru.eltex.accountingsystem;
+package ru.eltex.accountsystem.model;
 
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
-import ru.eltex.accountingsystem.enums.Role;
+import ru.eltex.accountsystem.enums.Role;
 
 @Getter
 @Setter

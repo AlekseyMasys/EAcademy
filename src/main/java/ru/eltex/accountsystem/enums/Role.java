@@ -1,4 +1,4 @@
-package ru.eltex.accountingsystem.enums;
+package ru.eltex.accountsystem.enums;
 
 public enum Role {
     STUDENT,

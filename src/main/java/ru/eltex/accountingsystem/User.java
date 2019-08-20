@@ -13,5 +13,5 @@ public abstract class User {
     private String password;
     private String email;
     private String fio;
-    private String status;
+    private Status status;
 }

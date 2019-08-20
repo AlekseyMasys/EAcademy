@@ -3,15 +3,13 @@ package ru.eltex;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import ru.eltex.testsystem.model.TestStructure;
 import ru.eltex.testsystem.service.TestStructureService;
 
 import java.util.List;
 
-@Controller
+@RestController
 public class PublicAPI {
     private final TestStructureService testStructureService;
     @Autowired
@@ -20,9 +18,19 @@ public class PublicAPI {
     }
     @RequestMapping(value = "/save_test",method = RequestMethod.POST)
     @ResponseBody
-    public void SaveTest(@RequestBody JsonNode request) {
-        System.out.println(request.toString());
+    public void saveTest(@RequestBody TestStructure request) {
         testStructureService.saveTest(request);
         return;
+    }
+    @RequestMapping(value = "/load_test",method = RequestMethod.POST)
+    @ResponseBody
+    public TestStructure loadTest(@RequestBody JsonNode request) {
+
+        return testStructureService.loadTest(request);
+    }
+    @RequestMapping(value = "/get_all_tests",method = RequestMethod.GET)
+    public List<String> getAllTests(){
+
+        return testStructureService.getAllTests();
     }
 }

@@ -14,4 +14,6 @@ public abstract class User {
     private String email;
     private String fio;
     private String status;
+
+
 }

@@ -6,4 +6,5 @@ import ru.eltex.testsystem.dao.TestStructureRepositoryCustom;
 import ru.eltex.testsystem.model.TestStructure;
 @Repository
 public interface TestStructureRepository extends MongoRepository<TestStructure, String>, TestStructureRepositoryCustom {
+
 }

@@ -10,9 +10,4 @@ import lombok.Setter;
 public class TestResult {
     String testItem;
     Integer result;
-
-    public TestResult(String str, int i) {
-        String testItem;
-        Integer result;
-    }
 }

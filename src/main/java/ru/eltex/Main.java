@@ -3,7 +3,7 @@ package ru.eltex;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import ru.eltex.accountingsystem.Status;
+import ru.eltex.accountingsystem.enums.Status;
 import ru.eltex.accountingsystem.documents.Student;
 import ru.eltex.accountingsystem.TestResult;
 import ru.eltex.accountingsystem.UserRepository;

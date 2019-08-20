@@ -22,6 +22,9 @@ public class PublicAPI {
         testStructureService.saveTest(request);
         return;
     }
+    /* @PostMapping("/node/api/objects/{id}/stat")
+    public String getStat(@PathVariable String id,
+                              @RequestBody ControllerCurrentStatus stat) {*/
     @RequestMapping(value = "/load_test",method = RequestMethod.POST)
     @ResponseBody
     public TestStructure loadTest(@RequestBody JsonNode request) {

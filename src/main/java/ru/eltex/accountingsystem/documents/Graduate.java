@@ -1,9 +1,10 @@
-package ru.eltex.accountingsystem;
+package ru.eltex.accountingsystem.documents;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
+import ru.eltex.accountingsystem.Sex;
 
 @AllArgsConstructor
 @Getter

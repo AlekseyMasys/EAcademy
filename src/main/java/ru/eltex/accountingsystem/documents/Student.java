@@ -1,9 +1,11 @@
-package ru.eltex.accountingsystem;
+package ru.eltex.accountingsystem.documents;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
+import ru.eltex.accountingsystem.TestResult;
+import ru.eltex.accountingsystem.User;
 
 import java.util.ArrayList;
 
@@ -11,7 +13,7 @@ import java.util.ArrayList;
 @Setter
 
 @Document(collection = "students")
-public class Student extends User{
+public class Student extends User {
     Integer group;
     ArrayList<TestResult> tests;
 

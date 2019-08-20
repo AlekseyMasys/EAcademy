@@ -3,6 +3,7 @@ package ru.eltex;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import ru.eltex.accountingsystem.Status;
 import ru.eltex.accountingsystem.documents.Student;
 import ru.eltex.accountingsystem.TestResult;
 import ru.eltex.accountingsystem.UserRepository;
@@ -21,7 +22,7 @@ public class Main {
             ArrayList<TestResult> testResults = new ArrayList<>();
             testResults.add(testResult);
             userRepository.save(new Student(1, "login", "password",
-                    "email", "fio", "status", 11, testResults));
+                    "email", "fio", Status.STUDENT, 11, testResults));
         };
     }
 }

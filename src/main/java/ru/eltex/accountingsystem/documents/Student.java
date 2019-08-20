@@ -1,6 +1,5 @@
 package ru.eltex.accountingsystem.documents;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 
 @Getter
 @Setter
-
 @Document(collection = "students")
 public class Student extends User {
     Integer group;

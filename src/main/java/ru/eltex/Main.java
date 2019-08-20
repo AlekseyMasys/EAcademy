@@ -3,10 +3,8 @@ package ru.eltex;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import ru.eltex.accountingsystem.enums.Role;
-import ru.eltex.accountingsystem.documents.Student;
-import ru.eltex.accountingsystem.TestResult;
-import ru.eltex.accountingsystem.UserRepository;
+import ru.eltex.accountsystem.TestResult;
+import ru.eltex.accountsystem.dao.UserRepository;
 
 import java.util.ArrayList;
 

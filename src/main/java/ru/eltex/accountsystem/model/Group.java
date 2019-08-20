@@ -1,8 +1,9 @@
-package ru.eltex.accountingsystem.documents;
+package ru.eltex.accountsystem.model;
 
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import ru.eltex.accountsystem.model.users.Student;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package ru.eltex.accountingsystem.documents;
+package ru.eltex.accountsystem.model;
 
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;

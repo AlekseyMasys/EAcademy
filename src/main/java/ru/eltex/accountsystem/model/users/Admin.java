@@ -1,8 +1,8 @@
-package ru.eltex.accountingsystem.documents;
+package ru.eltex.accountsystem.model.users;
 
 import org.springframework.data.mongodb.core.mapping.Document;
-import ru.eltex.accountingsystem.enums.Role;
-import ru.eltex.accountingsystem.User;
+import ru.eltex.accountsystem.enums.Role;
+import ru.eltex.accountsystem.model.User;
 
 @Document(collection = "admins")
 public class Admin extends User {

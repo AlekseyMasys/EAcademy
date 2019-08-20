@@ -1,4 +1,4 @@
-package ru.eltex.accountingsystem;
+package ru.eltex.accountsystem;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,14 +1,12 @@
 package ru.eltex.accountsystem.model.users;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import org.springframework.data.mongodb.core.mapping.Document;
 import ru.eltex.accountsystem.enums.Role;
+import ru.eltex.accountsystem.model.Subject;
 import ru.eltex.accountsystem.model.User;
-
-import javax.security.auth.Subject;
 import java.util.ArrayList;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter

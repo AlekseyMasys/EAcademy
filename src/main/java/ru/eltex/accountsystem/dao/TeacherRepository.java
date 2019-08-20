@@ -6,5 +6,5 @@ import ru.eltex.accountsystem.model.users.Teacher;
 import java.util.List;
 
 public interface TeacherRepository extends MongoRepository<Teacher, Integer> {
-    List<Teacher> findByFio(String fio);
+    List<Teacher> findById(String id);
 }

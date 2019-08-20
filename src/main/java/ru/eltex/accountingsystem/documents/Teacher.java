@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class Teacher extends User {
     private ArrayList<Subject> subjects;
 
-
     public Teacher(String login, String password, String email,
                    String fio, Role role,
                    ArrayList<Subject> subjects) {

@@ -21,8 +21,8 @@ public class Main {
             TestResult testResult = new TestResult("math", 12);
             ArrayList<TestResult> testResults = new ArrayList<>();
             testResults.add(testResult);
-            userRepository.save(new Student("login", "password",
-                    "email", "fio", Role.STUDENT, 11, testResults));
+//            userRepository.save(new Student("login", "password",
+//                    "email", "fio", Role.STUDENT, 11, testResults));
         };
     }
 }

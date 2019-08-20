@@ -14,7 +14,14 @@ function readSingleFile(e) {
 function displayContents(contents) {
   var element = document.getElementById('file-content');
   element.textContent = contents;
+  $.ajax({
+               type: "POST",
+               contentType: "application/json",
+               url: "/save_test",
+               data: "{\"name\":\""+ contents+"\"}",
+               dataType: "Json",
+           });
 }
 
 document.getElementById('file-input')
-  .addEventListener('change', readSingleFile, false);
+  document.addEventListener('change', readSingleFile, false);

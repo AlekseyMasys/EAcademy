@@ -1,4 +1,4 @@
-package ru.eltex.accountingsystem.documents;
+package ru.eltex.accountsystem.model;
 
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 @Document(collection = "subjects")
 public class Subject {
     @Id
-    private Integer id;
+    private String id;
     private String title;
     private ArrayList<Task> tasks;
     private ArrayList<Group> groups;

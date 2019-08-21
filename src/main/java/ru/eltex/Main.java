@@ -3,10 +3,14 @@ package ru.eltex;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import ru.eltex.accountingsystem.enums.Role;
-import ru.eltex.accountingsystem.documents.Student;
-import ru.eltex.accountingsystem.TestResult;
-import ru.eltex.accountingsystem.UserRepository;
+import org.springframework.context.annotation.Bean;
+import ru.eltex.accountsystem.dao.StudentRepository;
+import ru.eltex.accountsystem.enums.Role;
+import ru.eltex.accountsystem.model.Group;
+import ru.eltex.accountsystem.model.Subject;
+import ru.eltex.accountsystem.model.Task;
+import ru.eltex.accountsystem.model.users.Student;
+import ru.eltex.testsystem.model.TestStructure;
 
 import java.util.ArrayList;
 
@@ -16,13 +20,13 @@ public class Main {
         SpringApplication.run(Main.class, args);
     }
 
-    public CommandLineRunner demo(UserRepository userRepository) {
+    @Bean
+    public CommandLineRunner demo(StudentRepository studentRepository) {
         return (args) -> {
-            TestResult testResult = new TestResult("math", 12);
-            ArrayList<TestResult> testResults = new ArrayList<>();
-            testResults.add(testResult);
-            userRepository.save(new Student("login", "password",
-                    "email", "fio", Role.STUDENT, 11, testResults));
+            ArrayList<Subject>subjects = new ArrayList<>();
+            subjects.add(new Subject("title", new ArrayList<Task>(), new ArrayList<Group>(), new ArrayList<TestStructure>()));
+            Student student = new Student("student", "password", "qwerty@mail.ru", "Alex", Role.STUDENT, subjects);
+            studentRepository.save(student);
         };
     }
 }

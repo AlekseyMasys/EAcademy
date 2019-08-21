@@ -1,4 +1,4 @@
-package ru.eltex.accountingsystem.documents;
+package ru.eltex.accountsystem.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "task")
 public class Task {
     @Id
-    private Integer id;
+    private String id;
     private String title;
     private String description;
     private Integer maxScores;

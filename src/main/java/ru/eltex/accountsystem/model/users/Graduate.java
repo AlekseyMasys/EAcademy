@@ -1,11 +1,11 @@
-package ru.eltex.accountingsystem.documents;
+package ru.eltex.accountsystem.model.users;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+import ru.eltex.accountsystem.enums.Sex;
+import ru.eltex.accountsystem.enums.Role;
+import ru.eltex.accountsystem.model.User;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.mongodb.core.mapping.Document;
-import ru.eltex.accountingsystem.enums.Sex;
-import ru.eltex.accountingsystem.enums.Role;
-import ru.eltex.accountingsystem.User;
 
 @Getter
 @Setter

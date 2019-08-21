@@ -1,4 +1,4 @@
-package ru.eltex.accountingsystem;
+package ru.eltex.accountsystem.enums;
 
 public enum Sex {
     MALE,

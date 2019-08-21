@@ -1,15 +1,12 @@
 apply plugin: 'java'
-apply plugin: "application"
-// not necessary
- mainClassName = "ru.eltex.koloskova.Main1"
+apply plugin: 'application'
 
-// FOR ALL SPRING
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
+mainClassName='ru.eltex.Main1'
 
-run {
-    standardInput = System.in
-}
+group 'ru.eltex'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -23,43 +20,11 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.6.RELEASE")
     }
 }
-//////////////////////////////////
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
-//SPRING BOOT. REST
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
 dependencies {
-    // Spring Security Config
-    compile group: 'org.springframework.security', name: 'spring-security-config', version: '5.1.5.RELEASE'
-    // Spring Security Core
-    compile group: 'org.springframework.security', name: 'spring-security-core', version: '5.1.5.RELEASE'
-    // Spring Security Web
-    compile group: 'org.springframework.security', name: 'spring-security-web', version: '5.1.5.RELEASE'
-
-    // SPRING BOOT. REST
-    compile("org.springframework.boot:spring-boot-starter-web")
-    testCompile('org.springframework.boot:spring-boot-starter-test')
-
-    // SPRING DATA. MYSQL
-    compile "mysql:mysql-connector-java:8.0.17"
-    compile "org.springframework.boot:spring-boot-starter-data-jpa"
-
-    // SPRING DATA. MONGODB
-    compile "org.springframework.boot:spring-boot-starter-data-mongodb"
-
-    // JACKSON
-    compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.+'
-    compile fileTree(dir: 'libs', include: '*.jar')
-
-    // LOMBOK
-    compileOnly 'org.projectlombok:lombok:1.18.8'
-    annotationProcessor 'org.projectlombok:lombok:1.18.8'
-
-    // HIBERNATE
-    implementation 'org.hibernate:hibernate-core:5.4.3.Final'
-
-    // LOG4J
-    compile group: 'log4j', name: 'log4j', version: '1.2.17'
+    compile 'org.springframework.boot:spring-boot-starter-data-mongodb'
 }
 

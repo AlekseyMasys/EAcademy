@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class StudentService {
+public class StudentService {/*
     private final StudentRepository studentRepository;
     private final SubjectRepository subjectRepository;
 
@@ -70,5 +70,5 @@ public class StudentService {
         }
 
         return tests;
-    }
+    }*/
 }

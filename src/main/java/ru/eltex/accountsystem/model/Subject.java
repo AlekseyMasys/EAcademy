@@ -19,9 +19,9 @@ public class Subject {
     private String title;
     private ArrayList<Task> tasks;
     private ArrayList<Group> groups;
-    private ArrayList<TestStructure> tests;
+    private ArrayList<String> tests;
 
-    public Subject(String title, ArrayList<Task> tasks, ArrayList<Group> groups, ArrayList<TestStructure> tests) {
+    public Subject(String title, ArrayList<Task> tasks, ArrayList<Group> groups, ArrayList<String> tests) {
         this.title = title;
         this.tasks = tasks;
         this.groups = groups;

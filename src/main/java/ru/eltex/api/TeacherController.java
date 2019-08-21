@@ -36,13 +36,20 @@ public class TeacherController {
     @RequestMapping(value = "/teacher/{id}/subjects", method = RequestMethod.GET)
     public List<Subject> getTeacherSubjects(@PathVariable("id") String id) {
         Teacher teacher = teacherRepository.findById(id).get();
-        return teacher.getSubjects();
+        List<Subject> subjects= new ArrayList<Subject>();
+        teacher.getSubjects().stream().forEach(p->{
+            subjects.add(subjectRepository.findById(p).get());
+        });
+        return subjects;
     }
 
     @RequestMapping(value = "/teacher/{id}/groups", method = RequestMethod.GET)
     public List<Group> getTeacherGroups(@PathVariable("id") String id) {
         Teacher teacher = teacherRepository.findById(id).get();
-        List<Subject> teacherSubjects = teacher.getSubjects();
+        List<Subject> teacherSubjects= new ArrayList<Subject>();
+        teacher.getSubjects().stream().forEach(p->{
+            teacherSubjects.add(subjectRepository.findById(p).get());
+        });
         List<Group> groups = new ArrayList<>();
         teacherSubjects.forEach(sub -> groups.addAll(sub.getGroups()));
         return groups;
@@ -51,14 +58,20 @@ public class TeacherController {
     @RequestMapping(value = "/teacher/{id}/subject/{idSubject}", method = RequestMethod.GET)
     public List<Group> getSubjectGroups(@PathVariable("id") String id, @PathVariable("idSubject") String idSubject) {
         Teacher teacher = teacherRepository.findById(id).get();
-        List<Subject> teacherSubjects = teacher.getSubjects();
+        List<Subject> teacherSubjects= new ArrayList<Subject>();
+        teacher.getSubjects().stream().forEach(p->{
+            teacherSubjects.add(subjectRepository.findById(p).get());
+        });
         return teacherSubjects.stream().filter(sub -> sub.getId().equals(idSubject)).findFirst().orElseThrow().getGroups();
     }
 
     @RequestMapping(value = "/getstudentsfromgroup/{id}/{idSubjec}/{idGroup}", method = RequestMethod.GET)
     public List<Student> getStudentsFromGroup(@PathVariable("id") String id, @PathVariable("idGroup") String idGroup, @PathVariable String idSubject) {
         Teacher teacher = teacherRepository.findById(id).get();
-        List<Subject> teacherSubjects = teacher.getSubjects();
+        List<Subject> teacherSubjects= new ArrayList<Subject>();
+        teacher.getSubjects().stream().forEach(p->{
+            teacherSubjects.add(subjectRepository.findById(p).get());
+        });
         List<Group> groups =  teacherSubjects.stream().filter(sub -> sub
                 .getId()
                 .equals(idSubject))

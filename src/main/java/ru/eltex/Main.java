@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import ru.eltex.accountsystem.dao.StudentRepository;
+import ru.eltex.accountsystem.dao.SubjectRepository;
 import ru.eltex.accountsystem.enums.Role;
 import ru.eltex.accountsystem.model.Group;
 import ru.eltex.accountsystem.model.Subject;
@@ -21,11 +22,13 @@ public class Main {
     }
 
     @Bean
-    public CommandLineRunner demo(StudentRepository studentRepository) {
+    public CommandLineRunner demo(StudentRepository studentRepository, SubjectRepository subjectRepository) {
         return (args) -> {
             ArrayList<Subject>subjects = new ArrayList<>();
-            subjects.add(new Subject("title", new ArrayList<Task>(), new ArrayList<Group>(), new ArrayList<TestStructure>()));
+            subjects.add(new Subject("title", new ArrayList<Task>(), new ArrayList<Group>(), new ArrayList<String>()));
             Student student = new Student("student", "password", "qwerty@mail.ru", "Alex", Role.STUDENT, subjects);
+            Subject subject = new Subject("title", new ArrayList<Task>(), new ArrayList<Group>(), new ArrayList<String>());
+            subjectRepository.save(subject);
             studentRepository.save(student);
         };
     }

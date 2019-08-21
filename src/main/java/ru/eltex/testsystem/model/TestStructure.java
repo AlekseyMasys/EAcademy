@@ -14,7 +14,11 @@ public class TestStructure {
 
     private String id;
     private String name;
+    private ArrayList<Integer> graduation;
     private String type;
+    private String repassing;
+    private String someAnswers;
+    private String timelimite;
     private ArrayList<QuestionModel> test;
 
     public TestStructure() {

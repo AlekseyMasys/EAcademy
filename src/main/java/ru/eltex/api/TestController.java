@@ -15,10 +15,10 @@ public class TestController {
     public TestController(TestStructureService testStructureService) {
         this.testStructureService = testStructureService;
     }
-    @RequestMapping(value = "/save_test",method = RequestMethod.POST)
+    @RequestMapping(value = "/teacher/{id}/subject/{idSubject}/createTest",method = RequestMethod.POST)
     @ResponseBody
-    public void saveTest(@RequestBody TestStructure request) {
-        testStructureService.saveTest(request);
+    public void saveTest(@PathVariable("id") java.lang.String id, @PathVariable("idSubject") java.lang.String idSubject, @RequestBody TestStructure request ) {
+        testStructureService.saveTest(request,id,idSubject);
         return;
     }
     /* @PostMapping("/node/api/objects/{id}/stat")
@@ -31,7 +31,7 @@ public class TestController {
         return testStructureService.loadTest(request);
     }
     @RequestMapping(value = "/get_all_tests",method = RequestMethod.GET)
-    public List<String> getAllTests(){
+    public List<java.lang.String> getAllTests(){
 
         return testStructureService.getAllTests();
     }

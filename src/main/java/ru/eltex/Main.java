@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 @SpringBootApplication
 public class Main {
-    public static void main(String[] args) {
+    public static void main(java.lang.String[] args) {
         SpringApplication.run(Main.class, args);
     }
 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.eltex.accountsystem.dao.SubjectRepository;
 import ru.eltex.accountsystem.dao.TeacherRepository;
 import ru.eltex.accountsystem.model.Subject;
 import ru.eltex.accountsystem.model.users.Teacher;
@@ -13,31 +14,30 @@ import ru.eltex.testsystem.repository.TestStructureRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class TestStructureService {
     private final TestStructureRepository testStructureRepository;
     private final ObjectMapper objectMapper;
     private final TeacherRepository teacherRepository;
+    private final SubjectRepository subjectRepository;
 
 
     @Autowired
-    public TestStructureService(TestStructureRepository testStructureRepository, ObjectMapper objectMapper, TeacherRepository teacherRepository) {
+    public TestStructureService(TestStructureRepository testStructureRepository, ObjectMapper objectMapper,
+                                TeacherRepository teacherRepository, SubjectRepository subjectRepository) {
         this.testStructureRepository = testStructureRepository;
         this.objectMapper = objectMapper;
         this.teacherRepository = teacherRepository;
+        this.subjectRepository = subjectRepository;
     }
 
     public void saveTest(TestStructure request, String id, String idSubject) {
-        Teacher teacher = teacherRepository.findTeacherById(id);
-        List<Subject> subjects = teacher.getSubjects();
-        subjects.stream().forEach(n ->{
-            if (n.getTitle().equals(idSubject)){
-                List<String> testNames = n.getTests();
-                testNames.add(request.getId());
-            }
-        });
-        teacherRepository.save(teacher);
+        Subject subject = subjectRepository.findById(idSubject).get();
+        List<String> testNames = subject.getTests();
+        testNames.add(request.getId());
+        subjectRepository.save(subject);
         testStructureRepository.save(request);
 
     }

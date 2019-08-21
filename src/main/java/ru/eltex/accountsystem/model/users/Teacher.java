@@ -12,11 +12,11 @@ import lombok.Setter;
 @Setter
 @Document(collection = "teachers")
 public class Teacher extends User {
-    private ArrayList<Subject> subjects;
+    private ArrayList<String> subjects;
 
     public Teacher(String login, String password, String email,
                    String fio, Role role,
-                   ArrayList<Subject> subjects) {
+                   ArrayList<String> subjects) {
         super(login, password, email, fio, role);
 
         this.subjects = subjects;

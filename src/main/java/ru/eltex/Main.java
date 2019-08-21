@@ -4,7 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import ru.eltex.accountsystem.dao.StudentRepository;
+import ru.eltex.accountsystem.repository.StudentRepository;
 import ru.eltex.accountsystem.enums.Role;
 import ru.eltex.accountsystem.model.Group;
 import ru.eltex.accountsystem.model.Subject;

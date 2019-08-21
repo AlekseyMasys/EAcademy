@@ -1,12 +1,17 @@
 package ru.eltex.accountsystem.model;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import ru.eltex.testsystem.model.TestStructure;
 
 import java.util.ArrayList;
 
+
+@Getter
+@Setter
 @NoArgsConstructor
 @Document(collection = "subjects")
 public class Subject {

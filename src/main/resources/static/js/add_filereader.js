@@ -6,7 +6,6 @@ function readSingleFile(e) {
   var reader = new FileReader();
   reader.onload = function(e) {
     var contents = e.target.result;
-    displayContents(contents);
     parseFile(contents);
   };
   reader.readAsText(file);
@@ -15,10 +14,11 @@ function readSingleFile(e) {
 function displayContents(contents) {
   var element = document.getElementById('file-content');
   element.textContent = contents;
+  console.log(contents);
   $.ajax({
                type: "POST",
-               contentType: "application/json",
-               url: "/save_test",
+               contentType: "application/json; charset=UTF-8",
+               url: "/teacher/123/subject/5d5d1220f494475475d12c40/createTest",
                data: contents,
                dataType: "Json",
            });
@@ -41,17 +41,17 @@ function parseFile(contents){
         data += typetest [1] =="" ? typetest[2] : typetest [1]+"\",\n"
 
     var repassing = objStr[11].split(';');
-        data += "\"re-passing\":\"";
+        data += "\"repassing\":\"";
         data += repassing [1] == "" ? "no" : "yes"
         data += "\",\n"
 
     var someanswers = objStr[12].split(';');
-        data += "\"some answers\":\"";
+        data += "\"someAnswers\":\"";
         data += someanswers [1] == "" ? "no" : someanswers[1]
         data += "\",\n"
 
     var timelimit = objStr[13].split(';');
-        data += "\"time limit\":\"";
+        data += "\"timelimite\":\"";
         data += timelimit [1] == "" ? "no" : timelimit[1]
         data += "\",\n"
 

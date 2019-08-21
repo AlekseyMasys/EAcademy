@@ -15,7 +15,7 @@ public class TestController {
     public TestController(TestStructureService testStructureService) {
         this.testStructureService = testStructureService;
     }
-    @RequestMapping(value = "/teacher/{id}/subject/{idSubject}/createTest",method = RequestMethod.POST)
+    @RequestMapping(value = "/teacher/{id}/subject/{idSubject}/createTest",method = RequestMethod.POST, produces={"application/json; charset=UTF-8"})
     @ResponseBody
     public void saveTest(@PathVariable("id") java.lang.String id, @PathVariable("idSubject") java.lang.String idSubject, @RequestBody TestStructure request ) {
         testStructureService.saveTest(request,id,idSubject);

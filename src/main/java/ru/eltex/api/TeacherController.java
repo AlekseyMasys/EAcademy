@@ -15,7 +15,7 @@ import java.util.*;
 
 @RestController
 public class TeacherController {
-    private final TeacherRepository teacherRepository;
+    /*private final TeacherRepository teacherRepository;
     private final GroupRepository groupRepository;
     private final StudentRepository studentRepository;
     private final SubjectRepository subjectRepository;
@@ -107,5 +107,5 @@ public class TeacherController {
         studentRepository.save(student);
     }
 
-
+*/
 }

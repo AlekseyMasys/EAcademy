@@ -9,7 +9,6 @@ import ru.eltex.testsystem.model.TestStructure;
 
 import java.util.ArrayList;
 
-
 @Getter
 @Setter
 @NoArgsConstructor

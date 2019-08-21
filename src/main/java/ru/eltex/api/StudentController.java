@@ -4,56 +4,49 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.eltex.accountsystem.repository.GroupRepository;
-import ru.eltex.accountsystem.repository.StudentRepository;
 import ru.eltex.accountsystem.model.Subject;
+import ru.eltex.accountsystem.model.Task;
 import ru.eltex.accountsystem.model.users.Student;
-import ru.eltex.accountsystem.repository.SubjectRepository;
+import ru.eltex.accountsystem.service.StudentService;
 import ru.eltex.testsystem.model.TestStructure;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class StudentController {
 
-    private final StudentRepository studentRepository;
+    private final StudentService studentService;
 
-//    private final GroupRepository groupRepository;
-
-    private final SubjectRepository subjectRepository;
 
     @Autowired
-    public StudentController(StudentRepository studentRepository, SubjectRepository subjectRepository) {
-        this.studentRepository = studentRepository;
-        this.subjectRepository = subjectRepository;
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
     }
 
-    @RequestMapping("/get_subjects/{id}")
-    public List<Subject> getSubjects(@PathVariable("id") String id) {
-
-        Student student = studentRepository.findById(id).get();
-        List<Subject> subjects =  student.getSubjects();
-        return subjects;
+    @RequestMapping("/get_subjects/{idStudent}")
+    public List<Subject> getSubjects(@PathVariable("idStudent") String idStudent) {
+        return studentService.getAllSubjects(idStudent);
     }
 
-    @RequestMapping("/get_tests/{id}")
-    public List<TestStructure> getTest(@PathVariable("id")  String id) {
-        Student student = studentRepository.findById(id).get();
-        List<Subject> subjects =  student.getSubjects();
-        List<TestStructure> tests = null;
-        for(Subject elem: subjects) {
-            elem.getTests().forEach(test-> tests.add(test));
-        }
-        return tests;
+    @RequestMapping("/get_tasks/{studentId}")
+    public List<Task> getAllTasksByOneSubject(@PathVariable("idStudent") String idStudent) {
+        return studentService.getAllTasksByOneSubject(idStudent);
     }
 
-    @RequestMapping("/add_subjects")
-    public void addSubject(String studentId, String grId) {
-        ArrayList<Subject> subjects = new ArrayList<>();
-        Student student = studentRepository.findById(studentId).get();
-        subjectRepository.findAll().forEach(elem -> elem.getGroups().stream().filter(gr -> gr.getId().equals(grId)).forEach(elem2 -> subjects.add(elem)));
-        student.setSubjects(subjects);
-        studentRepository.save(student);
+
+    @RequestMapping("/get_tests/{studentId}")
+    public List<TestStructure> getTests(@PathVariable("studentId")  String studentId) {
+        return studentService.getTests(studentId);
+    }
+
+    @RequestMapping("/add_subjects/{studentId}/{grId}")
+    public void addSubject(@PathVariable("studentId") String studentId, @PathVariable("grId") String grId) {
+        studentService.addSubjectForStudent(studentId, grId);
+    }
+
+    @RequestMapping("/get_marks/{studentId}")
+    public Map<Subject, Integer> getMarks(@PathVariable("studentId") String studentId) {
+        return studentService.getMarks(studentId);
     }
 }

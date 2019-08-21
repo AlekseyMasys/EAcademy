@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class QuestionModel {
 
     @Getter @Setter
-    private String question;
+    private TestStructure question;
     @Getter@Setter
-    private ArrayList<String> answers;
+    private ArrayList<TestStructure> answers;
 }

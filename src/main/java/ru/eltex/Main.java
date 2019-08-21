@@ -24,7 +24,7 @@ public class Main {
     public CommandLineRunner demo(StudentRepository studentRepository) {
         return (args) -> {
             ArrayList<Subject>subjects = new ArrayList<>();
-            subjects.add(new Subject("title", new ArrayList<Task>(), new ArrayList<Group>(), new ArrayList<TestStructure>()));
+            subjects.add(new Subject("title", new ArrayList<Task>(), new ArrayList<Group>(), new ArrayList<String>()));
             Student student = new Student("student", "password", "qwerty@mail.ru", "Alex", Role.STUDENT, subjects);
             studentRepository.save(student);
         };

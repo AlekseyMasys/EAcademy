@@ -60,7 +60,15 @@ function parseFile(contents){
         var answer = objStr[i].split(';');
             data += "\n{\"question\":\"";
             data += answer [0];
-            data += "\",\n"
+            data += "\",\n";
+
+             data += "\"trueAnswer\":\"";
+             data += answer [1];
+             data += "\",\n" ;
+
+             data += "\"point\":\"";
+             data += answer [2];
+             data += "\",\n";
             data += "\"answers\":[";
                 for(var option=3; option<answer.length; option++){
                        data +="\"";

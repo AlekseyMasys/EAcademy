@@ -2,7 +2,6 @@ package ru.eltex.accountsystem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 import ru.eltex.accountsystem.model.Subject;
 import ru.eltex.accountsystem.model.Task;
 import ru.eltex.accountsystem.model.users.Student;

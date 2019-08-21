@@ -49,4 +49,14 @@ public class StudentController {
     public Map<Subject, Integer> getMarks(@PathVariable("studentId") String studentId) {
         return studentService.getMarks(studentId);
     }
+
+    @RequestMapping("/get_student/{studentId}")
+    public Student getStudent(@PathVariable("studentId") String studentId) {
+        return studentService.getStudentById(studentId);
+    }
+
+    @RequestMapping("/get_subject/{subjectId}")
+    public Subject getSubject(@PathVariable("subjectId") String subjectId) {
+        return studentService.getSubjectById(subjectId);
+    }
 }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 @Document(collection = "Groups")
 public class Group {
     @Id
-    private int id;
+    private String id;
     private String title;
     private ArrayList<Student> students;
 

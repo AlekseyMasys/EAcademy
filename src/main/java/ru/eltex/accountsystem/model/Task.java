@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "task")
 public class Task {
     @Id
-    private Integer id;
+    private String id;
     private String title;
     private String description;
     private Integer maxScores;

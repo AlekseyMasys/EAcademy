@@ -14,7 +14,7 @@ import lombok.Setter;
 public class Teacher extends User {
     private ArrayList<Subject> subjects;
 
-    public Teacher(Integer id, String login, String password, String email,
+    public Teacher(String login, String password, String email,
                    String fio, Role role,
                    ArrayList<Subject> subjects) {
         super(login, password, email, fio, role);

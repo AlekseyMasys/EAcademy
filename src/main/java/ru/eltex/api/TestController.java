@@ -1,8 +1,7 @@
-package ru.eltex;
+package ru.eltex.api;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.eltex.testsystem.model.TestStructure;
 import ru.eltex.testsystem.service.TestStructureService;
@@ -10,10 +9,10 @@ import ru.eltex.testsystem.service.TestStructureService;
 import java.util.List;
 
 @RestController
-public class PublicAPI {
+public class TestController {
     private final TestStructureService testStructureService;
     @Autowired
-    public PublicAPI(TestStructureService testStructureService) {
+    public TestController(TestStructureService testStructureService) {
         this.testStructureService = testStructureService;
     }
     @RequestMapping(value = "/save_test",method = RequestMethod.POST)

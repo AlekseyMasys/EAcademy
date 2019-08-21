@@ -19,5 +19,4 @@ public class Group {
         this.title = title;
         this.students = students;
     }
-
 }

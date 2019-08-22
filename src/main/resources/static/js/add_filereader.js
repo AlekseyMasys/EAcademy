@@ -56,21 +56,29 @@ function parseFile(contents){
         data += "\",\n"
 
     data += "\"test\":[";
-    for(var i=21;i<objStr.length-1;i++){
+    for(var i=20;i<objStr.length-1;i++){
         var answer = objStr[i].split(';');
             data += "\n{\"question\":\"";
             data += answer [0];
             data += "\",\n";
+            data += "\"trueAnswer\":[";
 
-             data += "\"trueAnswer\":\"";
-             data += answer [1];
-             data += "\",\n" ;
+        var trueAnswer = answer[1].split(',')
+            for (var j = 0; j<trueAnswer.length;j++){
+                data +="\"";
+                 if (j==trueAnswer.length-1){
+                     data += trueAnswer[j]+"\"";
+                 }else{
+                 data += trueAnswer[j]+"\",";
+                 }
+            }
+            data += "],\n" ;
 
-             data += "\"point\":\"";
-             data += answer [2];
-             data += "\",\n";
+            data += "\"point\":\"";
+            data += answer [2];
+            data += "\",\n";
             data += "\"answers\":[";
-                for(var option=3; option<answer.length; option++){
+                for(var option = 3; option<answer.length; option++){
                        data +="\"";
                        data += answer[option];
                        if(option==answer.length-1 && i==objStr.length-2){

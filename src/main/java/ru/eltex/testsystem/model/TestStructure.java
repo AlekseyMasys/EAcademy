@@ -6,16 +6,22 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
-@Getter
-@Setter
+@Getter@Setter
 @Document(collection = "teststructure")
 public class TestStructure {
-    @Id
+
     private String id;
     private String name;
+    private ArrayList<Integer> graduation;
     private String type;
+    private String repassing;
+    private String someAnswers;
+    private String timelimite;
     private ArrayList<QuestionModel> test;
 
-    private Integer score;
+    public TestStructure() {
+        this.id = UUID.randomUUID().toString();
+    }
 }

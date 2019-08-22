@@ -13,7 +13,11 @@ public class TestStructureRepositoryCustomImpl implements TestStructureRepositor
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public TestStructure getByName(String name){
+    public TestStructure getByName(java.lang.String name){
         return mongoTemplate.findOne(Query.query(Criteria.where("name").regex(name)), TestStructure.class);
     }
+
+//    public TestStructure getByName(String name){
+//        return mongoTemplate.findOne(Query.query(Criteria.where("name").regex(name)), TestStructure.class);
+//    }
 }

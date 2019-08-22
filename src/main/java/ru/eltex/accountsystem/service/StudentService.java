@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class StudentService {
+public class StudentService {/*
     private final StudentRepository studentRepository;
     private final SubjectRepository subjectRepository;
 
@@ -79,5 +79,5 @@ public class StudentService {
         subjectRepository.findAll().forEach(elem -> elem.getGroups().stream().filter(gr -> gr.getId().equals(grId)).forEach(elem2 -> subjects.add(elem)));
         student.setSubjects(subjects);
         studentRepository.save(student);
-    }
+    }*/
 }

@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-public class StudentController {
+public class StudentController {/*
 
     private final StudentService studentService;
 
@@ -58,5 +58,5 @@ public class StudentController {
     @RequestMapping("/get_subject/{subjectId}")
     public Subject getSubject(@PathVariable("subjectId") String subjectId) {
         return studentService.getSubjectById(subjectId);
-    }
+    }*/
 }

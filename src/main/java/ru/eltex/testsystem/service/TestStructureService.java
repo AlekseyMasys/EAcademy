@@ -8,6 +8,7 @@ import ru.eltex.accountsystem.dao.SubjectRepository;
 import ru.eltex.accountsystem.dao.TeacherRepository;
 import ru.eltex.accountsystem.model.Subject;
 import ru.eltex.accountsystem.model.users.Teacher;
+import ru.eltex.testsystem.model.QuestionModel;
 import ru.eltex.testsystem.model.TestStructure;
 import ru.eltex.testsystem.repository.TestStructureRepository;
 
@@ -42,9 +43,13 @@ public class TestStructureService {
 
     }
 
-    public TestStructure loadTest(JsonNode request) {
-        Map<String, String> result = objectMapper.convertValue(request, Map.class);
-        return testStructureRepository.getByName(result.get("name"));
+    public TestStructure loadTest(String id, String idSubject, String idTest) {
+//        Map<String, String> result = objectMapper.convertValue(request, Map.class);
+        TestStructure testStructure = testStructureRepository.getById(idTest);
+        for(QuestionModel q:testStructure.getTest()){
+            q.setTrueAnswer(null);
+        }
+        return testStructure;
     }
 
     public List<String> getAllTests() {

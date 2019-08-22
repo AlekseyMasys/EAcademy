@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show test</title>
+    <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<script type="text/javascript">
+    function getAllUsers() {
+        $.get("/get_users",function(data){
+            console.log(data);
+            var line="";
+            $(".listOfUsers").html(line);
+             if (data.length==0){
+                $(".listOfUsers").html("<font>No Data in DB!</font>");
+             } else{
+                for (let i=0; i<data.length; i++){
+                    line += data[i].id +"  "+ data[i].fio +"  "+ data[i].phone + "<br/>" ;
+                }
+                $(".listOfUsers").html(line);
+             }
+        });
+    }
+    function getUser() {
+    var idUser = document.getElementById('numberUser').value;
+        $.get("/get_user/"+idUser,function(data){
+            console.log(data);
+            if (data.fio=="noname"){
+                $(".Users").html("Can't find User");
+            } else{
+                $(".Users").html(data.id + " " + data.fio + " " + data.phone);
+            }
+        });
+    }
+    function logout() {
+        $.get("/logout",function(data){
+            console.log(data);
+<!--            $(".Users").html(data);-->
+<!--            getAllUsers()-->
+        });
+    }
+<!--    function createUsers() {-->
+<!--        $.get("/create",function(data){-->
+<!--            console.log(data);-->
+<!--            $(".Users").html(data);-->
+<!--            getAllUsers()-->
+<!--        });-->
+<!--    }-->
+</script>
+<body>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6" style="height:777px;
+                                width:777px;
+                                border:5px solid #AAAAAA;
+                                background-color:#AAAAFF;">
+            <font size="5" color="00FFFF"> List of Users from DB:</font>
+            <br/>
+            <font class="listOfUsers" size="4">
+                <th:block th:each="quest : ${testmodel.test}">
+                    <II th:utext="${quest.question}"></II>
+                    <br/>
+                    <br/>
+                    <II th:utext="${quest.question}"></II>
+                    <br/>
+
+
+                </th:block>
+            </font>
+        </div>
+
+        <div class="col-md-6" style="height:777px;
+                                width:777px;
+                                border:5px solid #AAAAAA;
+                                background-color:#AAAAFF;">
+            <font size="5" color="00FFFF"> Choose User:</font>
+            <br/>
+            <input id="numberUser" type="text"/>
+            <br/>
+            <button type="button" onclick="getUser()">Show data of choosen User</button>
+            <br/>
+            <font class="Users" size="4"></font>
+            <br/>
+            <br/>
+            <br/>
+            <button type="button" onclick="getAllUsers()">Refresh</button>
+            <br/>
+            <button type="button" onclick="logout()">Logout</button>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

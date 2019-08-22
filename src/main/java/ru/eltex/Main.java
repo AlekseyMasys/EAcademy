@@ -10,6 +10,7 @@ import ru.eltex.accountsystem.dao.SubjectRepository;
 import ru.eltex.accountsystem.enums.Role;
 import ru.eltex.accountsystem.model.Group;
 import ru.eltex.accountsystem.model.Subject;
+import ru.eltex.accountsystem.model.Task;
 import ru.eltex.accountsystem.model.users.Teacher;
 
 import java.util.ArrayList;

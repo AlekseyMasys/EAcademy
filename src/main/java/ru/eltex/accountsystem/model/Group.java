@@ -17,6 +17,7 @@ public class Group {
     @Id
     private String id;
     private String title;
+    private String table;
     private ArrayList<Student> students;
 
     public Group(String title, ArrayList<Student> students) {

@@ -12,7 +12,8 @@ import lombok.Setter;
 @Setter
 @Document(collection = "students")
 public class Student extends User {
-    ArrayList<Subject> subjects;
+    private ArrayList<Subject> subjects;
+    private String groupId;
 
     public Student(String login, String password,
                    String email, String fio, Role role,
@@ -21,4 +22,5 @@ public class Student extends User {
 
         this.subjects = subjects;
     }
+
 }

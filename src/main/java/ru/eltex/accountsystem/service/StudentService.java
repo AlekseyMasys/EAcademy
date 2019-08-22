@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.eltex.accountsystem.model.Subject;
 import ru.eltex.accountsystem.model.Task;
 import ru.eltex.accountsystem.model.users.Student;
+import ru.eltex.accountsystem.repository.GroupRepository;
 import ru.eltex.accountsystem.repository.StudentRepository;
 import ru.eltex.accountsystem.repository.SubjectRepository;
 import ru.eltex.testsystem.model.TestStructure;
@@ -15,9 +16,10 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class StudentService {/*
+public class StudentService {
     private final StudentRepository studentRepository;
     private final SubjectRepository subjectRepository;
+//    private final GroupRepository groupRepository;
 
     @Autowired
     public StudentService(StudentRepository studentRepository, SubjectRepository subjectRepository) {
@@ -33,25 +35,25 @@ public class StudentService {/*
         return getStudentById(idStudent).getSubjects();
     }
 
-    public Map<Subject, Integer> getMarks(String idStudent) {
-        Map<Subject, Integer> marks = new HashMap<>();
-
-        ArrayList<Subject> subjects = getStudentById(idStudent).getSubjects();
-        for (Subject subject : subjects) {
-            Integer mark = 0;
-
-            for (int i = 0; i < subject.getTasks().size(); i++) {
-                mark += subject.getTasks().get(i).getScores();
-            }
-            for (int i = 0; i < subject.getTests().size(); i++) {
-                mark += subject.getTests().get(i).getScore();
-            }
-
-            marks.put(subject, mark);
-        }
-
-        return marks;
-    }
+//    public Map<Subject, Integer> getMarks(String idStudent) {
+//        Map<Subject, Integer> marks = new HashMap<>();
+//
+//        ArrayList<Subject> subjects = getStudentById(idStudent).getSubjects();
+//        for (Subject subject : subjects) {
+//            Integer mark = 0;
+//
+//            for (int i = 0; i < subject.getTasks().size(); i++) {
+//                mark += subject.getTasks().get(i).getScores();
+//            }
+//            for (int i = 0; i < subject.getTests().size(); i++) {
+//                mark += subject.getTests().get(i).getScore();
+//            }
+//
+//            marks.put(subject, mark);
+//        }
+//
+//        return marks;
+//    }
 
     public Subject getSubjectById(String idSubject) {
         return subjectRepository.findById(idSubject).get();
@@ -79,5 +81,5 @@ public class StudentService {/*
         subjectRepository.findAll().forEach(elem -> elem.getGroups().stream().filter(gr -> gr.getId().equals(grId)).forEach(elem2 -> subjects.add(elem)));
         student.setSubjects(subjects);
         studentRepository.save(student);
-    }*/
+    }
 }

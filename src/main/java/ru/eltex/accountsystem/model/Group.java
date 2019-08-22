@@ -18,6 +18,7 @@ public class Group {
     private String id;
     private String title;
     private ArrayList<Student> students;
+    private String scheduleUrl;
 
     public Group(String title, ArrayList<Student> students) {
         this.title = title;

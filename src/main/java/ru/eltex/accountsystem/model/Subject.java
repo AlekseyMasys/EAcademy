@@ -16,7 +16,7 @@ public class Subject {
     @Id
     private String id;
     private String title;
-    private ArrayList<Task> tasks;
+    private ArrayList<String> tasks;
     private ArrayList<Group> groups;
     private ArrayList<String> tests;
 

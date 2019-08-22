@@ -6,6 +6,7 @@ import ru.eltex.accountsystem.dao.StudentRepository;
 import ru.eltex.accountsystem.dao.SubjectRepository;
 import ru.eltex.accountsystem.dao.TeacherRepository;
 import ru.eltex.accountsystem.model.Group;
+import ru.eltex.accountsystem.model.StudentTask;
 import ru.eltex.accountsystem.model.Subject;
 import ru.eltex.accountsystem.model.Task;
 import ru.eltex.accountsystem.model.users.Student;
@@ -112,7 +113,7 @@ public class TeacherController {
                           @PathVariable("scores") Integer scores) {
         Student student = studentRepository.findById(studentId).get();
         Subject studenSubject = student.getSubjects().stream().filter(sub -> sub.getId().equals(subjectId)).findFirst().orElseThrow();
-        Task studentTask = studenSubject.getTasks().stream().filter(task -> task.getId().equals(taskId)).findFirst().orElseThrow();
+        StudentTask studentTask = (StudentTask) studenSubject.getTasks().stream().filter(task -> task.getId().equals(taskId)).findFirst().orElseThrow();
         studentTask.setScores(scores);
         studentRepository.save(student);
     }

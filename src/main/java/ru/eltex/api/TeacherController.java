@@ -90,7 +90,6 @@ public class TeacherController {
     }
 
     @RequestMapping(value = "/addstudent/{groupId}/{studentId}", method = RequestMethod.POST)
-    @ResponseBody
     public void addStudentInGroup(@PathVariable("groupId") String groupId, @PathVariable("studentId") String studentId) {
         Group group = groupRepository.findById(groupId).get();
         Student student = studentRepository.findById(studentId).get();
@@ -102,13 +101,11 @@ public class TeacherController {
     }
 
     @RequestMapping(value = "/addsubject", method = RequestMethod.POST)
-    @ResponseBody
     public void addSubject(@RequestBody Subject subject) {
         subjectRepository.save(subject);
     }
 
     @RequestMapping(value = "/addscores/{studentId}/{subjectId}/{taskId}/{scores}", method = RequestMethod.POST)
-    @ResponseBody
     public void addScores(@PathVariable("studentId") String studentId,
                           @PathVariable("subjectId") String subjectId,
                           @PathVariable("taskId") String taskId,
@@ -119,6 +116,4 @@ public class TeacherController {
         studentTask.setScores(scores);
         studentRepository.save(student);
     }
-
-
 }

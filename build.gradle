@@ -4,6 +4,7 @@ plugins {
 }
 apply plugin: 'java'
 apply plugin: "application"
+mainClassName = "ru.eltex.Main"
 run {
     standardInput = System.in
 }

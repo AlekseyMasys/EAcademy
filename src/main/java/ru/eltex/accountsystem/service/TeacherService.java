@@ -15,17 +15,13 @@ import java.util.List;
 @Service
 public class TeacherService {
     private final TeacherRepository teacherRepository;
-    private final GroupRepository groupRepository;
-    private final StudentRepository studentRepository;
     private final SubjectRepository subjectRepository;
     private final TaskResultRepository taskResultRepository;
 
     @Autowired
-    public TeacherService(TeacherRepository _repository, GroupRepository groupRepository,
-                          StudentRepository studentRepository, SubjectRepository subjectRepository, TaskResultRepository taskResultRepository) {
+    public TeacherService(TeacherRepository _repository, SubjectRepository subjectRepository,
+                          TaskResultRepository taskResultRepository) {
         this.teacherRepository = _repository;
-        this.groupRepository = groupRepository;
-        this.studentRepository = studentRepository;
         this.subjectRepository = subjectRepository;
         this.taskResultRepository = taskResultRepository;
     }
@@ -77,21 +73,6 @@ public class TeacherService {
                 .getGroups();
         Group group = groups.stream().filter(gr -> gr.getId().equals(idGroup)).findFirst().orElseThrow();
         return group.getStudents();
-    }
-
-    public void addGroup(Group group) {
-        groupRepository.save(group);
-        //если group.students != null заполнение у студентов subjects
-    }
-
-    public void addStudentInGroup(String groupId, String studentId) {
-        Group group = groupRepository.findById(groupId).get();
-        Student student = studentRepository.findById(studentId).get();
-        ArrayList<Student> groupStudents = group.getStudents();
-        groupStudents.add(student);
-        group.setStudents(groupStudents);
-        groupRepository.save(group);
-        //заполнение у студента subjects
     }
 
     public void addSubject(Subject subject) {

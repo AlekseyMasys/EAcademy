@@ -1,18 +1,6 @@
 package ru.eltex.accountsystem.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.eltex.accountsystem.dao.StudentRepository;
-import ru.eltex.accountsystem.dao.SubjectRepository;
-import ru.eltex.accountsystem.model.Subject;
-import ru.eltex.accountsystem.model.Task;
-import ru.eltex.accountsystem.model.users.Student;
-import ru.eltex.testsystem.model.TestStructure;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class StudentService {/*

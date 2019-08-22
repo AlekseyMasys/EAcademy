@@ -59,11 +59,11 @@ public class TeacherController {
         teacherService.addSubject(subject);
     }
 
-    @RequestMapping(value = "/addScores/{studentId}/{subjectId}/{taskId}/{scores}", method = RequestMethod.POST)
+    @RequestMapping(value = "/addScores/{studentId}/{taskId}/{scores}/{status}", method = RequestMethod.POST)
     public void addScores(@PathVariable("studentId") String studentId,
-                          @PathVariable("subjectId") String subjectId,
                           @PathVariable("taskId") String taskId,
-                          @PathVariable("scores") Integer scores) {
-        teacherService.addScores(studentId, subjectId, taskId, scores);
+                          @PathVariable("scores") Integer scores,
+                          @PathVariable("status") String status) {
+        teacherService.addScores(studentId, taskId, status, scores);
     }
 }

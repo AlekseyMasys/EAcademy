@@ -2,13 +2,10 @@ package ru.eltex.accountsystem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.eltex.accountsystem.dao.GroupRepository;
-import ru.eltex.accountsystem.dao.StudentRepository;
-import ru.eltex.accountsystem.dao.SubjectRepository;
-import ru.eltex.accountsystem.dao.TeacherRepository;
+import ru.eltex.accountsystem.dao.*;
 import ru.eltex.accountsystem.model.Group;
-import ru.eltex.accountsystem.model.StudentTask;
 import ru.eltex.accountsystem.model.Subject;
+import ru.eltex.accountsystem.model.TaskResult;
 import ru.eltex.accountsystem.model.users.Student;
 import ru.eltex.accountsystem.model.users.Teacher;
 
@@ -21,14 +18,16 @@ public class TeacherService {
     private final GroupRepository groupRepository;
     private final StudentRepository studentRepository;
     private final SubjectRepository subjectRepository;
+    private final TaskResultRepository taskResultRepository;
 
     @Autowired
     public TeacherService(TeacherRepository _repository, GroupRepository groupRepository,
-                          StudentRepository studentRepository, SubjectRepository subjectRepository) {
+                          StudentRepository studentRepository, SubjectRepository subjectRepository, TaskResultRepository taskResultRepository) {
         this.teacherRepository = _repository;
         this.groupRepository = groupRepository;
         this.studentRepository = studentRepository;
         this.subjectRepository = subjectRepository;
+        this.taskResultRepository = taskResultRepository;
     }
 
     public Teacher getTeacher(String id) {
@@ -99,16 +98,14 @@ public class TeacherService {
         subjectRepository.save(subject);
     }
 
-    public void addScores(String studentId, String subjectId, String taskId, Integer scores) {
-        Student student = studentRepository.findById(studentId).get();
-        Subject studenSubject = student.getSubjects().stream().filter(sub -> sub.getId().equals(subjectId)).findFirst().orElseThrow();
-        StudentTask studentTask = (StudentTask) studenSubject
-                .getTasks()
+    public void addScores(String studentId,  String taskId, String status, Integer scores) {
+        TaskResult task = taskResultRepository.findAll()
                 .stream()
-                .filter(task -> taskId.equals(((StudentTask)task).getIdTeacherTask()))
+                .filter(tsk -> tsk.getIdTask().equals(taskId) && tsk.getIdStudent().equals(studentId))
                 .findFirst()
                 .orElseThrow();
-        studentTask.setScores(scores);
-        studentRepository.save(student);
+        task.setScores(scores);
+        task.setStatus(status);
+        taskResultRepository.save(task);
     }
 }

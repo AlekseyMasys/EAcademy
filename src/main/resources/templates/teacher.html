@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>
 <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>
 <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>
 <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
 <html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>EAcademy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free HTML5 Template by FreeHTML5.co"/>
     <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive"/>
     <meta name="author" content="FreeHTML5.co"/>
 
@@ -25,6 +22,9 @@
     <meta name="twitter:image" content=""/>
     <meta name="twitter:url" content=""/>
     <meta name="twitter:card" content=""/>
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="favicon.ico">
 
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400" rel="stylesheet">
 
@@ -40,7 +40,9 @@
     <link rel="stylesheet" href="static/css/style.css">
 
 
+    <!-- Modernizr JS -->
     <script src="static/js/modernizr-2.6.2.min.js"></script>
+
     <script src="static/js/respond.min.js"></script>
 </head>
 
@@ -65,7 +67,7 @@
                             <span>Дисциплины</span></a>
                         </li>
 
-                        <li><a onclick="location.href='teacher_page.html';"
+                        <li><a onclick="location.href='index.html';"
                                data-nav-section="pricing"><span>Моя страница</span></a>
                         </li>
                         <li><a onclick="location.href='authorization.html';" data-nav-section="blog"><span>Выход</span></a>
@@ -77,56 +79,45 @@
     </div>
 </header>
 
-<style>
-    .inputfile {
-        width: 0.2px;
-        height: 0.2px;
-        opacity: 0;
-        overflow: hidden;
-        position: absolute;
-        z-index: -1;
-    }
-
-    .inputfile + label {
-        font-size: 1.25em;
-        font-weight: 700;
-        color: white;
-        background-color: darkgray;
-        display: inline-block;
-    }
-
-    .inputfile:focus + label,
-    .inputfile + label:hover {
-        background-color: #3EC483;
-    }
-
-    .inputfile + label {
-        cursor: pointer; /* "hand" cursor */
-    }
-</style>
-
 <section id="fh5co-explore" data-section="explore">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 section-heading text-center">
-                <h2 class="animate-box">Загрузите ваш тест на сервер</h2>
-                <div class="row" align="center">
-                    <br/>
-                    <div class="custom-file">
-
-                    </div>
-                    <form enctype="multipart/form-data" method="post">
-                        <div class="form-group">
-                            <input type="file" name="file" id="file" class="inputfile"/>
-                            <!--                            <label for="file">Choose a file</label>-->
-                            <label for="file" id="file-input" class="custom-file-label"> Выбрать файл </label>
+            <div class="col-sm-4">
+                <div class="col-md-12 section-heading text-center">
+                    <h2 class="animate-box">Учебный процесс</h2>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 subtext animate-box">
+                            <h3>Действия, связанные с обучением</h3>
                         </div>
-                        <label>
-                            <!-- <input type="file" id="file-input"/> -->
-                            <input type="submit" id="btn-submit" class="btn btn-send-message btn-md"
-                                   value="Отправить">
-                        </label>
-                    </form>
+                    </div>
+                    <a onclick="location.href='authorization.html';" data-nav-section="blog"><span>Мои группы</span></a><br/>
+                    <a onclick="location.href='teacher_subjects.html';"
+                       data-nav-section="blog"><span>Мои дисциплины</span></a>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="col-md-12 section-heading text-center">
+                    <h2 class="animate-box">Пользователь</h2>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 subtext animate-box">
+                            <h3>Моя страница</h3>
+                        </div>
+                    </div>
+                    Здесь будет вывод информации о пользователе
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="col-md-12 section-heading text-center">
+                    <h2 class="animate-box">Справка</h2>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 subtext animate-box">
+                            <h3>Дополнительные сведения о системе или учебном процессе</h3>
+                        </div>
+                    </div>
+                    <a onclick="location.href='authorization.html';"
+                       data-nav-section="blog"><span>Помощь</span></a><br/>
+                    <a onclick="location.href='teacher_subjects.html';"
+                       data-nav-section="blog"><span>Поддержка</span></a>
                 </div>
             </div>
         </div>
@@ -174,7 +165,7 @@
                         <textarea class="form-control" id="message" rows="7" placeholder="Сообщение"></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-send-message btn-md"
+                        <input type="submit" id="btn-submit" class="btn btn-send-message btn-md"
                                value="Отправить сообщение">
                     </div>
                 </form>
@@ -182,6 +173,7 @@
         </div>
     </div>
 </div>
+
 <!-- jQuery -->
 <script src="static/js/jquery.min.js"></script>
 <!-- jQuery Easing -->
@@ -199,3 +191,4 @@
 
 </body>
 </html>
+

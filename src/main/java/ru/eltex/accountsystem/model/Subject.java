@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import ru.eltex.testsystem.model.TestStructure;
 
 import java.util.ArrayList;
 
@@ -17,11 +16,11 @@ public class Subject {
     @Id
     private String id;
     private String title;
-    private ArrayList<Task> tasks;
+    private ArrayList<String> tasks;
     private ArrayList<Group> groups;
-    private ArrayList<TestStructure> tests;
+    private ArrayList<String> tests;
 
-    public Subject(String title, ArrayList<Task> tasks, ArrayList<Group> groups, ArrayList<TestStructure> tests) {
+    public Subject(String title, ArrayList<String> tasks, ArrayList<Group> groups, ArrayList<String> tests) {
         this.title = title;
         this.tasks = tasks;
         this.groups = groups;

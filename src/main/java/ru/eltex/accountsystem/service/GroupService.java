@@ -1,10 +1,10 @@
 package ru.eltex.accountsystem.service;
 
 import org.springframework.stereotype.Service;
-import ru.eltex.accountsystem.dao.GroupRepository;
-import ru.eltex.accountsystem.dao.StudentRepository;
 import ru.eltex.accountsystem.model.Group;
 import ru.eltex.accountsystem.model.users.Student;
+import ru.eltex.accountsystem.repository.GroupRepository;
+import ru.eltex.accountsystem.repository.StudentRepository;
 
 import java.util.ArrayList;
 

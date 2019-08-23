@@ -9,6 +9,8 @@ import ru.eltex.accountsystem.model.Subject;
 import ru.eltex.accountsystem.model.TaskResult;
 import ru.eltex.accountsystem.model.users.Student;
 import ru.eltex.accountsystem.model.users.Teacher;
+import ru.eltex.accountsystem.repository.SubjectRepository;
+import ru.eltex.accountsystem.repository.TeacherRepository;
 
 import java.util.ArrayList;
 import java.util.List;

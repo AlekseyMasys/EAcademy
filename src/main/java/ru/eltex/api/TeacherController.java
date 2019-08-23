@@ -1,111 +1,75 @@
 package ru.eltex.api;
 
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.eltex.accountsystem.dao.GroupRepository;
-import ru.eltex.accountsystem.dao.StudentRepository;
-import ru.eltex.accountsystem.dao.SubjectRepository;
-import ru.eltex.accountsystem.dao.TeacherRepository;
 import ru.eltex.accountsystem.model.Group;
 import ru.eltex.accountsystem.model.Subject;
-import ru.eltex.accountsystem.model.Task;
-import ru.eltex.accountsystem.model.users.Student;
-import ru.eltex.accountsystem.model.users.Teacher;
-
-import java.util.*;
+import ru.eltex.accountsystem.service.GroupService;
+import ru.eltex.accountsystem.service.TeacherService;
 
 @RestController
 public class TeacherController {
-    /*private final TeacherRepository teacherRepository;
-    private final GroupRepository groupRepository;
-    private final StudentRepository studentRepository;
-    private final SubjectRepository subjectRepository;
+    private final TeacherService teacherService;
+    private final GroupService groupService;
 
-    public TeacherController(TeacherRepository _repository, GroupRepository groupRepository,
-                             StudentRepository studentRepository, SubjectRepository subjectRepository) {
-        this.teacherRepository = _repository;
-        this.groupRepository = groupRepository;
-        this.studentRepository = studentRepository;
-        this.subjectRepository = subjectRepository;
+    public TeacherController(TeacherService teacherService, GroupService groupService) {
+        this.teacherService = teacherService;
+        this.groupService = groupService;
     }
 
     @RequestMapping(value = "/teacher/{id}", method = RequestMethod.GET)
-    public Teacher getTeacher(@PathVariable("id") String id) {
-        return teacherRepository.findById(id).get();
+    public String getTeacher(@PathVariable("id") String id, Model modelTeacher) {
+        modelTeacher.addAttribute("teacher", teacherService.getTeacher(id));
+        return "teacher";
     }
 
     @RequestMapping(value = "/teacher/{id}/subjects", method = RequestMethod.GET)
-    public List<Subject> getTeacherSubjects(@PathVariable("id") String id) {
-        Teacher teacher = teacherRepository.findById(id).get();
-        return teacher.getSubjects();
+    public String getTeacherSubjects(@PathVariable("id") String id, Model modelSubjects) {
+       modelSubjects.addAllAttributes(teacherService.getTeacherSubjects(id));
+       return "teacherSubjects";
     }
 
     @RequestMapping(value = "/teacher/{id}/groups", method = RequestMethod.GET)
-    public List<Group> getTeacherGroups(@PathVariable("id") String id) {
-        Teacher teacher = teacherRepository.findById(id).get();
-        List<Subject> teacherSubjects = teacher.getSubjects();
-        List<Group> groups = new ArrayList<>();
-        teacherSubjects.forEach(sub -> groups.addAll(sub.getGroups()));
-        return groups;
+    public String getTeacherGroups(@PathVariable("id") String id, Model modelGroup) {
+        modelGroup.addAllAttributes(teacherService.getTeacherGroups(id));
+        return "groups";
     }
 
     @RequestMapping(value = "/teacher/{id}/subject/{idSubject}", method = RequestMethod.GET)
-    public List<Group> getSubjectGroups(@PathVariable("id") String id, @PathVariable("idSubject") String idSubject) {
-        Teacher teacher = teacherRepository.findById(id).get();
-        List<Subject> teacherSubjects = teacher.getSubjects();
-        return teacherSubjects.stream().filter(sub -> sub.getId().equals(idSubject)).findFirst().orElseThrow().getGroups();
+    public String getSubjectGroups(@PathVariable("id") String id, @PathVariable("idSubject") String idSubject, Model modelGroup) {
+        modelGroup.addAllAttributes(teacherService.getSubjectGroups(id, idSubject));
+        return "groupsFromSubject";
     }
 
-    @RequestMapping(value = "/getstudentsfromgroup/{id}/{idSubjec}/{idGroup}", method = RequestMethod.GET)
-    public List<Student> getStudentsFromGroup(@PathVariable("id") String id, @PathVariable("idGroup") String idGroup, @PathVariable String idSubject) {
-        Teacher teacher = teacherRepository.findById(id).get();
-        List<Subject> teacherSubjects = teacher.getSubjects();
-        List<Group> groups =  teacherSubjects.stream().filter(sub -> sub
-                .getId()
-                .equals(idSubject))
-                .findFirst()
-                .orElseThrow()
-                .getGroups();
-        Group group = groups.stream().filter(gr -> gr.getId().equals(idGroup)).findFirst().orElseThrow();
-        return group.getStudents();
+    @RequestMapping(value = "/getStudentsFromGroup/{id}/{idSubject}/{idGroup}", method = RequestMethod.GET)
+    public String getStudentsFromGroup(@PathVariable("id") String id, @PathVariable("idGroup") String idGroup,
+                                              @PathVariable String idSubject, Model modelStudents) {
+        modelStudents.addAllAttributes(teacherService.getStudentsFromGroup(id, idGroup, idSubject));
+        return "studentsFromGroup";
     }
 
-    @RequestMapping(value = "/addgroup", method = RequestMethod.POST)
-    @ResponseBody
+    @RequestMapping(value = "/addGroup", method = RequestMethod.POST)
     public void addGroup(@RequestBody Group group) {
-        groupRepository.save(group);
+        groupService.addGroup(group);
         //если group.students != null заполнение у студентов subjects
     }
 
-    @RequestMapping(value = "/addstudent/{groupId}/{studentId}", method = RequestMethod.POST)
-    @ResponseBody
+    @RequestMapping(value = "/addStudent/{groupId}/{studentId}", method = RequestMethod.POST)
     public void addStudentInGroup(@PathVariable("groupId") String groupId, @PathVariable("studentId") String studentId) {
-        Group group = groupRepository.findById(groupId).get();
-        Student student = studentRepository.findById(studentId).get();
-        ArrayList<Student> groupStudents = group.getStudents();
-        groupStudents.add(student);
-        group.setStudents(groupStudents);
-        groupRepository.save(group);
+        groupService.addStudent(groupId, studentId);
         //заполнение у студента subjects
     }
 
-    @RequestMapping(value = "/addsubject", method = RequestMethod.POST)
-    @ResponseBody
+    @RequestMapping(value = "/addSubject", method = RequestMethod.POST)
     public void addSubject(@RequestBody Subject subject) {
-        subjectRepository.save(subject);
+        teacherService.addSubject(subject);
     }
 
-    @RequestMapping(value = "/addscores/{studentId}/{subjectId}/{taskId}/{scores}", method = RequestMethod.POST)
-    @ResponseBody
+    @RequestMapping(value = "/addScores/{studentId}/{taskId}/{scores}/{status}", method = RequestMethod.POST)
     public void addScores(@PathVariable("studentId") String studentId,
-                          @PathVariable("subjectId") String subjectId,
                           @PathVariable("taskId") String taskId,
-                          @PathVariable("scores") Integer scores) {
-        Student student = studentRepository.findById(studentId).get();
-        Subject studenSubject = student.getSubjects().stream().filter(sub -> sub.getId().equals(subjectId)).findFirst().orElseThrow();
-        Task studentTask = studenSubject.getTasks().stream().filter(task -> task.getId().equals(taskId)).findFirst().orElseThrow();
-        studentTask.setScores(scores);
-        studentRepository.save(student);
+                          @PathVariable("scores") Integer scores,
+                          @PathVariable("status") String status) {
+        teacherService.addScores(studentId, taskId, status, scores);
     }
-
-*/
 }

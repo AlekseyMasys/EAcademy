@@ -5,10 +5,10 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 
+@Getter @Setter
 public class QuestionModel {
-
-    @Getter @Setter
     private String question;
-    @Getter@Setter
+    private ArrayList<String> trueAnswer;
+    private String point;
     private ArrayList<String> answers;
 }

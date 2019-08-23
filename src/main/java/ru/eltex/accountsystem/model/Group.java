@@ -18,6 +18,7 @@ public class Group {
     @Id
     private String id;
     private String title;
+    private String table;
     private ArrayList<Student> students;
     private JsonNode scheduleUrl;
 

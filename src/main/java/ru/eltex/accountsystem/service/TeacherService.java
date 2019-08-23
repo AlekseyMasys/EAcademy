@@ -1,6 +1,7 @@
 package ru.eltex.accountsystem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
 import ru.eltex.accountsystem.dao.*;
 import ru.eltex.accountsystem.model.Group;
@@ -8,10 +9,6 @@ import ru.eltex.accountsystem.model.Subject;
 import ru.eltex.accountsystem.model.TaskResult;
 import ru.eltex.accountsystem.model.users.Student;
 import ru.eltex.accountsystem.model.users.Teacher;
-import ru.eltex.accountsystem.repository.GroupRepository;
-import ru.eltex.accountsystem.repository.StudentRepository;
-import ru.eltex.accountsystem.repository.SubjectRepository;
-import ru.eltex.accountsystem.repository.TeacherRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,17 +16,13 @@ import java.util.List;
 @Service
 public class TeacherService {
     private final TeacherRepository teacherRepository;
-    private final GroupRepository groupRepository;
-    private final StudentRepository studentRepository;
     private final SubjectRepository subjectRepository;
     private final TaskResultRepository taskResultRepository;
 
     @Autowired
-    public TeacherService(TeacherRepository _repository, GroupRepository groupRepository,
-                          StudentRepository studentRepository, SubjectRepository subjectRepository, TaskResultRepository taskResultRepository) {
+    public TeacherService(TeacherRepository _repository, SubjectRepository subjectRepository,
+                          TaskResultRepository taskResultRepository) {
         this.teacherRepository = _repository;
-        this.groupRepository = groupRepository;
-        this.studentRepository = studentRepository;
         this.subjectRepository = subjectRepository;
         this.taskResultRepository = taskResultRepository;
     }
@@ -64,7 +57,7 @@ public class TeacherService {
         teacher.getSubjects().stream().forEach(p->{
             teacherSubjects.add(subjectRepository.findById(p).get());
         });
-        return teacherSubjects.stream().filter(sub -> sub.getId().equals(idSubject)).findFirst().orElseThrow().getGroups();
+        return teacherSubjects.stream().filter(sub -> sub.getId().equals(idSubject)).findFirst().orElseThrow(RuntimeException::new).getGroups();
     }
 
     public List<Student> getStudentsFromGroup(String id, String idGroup, String idSubject) {
@@ -77,25 +70,10 @@ public class TeacherService {
                 .getId()
                 .equals(idSubject))
                 .findFirst()
-                .orElseThrow()
+                .orElseThrow(RuntimeException::new)
                 .getGroups();
-        Group group = groups.stream().filter(gr -> gr.getId().equals(idGroup)).findFirst().orElseThrow();
+        Group group = groups.stream().filter(gr -> gr.getId().equals(idGroup)).findFirst().orElseThrow(RuntimeException::new);
         return group.getStudents();
-    }
-
-    public void addGroup(Group group) {
-        groupRepository.save(group);
-        //если group.students != null заполнение у студентов subjects
-    }
-
-    public void addStudentInGroup(String groupId, String studentId) {
-        Group group = groupRepository.findById(groupId).get();
-        Student student = studentRepository.findById(studentId).get();
-        ArrayList<Student> groupStudents = group.getStudents();
-        groupStudents.add(student);
-        group.setStudents(groupStudents);
-        groupRepository.save(group);
-        //заполнение у студента subjects
     }
 
     public void addSubject(Subject subject) {
@@ -107,7 +85,7 @@ public class TeacherService {
                 .stream()
                 .filter(tsk -> tsk.getIdTask().equals(taskId) && tsk.getIdStudent().equals(studentId))
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(RuntimeException::new);
         task.setScores(scores);
         task.setStatus(status);
         taskResultRepository.save(task);

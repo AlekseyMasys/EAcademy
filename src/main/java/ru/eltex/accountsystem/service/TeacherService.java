@@ -1,6 +1,7 @@
 package ru.eltex.accountsystem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.ExpressionException;
 import org.springframework.stereotype.Service;
 import ru.eltex.accountsystem.dao.*;
 import ru.eltex.accountsystem.model.Group;
@@ -56,7 +57,7 @@ public class TeacherService {
         teacher.getSubjects().stream().forEach(p->{
             teacherSubjects.add(subjectRepository.findById(p).get());
         });
-        return teacherSubjects.stream().filter(sub -> sub.getId().equals(idSubject)).findFirst().orElseThrow().getGroups();
+        return teacherSubjects.stream().filter(sub -> sub.getId().equals(idSubject)).findFirst().orElseThrow(RuntimeException::new).getGroups();
     }
 
     public List<Student> getStudentsFromGroup(String id, String idGroup, String idSubject) {
@@ -69,9 +70,9 @@ public class TeacherService {
                 .getId()
                 .equals(idSubject))
                 .findFirst()
-                .orElseThrow()
+                .orElseThrow(RuntimeException::new)
                 .getGroups();
-        Group group = groups.stream().filter(gr -> gr.getId().equals(idGroup)).findFirst().orElseThrow();
+        Group group = groups.stream().filter(gr -> gr.getId().equals(idGroup)).findFirst().orElseThrow(RuntimeException::new);
         return group.getStudents();
     }
 
@@ -84,7 +85,7 @@ public class TeacherService {
                 .stream()
                 .filter(tsk -> tsk.getIdTask().equals(taskId) && tsk.getIdStudent().equals(studentId))
                 .findFirst()
-                .orElseThrow();
+                .orElseThrow(RuntimeException::new);
         task.setScores(scores);
         task.setStatus(status);
         taskResultRepository.save(task);

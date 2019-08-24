@@ -15,9 +15,9 @@ repositories {
 
 //SPRING BOOT. REST
 dependencies {
-  //  implementation 'org.springframework.boot:spring-boot-starter-security'
-  //  testImplementation 'org.springframework.boot:spring-boot-starter-test'
-   // testImplementation 'org.springframework.security:spring-security-test'
+    //  implementation 'org.springframework.boot:spring-boot-starter-security'
+    //  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // testImplementation 'org.springframework.security:spring-security-test'
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-parent")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
@@ -42,3 +42,4 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.8'
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
 }
+

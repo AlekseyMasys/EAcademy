@@ -8,6 +8,8 @@ import ru.eltex.accountsystem.dao.SubjectRepository;
 import ru.eltex.accountsystem.dao.TeacherRepository;
 import ru.eltex.accountsystem.model.Subject;
 import ru.eltex.accountsystem.model.users.Teacher;
+import ru.eltex.accountsystem.repository.SubjectRepository;
+import ru.eltex.accountsystem.repository.TeacherRepository;
 import ru.eltex.testsystem.model.QuestionModel;
 import ru.eltex.testsystem.model.TestStructure;
 import ru.eltex.testsystem.repository.TestStructureRepository;

@@ -1,56 +1,64 @@
 package ru.eltex.api;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.eltex.accountsystem.model.Group;
 import ru.eltex.accountsystem.model.Subject;
-import ru.eltex.accountsystem.model.users.Student;
-import ru.eltex.accountsystem.model.users.Teacher;
+import ru.eltex.accountsystem.service.GroupService;
 import ru.eltex.accountsystem.service.TeacherService;
 
-import java.util.List;
-
+@Controller
 @RestController
 public class TeacherController {
     private final TeacherService teacherService;
+    private final GroupService groupService;
 
-    public TeacherController(TeacherService teacherService) {
+    public TeacherController(TeacherService teacherService, GroupService groupService) {
         this.teacherService = teacherService;
+        this.groupService = groupService;
     }
 
     @RequestMapping(value = "/teacher/{id}", method = RequestMethod.GET)
-    public Teacher getTeacher(@PathVariable("id") String id) {
-        return teacherService.getTeacher(id);
+    public String getTeacher(@PathVariable("id") String id, Model modelTeacher) {
+        modelTeacher.addAttribute("teacher", teacherService.getTeacher(id));
+        return "teacher/main";
     }
 
     @RequestMapping(value = "/teacher/{id}/subjects", method = RequestMethod.GET)
-    public List<Subject> getTeacherSubjects(@PathVariable("id") String id) {
-       return teacherService.getTeacherSubjects(id);
+    public String getTeacherSubjects(@PathVariable("id") String id, Model modelSubjects) {
+        modelSubjects.addAllAttributes(teacherService.getTeacherSubjects(id));
+        return "teacher/subjects";
     }
 
     @RequestMapping(value = "/teacher/{id}/groups", method = RequestMethod.GET)
-    public List<Group> getTeacherGroups(@PathVariable("id") String id) {
-        return teacherService.getTeacherGroups(id);
+    public String getTeacherGroups(@PathVariable("id") String id, Model modelGroup) {
+        modelGroup.addAllAttributes(teacherService.getTeacherGroups(id));
+        return "teacher/groups";
     }
 
     @RequestMapping(value = "/teacher/{id}/subject/{idSubject}", method = RequestMethod.GET)
-    public List<Group> getSubjectGroups(@PathVariable("id") String id, @PathVariable("idSubject") String idSubject) {
-        return teacherService.getSubjectGroups(id, idSubject);
+    public String getSubjectGroups(@PathVariable("id") String id, @PathVariable("idSubject") String idSubject, Model modelGroup) {
+        modelGroup.addAllAttributes(teacherService.getSubjectGroups(id, idSubject));
+        return "teacher/subjectGroups";
     }
 
     @RequestMapping(value = "/getStudentsFromGroup/{id}/{idSubject}/{idGroup}", method = RequestMethod.GET)
-    public List<Student> getStudentsFromGroup(@PathVariable("id") String id, @PathVariable("idGroup") String idGroup, @PathVariable String idSubject) {
-        return teacherService.getStudentsFromGroup(id, idGroup, idSubject);
+    public String getStudentsFromGroup(@PathVariable("id") String id, @PathVariable("idGroup") String idGroup,
+                                       @PathVariable String idSubject, Model modelStudents) {
+        modelStudents.addAllAttributes(teacherService.getStudentsFromGroup(id, idGroup, idSubject));
+        return "teacher/studentsFromGroup";
     }
 
     @RequestMapping(value = "/addGroup", method = RequestMethod.POST)
     public void addGroup(@RequestBody Group group) {
-        teacherService.addGroup(group);
+        groupService.addGroup(group);
         //если group.students != null заполнение у студентов subjects
     }
 
     @RequestMapping(value = "/addStudent/{groupId}/{studentId}", method = RequestMethod.POST)
     public void addStudentInGroup(@PathVariable("groupId") String groupId, @PathVariable("studentId") String studentId) {
-        teacherService.addStudentInGroup(groupId, studentId);
+        groupService.addStudent(groupId, studentId);
         //заполнение у студента subjects
     }
 

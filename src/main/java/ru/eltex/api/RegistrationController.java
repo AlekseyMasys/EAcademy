@@ -10,7 +10,6 @@ import ru.eltex.accountsystem.service.UserRegistrationService;
 
 @Controller
 public class RegistrationController {
-
     private final UserRegistrationService userRegistrationService;
 
     @Autowired
@@ -22,6 +21,4 @@ public class RegistrationController {
     public String register(@RequestBody User user) {
         return userRegistrationService.register(user);
     }
-
-
 }

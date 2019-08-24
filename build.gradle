@@ -30,6 +30,8 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb', version: '2.1.6.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: '2.1.6.RELEASE', ext: 'pom'
 
+    compile group: 'log4j', name: 'log4j', version: '1.2.17'
+
 
     // SPRING DATA. MONGODB
     compile "org.springframework.boot:spring-boot-starter-data-mongodb"

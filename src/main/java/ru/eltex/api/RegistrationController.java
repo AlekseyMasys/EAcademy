@@ -1,24 +1,28 @@
 
 package ru.eltex.api;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import ru.eltex.accountsystem.model.User;
+import org.springframework.web.bind.annotation.*;
 import ru.eltex.accountsystem.service.UserRegistrationService;
 
-@Controller
+@RestController
 public class RegistrationController {
     private final UserRegistrationService userRegistrationService;
+    private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
+    private final ObjectMapper objectMapper;
 
     @Autowired
-    public RegistrationController(UserRegistrationService userRegistrationService) {
+    public RegistrationController(UserRegistrationService userRegistrationService, ObjectMapper objectMapper) {
         this.userRegistrationService = userRegistrationService;
+        this.objectMapper = objectMapper;
     }
 
-    @RequestMapping("/registration")
-    public String register(@RequestBody User user) {
-        return userRegistrationService.register(user);
+    @PostMapping(value = "/registration")
+    public String register(@RequestBody JsonNode jsonNode){
+        return userRegistrationService.register(jsonNode);
     }
 }

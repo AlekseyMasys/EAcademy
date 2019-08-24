@@ -7,6 +7,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import ru.eltex.accountsystem.enums.Role;
 
+import java.util.Map;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,5 +26,12 @@ public class UserRole {
         this.userPassword = userPassword;
         this.userRole = userRole;
         this.userId = userId;
+    }
+
+    public UserRole(Map<String, String> user) {
+        this.userId = user.get("id");
+        this.userLogin = user.get("login");
+        this.userPassword = user.get("password");
+        this.userRole = Role.valueOf(user.get("role"));
     }
 }

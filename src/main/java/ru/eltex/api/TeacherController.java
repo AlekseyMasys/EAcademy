@@ -22,32 +22,32 @@ public class TeacherController {
     @RequestMapping(value = "/teacher/{id}", method = RequestMethod.GET)
     public String getTeacher(@PathVariable("id") String id, Model modelTeacher) {
         modelTeacher.addAttribute("teacher", teacherService.getTeacher(id));
-        return "teacher";
+        return "teacher/main";
     }
 
     @RequestMapping(value = "/teacher/{id}/subjects", method = RequestMethod.GET)
     public String getTeacherSubjects(@PathVariable("id") String id, Model modelSubjects) {
-       modelSubjects.addAllAttributes(teacherService.getTeacherSubjects(id));
-       return "teacherSubjects";
+        modelSubjects.addAllAttributes(teacherService.getTeacherSubjects(id));
+        return "teacher/subjects";
     }
 
     @RequestMapping(value = "/teacher/{id}/groups", method = RequestMethod.GET)
     public String getTeacherGroups(@PathVariable("id") String id, Model modelGroup) {
         modelGroup.addAllAttributes(teacherService.getTeacherGroups(id));
-        return "groups";
+        return "teacher/groups";
     }
 
     @RequestMapping(value = "/teacher/{id}/subject/{idSubject}", method = RequestMethod.GET)
     public String getSubjectGroups(@PathVariable("id") String id, @PathVariable("idSubject") String idSubject, Model modelGroup) {
         modelGroup.addAllAttributes(teacherService.getSubjectGroups(id, idSubject));
-        return "groupsFromSubject";
+        return "teacher/subjectGroups";
     }
 
     @RequestMapping(value = "/getStudentsFromGroup/{id}/{idSubject}/{idGroup}", method = RequestMethod.GET)
     public String getStudentsFromGroup(@PathVariable("id") String id, @PathVariable("idGroup") String idGroup,
-                                              @PathVariable String idSubject, Model modelStudents) {
+                                       @PathVariable String idSubject, Model modelStudents) {
         modelStudents.addAllAttributes(teacherService.getStudentsFromGroup(id, idGroup, idSubject));
-        return "studentsFromGroup";
+        return "teacher/studentsFromGroup";
     }
 
     @RequestMapping(value = "/addGroup", method = RequestMethod.POST)

@@ -13,7 +13,6 @@ import ru.eltex.accountsystem.repository.SubjectRepository;
 import ru.eltex.accountsystem.repository.TeacherRepository;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 @SpringBootApplication

@@ -9,8 +9,6 @@ import ru.eltex.accountsystem.model.users.Student;
 import ru.eltex.accountsystem.model.users.Teacher;
 import ru.eltex.accountsystem.repository.*;
 
-import java.util.UUID;
-
 public class UserRegistrationService {
 
     private final AllUserRepository allUserRepository;
@@ -28,7 +26,7 @@ public class UserRegistrationService {
     }
 
 
-    public String getUserPage(User user) {
+    public String register(User user) {
         String userLogin = user.getLogin();
         String userPassword = user.getPassword();
 
@@ -37,30 +35,30 @@ public class UserRegistrationService {
         }
         else {
             Role userRoleFromRegistration = user.getRole(); // выбранная роль при регистрации
-            String userId = UUID.randomUUID().toString();
             String userEmail = user.getEmail();
             String userFio = user.getFio();
+            String userId = user.getId();
 
             switch (userRoleFromRegistration) {
                 case GRADUATE: {
-                    Graduate graduate = new Graduate(userId, userLogin, userPassword, userEmail, userFio, userRoleFromRegistration, null, null);
+                    Graduate graduate = new Graduate(userLogin, userPassword, userEmail, userFio, userRoleFromRegistration, null, null);
                     graduateRepository.save(graduate); // TODO: 24.08.2019
                     break;
                 }
 
                 case TEACHER: {
-                    Teacher teacher = new Teacher(userId, userLogin, userPassword, userEmail, userFio, userRoleFromRegistration, null);
+                    Teacher teacher = new Teacher(userLogin, userPassword, userEmail, userFio, userRoleFromRegistration, null);
                     teacherRepository.save(teacher);
                     break;
                 }
 
                 case STUDENT: {
-                    Student student = new Student(userId, userLogin, userPassword, userEmail, userFio, userRoleFromRegistration, null);
+                    Student student = new Student(userLogin, userPassword, userEmail, userFio, userRoleFromRegistration, null);
                     studentRepository.save(student);
                     break;
                 }
                 case ADMIN: {
-                    Admin admin = new Admin(userId, userLogin, userPassword, userEmail, userFio, userRoleFromRegistration);
+                    Admin admin = new Admin(userLogin, userPassword, userEmail, userFio, userRoleFromRegistration);
                     adminRepository.save(admin);
                 }
             }

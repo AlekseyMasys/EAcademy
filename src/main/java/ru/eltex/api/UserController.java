@@ -21,8 +21,8 @@ public class UserController {
     }
 
     @RequestMapping("/registration")
-    public String getUserPage(@RequestBody User user) {
-        return userRegistrationService.getUserPage(user);
+    public String register(@RequestBody User user) {
+        return userRegistrationService.register(user);
     }
 
 

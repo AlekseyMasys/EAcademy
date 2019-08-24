@@ -14,10 +14,10 @@ public class Student extends User {
     ArrayList<String> subjects;
     String groupId;
 
-    public Student(String id, String login, String password,
+    public Student(String login, String password,
                    String email, String fio, Role role,
                    ArrayList<String> subjects){
-        super(id, login,password,email, fio, role);
+        super(login,password,email, fio, role);
 
         this.subjects = subjects;
     }

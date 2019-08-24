@@ -1,9 +1,19 @@
 package ru.eltex.accountsystem.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.eltex.accountsystem.dao.StudentRepository;
+import ru.eltex.accountsystem.dao.SubjectRepository;
+import ru.eltex.accountsystem.model.Subject;
+import ru.eltex.accountsystem.model.users.Student;
+import ru.eltex.testsystem.model.TestStructure;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 @Service
-public class StudentService {/*
+public class StudentService {
     private final StudentRepository studentRepository;
     private final SubjectRepository subjectRepository;
 
@@ -20,7 +30,7 @@ public class StudentService {/*
     public ArrayList<Subject> getAllSubjects(String idStudent) {
         return getStudentById(idStudent).getSubjects();
     }
-
+/*
     public Map<Subject, Integer> getMarks(String idStudent) {
         Map<Subject, Integer> marks = new HashMap<>();
 
@@ -39,12 +49,12 @@ public class StudentService {/*
         }
 
         return marks;
-    }
+    }*/
 
     public Subject getSubjectById(String idSubject) {
         return subjectRepository.findById(idSubject).get();
     }
-
+/*
     public ArrayList<Task> getAllTasksByOneSubject(String idSubject) {
         return new ArrayList<>(getSubjectById(idSubject).getTasks());
     }

@@ -17,18 +17,6 @@ public class TeacherController {
         this.groupService = groupService;
     }
 
-    @RequestMapping(value = "/teacher/{id}", method = RequestMethod.GET)
-    public String getTeacher(@PathVariable("id") String id, Model modelTeacher) {
-        modelTeacher.addAttribute("teacher", teacherService.getTeacher(id));
-        return "teacher";
-    }
-
-    @RequestMapping(value = "/teacher/{id}/subjects", method = RequestMethod.GET)
-    public String getTeacherSubjects(@PathVariable("id") String id, Model modelSubjects) {
-       modelSubjects.addAllAttributes(teacherService.getTeacherSubjects(id));
-       return "teacherSubjects";
-    }
-
     @RequestMapping(value = "/teacher/{id}/groups", method = RequestMethod.GET)
     public String getTeacherGroups(@PathVariable("id") String id, Model modelGroup) {
         modelGroup.addAllAttributes(teacherService.getTeacherGroups(id));

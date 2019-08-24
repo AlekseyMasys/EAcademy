@@ -14,45 +14,40 @@ import java.util.List;
 
 @Controller
 public class StudentController {
-
     private final StudentService studentService;
     private GroupRepository groupRepository;
-
 
     @Autowired
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
 
-
     @RequestMapping("student/{studentId}/get_subjects/")
     public String getSubjects(@PathVariable("studentId") String studentId, Model model) {
         model.addAttribute("subjects", studentService.getAllSubjects(studentId));
-        return  "subjectsPage";
+        return "student/subjects";
     }
 
     @RequestMapping("student/{studentId}/get_subjects/{subjectId}/get_tasks")
-    public String getTasks(@PathVariable("subjectId") String subjectId, Model model) {
+    public String getTasks(@PathVariable("studentId") String studentId, @PathVariable("subjectId") String subjectId, Model model) {
         model.addAttribute("subjects", studentService.getAllTasksByOneSubject(subjectId));
-        return  "tasksPage";
+        return "students/tasks";
     }
 
     @RequestMapping("student/{studentId}/get_tests/")
     public String getTests(@PathVariable("studentId") String studentId, Model model) {
         model.addAttribute("tests", studentService.getTests(studentId));
-        return "testsPage";
+        return "student/tests";
     }
 
     @RequestMapping("student/{studentId}/get_schedule")
     public String getSchedule(@PathVariable("studentId") String studentId, Model model) {
         Student student = studentService.getStudentById(studentId);
         String groupId = student.getGroupId();
-        return  "schedulePage";
+        return "student/schedule";
     }
 
-
-
-    @RequestMapping("/get_subjects/{idStudent}")
+    @RequestMapping("get_subjects/{idStudent}")
     public List<Subject> getSubjects(@PathVariable("idStudent") String idStudent) {
         return studentService.getAllSubjects(idStudent);
     }
@@ -60,9 +55,8 @@ public class StudentController {
     @RequestMapping("student/{studentId}/get_tasks/")
     public String getAllTasksByOneSubject(@PathVariable("studentId") String studentId, Model model) {
         model.addAttribute("tasks", studentService.getAllTasksByOneSubject(studentId));
-        return  "TasksPage";
+        return "student/tasks";
     }
-
 
 //    @RequestMapping("/get_tests/{studentId}")
 //    public List<TestStructure> getTests(@PathVariable("studentId")  String studentId) {

@@ -28,7 +28,7 @@ public class Main {
             Subject subject = new Subject("title", new ArrayList<String>(), new ArrayList<Group>(), new ArrayList<String>());
             subjectRepository.save(subject);
 
-            Teacher teacher = new Teacher("teacher", "password", "qwerty@mail.ru", "Bob", Role.TEACHER, subjects);
+            Teacher teacher = new Teacher("1","teacher", "password", "qwerty@mail.ru", "Bob", Role.TEACHER, subjects);
             teacherRepository.save(teacher);
         };
     }

@@ -1,5 +1,6 @@
 package ru.eltex.api;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.eltex.accountsystem.model.Group;
@@ -7,6 +8,7 @@ import ru.eltex.accountsystem.model.Subject;
 import ru.eltex.accountsystem.service.GroupService;
 import ru.eltex.accountsystem.service.TeacherService;
 
+@Controller
 @RestController
 public class TeacherController {
     private final TeacherService teacherService;

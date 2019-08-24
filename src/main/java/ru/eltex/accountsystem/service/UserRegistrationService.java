@@ -44,7 +44,7 @@ public class UserRegistrationService {
             switch (userRoleFromRegistration) {
                 case GRADUATE: {
                     Graduate graduate = new Graduate(userId, userLogin, userPassword, userEmail, userFio, userRoleFromRegistration, null, null);
-                    graduateRepository.save(graduate); // TODO: 24.08.2019  
+                    graduateRepository.save(graduate); // TODO: 24.08.2019
                     break;
                 }
 

@@ -10,6 +10,7 @@ import ru.eltex.accountsystem.enums.Role;
 import ru.eltex.accountsystem.model.UserRole;
 import ru.eltex.accountsystem.service.StudentService;
 import ru.eltex.accountsystem.service.TeacherService;
+import ru.eltex.accountsystem.service.UserService;
 
 @RestController
 public class UserController {
@@ -29,29 +30,15 @@ public class UserController {
         return "authorization";
     }
 
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-    public String getTeacher(@PathVariable("id") String id, Model modelUser) {
-        UserRole userRole = userServicel.getUserRole(id);
+    @RequestMapping(value = "user/{id}", method = RequestMethod.GET)
+    public String getUser(@PathVariable("id") String id, Model modelUser) {
+        UserRole userRole = userService.getUserRole(id);
         if (userRole.getUserRole().equals(Role.TEACHER)) {
             modelUser.addAttribute("teacher", teacherService.getTeacher(userRole.getUserId()));
-            return "teacher";
-        }
-        else {
+            return "teacher/main";
+        } else {
             modelUser.addAttribute("student", studentService.getStudentById(userRole.getUserId()));
-            return "student";
-        }
-    }
-
-    @RequestMapping(value = "/user/{id}/subjects", method = RequestMethod.GET)
-    public String getUserSubjects(@PathVariable("id") String id, Model modelSubjects) {
-        UserRole userRole = userServicel.getUserRole(id);
-        if (userRole.getUserRole().equals(Role.TEACHER)) {
-            modelSubjects.addAllAttributes(teacherService.getTeacherSubjects(userRole.getUserId()));
-            return "teacherSubjects";
-        }
-        else {
-            modelSubjects.addAllAttributes(studentService.getAllSubjects(userRole.getUserId()));
-            return "studentSubjects";
+            return "student/main";
         }
     }
 }

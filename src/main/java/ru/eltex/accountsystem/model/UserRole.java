@@ -10,7 +10,7 @@ import ru.eltex.accountsystem.enums.Role;
 @Getter
 @Setter
 @NoArgsConstructor
-@Document(collection = "verification user")
+@Document(collection = "user_role")
 public class UserRole {
     @Id
     private String id;

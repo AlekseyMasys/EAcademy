@@ -1,7 +1,6 @@
 package ru.eltex.accountsystem.service;
 
 import org.springframework.ui.Model;
-import ru.eltex.accountsystem.model.User;
 import ru.eltex.accountsystem.model.UserVerificat;
 import ru.eltex.accountsystem.repository.*;
 
@@ -22,8 +21,8 @@ public class UserService {
     }
 
 
-    public String getUserPage(String userLogin, Model modele) {
-        UserVerificat userVerificat = verificationRepository.findByUserLoginAndPassword(userLogin);
+    public String getUserPage(String userLogin, String userPassword, Model modele) {
+        UserVerificat userVerificat = verificationRepository.findByUserLoginAndPassword(userLogin, userPassword);
         String resultPage = null;
         if (userVerificat == null) {
             resultPage = "not_found"; //incorrect login or password

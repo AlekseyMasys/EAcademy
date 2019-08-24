@@ -18,9 +18,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping("/users/{userLogin}")
-    public String getUserPage(@PathVariable("userLogin") String userLogin, Model modelUser) {
-        return userService.getUserPage(userLogin, modelUser);
+    @RequestMapping("/users/{userLogin}/{userPassword}")
+    public String getUserPage(@PathVariable("userLogin") String userLogin, @PathVariable("userPassword") String userPassword, Model modelUser) {
+        return userService.getUserPage(userLogin, userPassword, modelUser);
     }
 
 

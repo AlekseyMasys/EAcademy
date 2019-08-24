@@ -27,8 +27,8 @@ public class TeacherController {
 
     @RequestMapping(value = "/teacher/{id}/subjects", method = RequestMethod.GET)
     public String getTeacherSubjects(@PathVariable("id") String id, Model modelSubjects) {
-        modelSubjects.addAllAttributes(teacherService.getTeacherSubjects(id));
-        return "teacher_subjects";
+       modelSubjects.addAllAttributes(teacherService.getTeacherSubjects(id));
+       return "teacherSubjects";
     }
 
     @RequestMapping(value = "/teacher/{id}/groups", method = RequestMethod.GET)
@@ -40,14 +40,14 @@ public class TeacherController {
     @RequestMapping(value = "/teacher/{id}/subject/{idSubject}", method = RequestMethod.GET)
     public String getSubjectGroups(@PathVariable("id") String id, @PathVariable("idSubject") String idSubject, Model modelGroup) {
         modelGroup.addAllAttributes(teacherService.getSubjectGroups(id, idSubject));
-        return "groups_from_subject";
+        return "groupsFromSubject";
     }
 
     @RequestMapping(value = "/getStudentsFromGroup/{id}/{idSubject}/{idGroup}", method = RequestMethod.GET)
     public String getStudentsFromGroup(@PathVariable("id") String id, @PathVariable("idGroup") String idGroup,
-                                       @PathVariable String idSubject, Model modelStudents) {
+                                              @PathVariable String idSubject, Model modelStudents) {
         modelStudents.addAllAttributes(teacherService.getStudentsFromGroup(id, idGroup, idSubject));
-        return "students_from_group";
+        return "studentsFromGroup";
     }
 
     @RequestMapping(value = "/addGroup", method = RequestMethod.POST)

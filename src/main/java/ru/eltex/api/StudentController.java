@@ -5,15 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.eltex.accountsystem.model.Group;
 import ru.eltex.accountsystem.model.Subject;
 import ru.eltex.accountsystem.model.users.Student;
 import ru.eltex.accountsystem.repository.GroupRepository;
 import ru.eltex.accountsystem.service.StudentService;
-import ru.eltex.testsystem.model.TestStructure;
 
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class StudentController {
@@ -50,8 +47,7 @@ public class StudentController {
     public String getSchedule(@PathVariable("studentId") String studentId, Model model) {
         Student student = studentService.getStudentById(studentId);
         String groupId = student.getGroupId();
-        Group group = groupRepository.findById(groupId).get();
-        return  group.getScheduleUrl();
+        return  "schedulePage";
     }
 
 
@@ -68,28 +64,28 @@ public class StudentController {
     }
 
 
-    @RequestMapping("/get_tests/{studentId}")
-    public List<TestStructure> getTests(@PathVariable("studentId")  String studentId) {
-        return studentService.getTests(studentId);
-    }
+//    @RequestMapping("/get_tests/{studentId}")
+//    public List<TestStructure> getTests(@PathVariable("studentId")  String studentId) {
+//        return studentService.getTests(studentId);
+//    }
 
-    @RequestMapping("/add_subjects/{studentId}/{grId}")
-    public void addSubject(@PathVariable("studentId") String studentId, @PathVariable("grId") String grId) {
-        studentService.addSubjectForStudent(studentId, grId);
-    }
+//    @RequestMapping("/add_subjects/{studentId}/{grId}")
+//    public void addSubject(@PathVariable("studentId") String studentId, @PathVariable("grId") String grId) {
+//        studentService.addSubjectForStudent(studentId, grId);
+//    }
 
 //    @RequestMapping("/get_marks/{studentId}")
 //    public Map<Subject, Integer> getMarks(@PathVariable("studentId") String studentId) {
 //        return studentService.getMarks(studentId);
 //    }
 
-    @RequestMapping("/get_student/{studentId}")
-    public Student getStudent(@PathVariable("studentId") String studentId) {
-        return studentService.getStudentById(studentId);
-    }
-
-    @RequestMapping("/get_subject/{subjectId}")
-    public Subject getSubject(@PathVariable("subjectId") String subjectId) {
-        return studentService.getSubjectById(subjectId);
-    }
+//    @RequestMapping("/get_student/{studentId}")
+//    public Student getStudent(@PathVariable("studentId") String studentId) {
+//        return studentService.getStudentById(studentId);
+//    }
+//
+//    @RequestMapping("/get_subject/{subjectId}")
+//    public Subject getSubject(@PathVariable("subjectId") String subjectId) {
+//        return studentService.getSubjectById(subjectId);
+//    }
 }

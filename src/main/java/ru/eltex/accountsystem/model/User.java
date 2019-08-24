@@ -9,7 +9,6 @@ import ru.eltex.accountsystem.enums.Role;
 @Getter
 @Setter
 public abstract class User {
-    @Id
     private String id;
     private String login;
     private String password;
@@ -17,7 +16,7 @@ public abstract class User {
     private String fio;
     private Role role;
 
-    public User(String login, String password, String email, String fio, Role role) {
+    public User(String id, String login, String password, String email, String fio, Role role) {
         this.login = login;
         this.password = password;
         this.email = email;

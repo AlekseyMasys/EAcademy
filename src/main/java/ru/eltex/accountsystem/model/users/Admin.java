@@ -6,8 +6,8 @@ import ru.eltex.accountsystem.model.User;
 
 @Document(collection = "admins")
 public class Admin extends User {
-    public Admin(String login, String password, String email,
+    public Admin(String id, String login, String password, String email,
                  String fio, Role role) {
-        super(login, password, email, fio, role);
+        super(id, login, password, email, fio, role);
     }
 }

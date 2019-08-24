@@ -13,10 +13,10 @@ import lombok.Setter;
 public class Teacher extends User {
     private ArrayList<String> subjects;
 
-    public Teacher(String login, String password, String email,
+    public Teacher(String id, String login, String password, String email,
                    String fio, Role role,
                    ArrayList<String> subjects) {
-        super(login, password, email, fio, role);
+        super(id, login, password, email, fio, role);
 
         this.subjects = subjects;
     }

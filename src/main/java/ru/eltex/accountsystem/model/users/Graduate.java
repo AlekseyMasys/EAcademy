@@ -14,9 +14,9 @@ public class Graduate extends User {
     Integer age;
     Sex sex;
 
-    public Graduate(String login, String password,
+    public Graduate(String id, String login, String password,
                     String email, String fio, Role role, Integer age, Sex sex) {
-        super(login, password, email, fio, role);
+        super(id, login, password, email, fio, role);
 
         this.age = age;
         this.sex = sex;

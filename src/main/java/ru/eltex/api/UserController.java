@@ -4,23 +4,25 @@ package ru.eltex.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.eltex.accountsystem.service.UserService;
+import ru.eltex.accountsystem.model.User;
+import ru.eltex.accountsystem.model.UserRole;
+import ru.eltex.accountsystem.service.UserRegistrationService;
 
 @Controller
 public class UserController {
 
-    private final UserService userService;
+    private final UserRegistrationService userRegistrationService;
 
     @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(UserRegistrationService userRegistrationService) {
+        this.userRegistrationService = userRegistrationService;
     }
 
-    @RequestMapping("/users/{userLogin}/{userPassword}")
-    public String getUserPage(@PathVariable("userLogin") String userLogin, @PathVariable("userPassword") String userPassword, Model modelUser) {
-        return userService.getUserPage(userLogin, userPassword, modelUser);
+    @RequestMapping("/registration")
+    public String getUserPage(@RequestBody User user) {
+        return userRegistrationService.getUserPage(user);
     }
 
 

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html class="no-js lt-ie9 lt-ie8 lt-ie7">
-<html class="no-js lt-ie9 lt-ie8">
-<html class="no-js lt-ie9">
-<html class="no-js">
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<html class="no-js lt-ie9"> <![endif]-->
+<html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,24 +23,27 @@
     <meta name="twitter:url" content=""/>
     <meta name="twitter:card" content=""/>
 
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="favicon.ico">
+
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400" rel="stylesheet">
 
     <!-- Animate.css -->
-    <link rel="stylesheet" href="static/css/animate.css">
+    <link rel="stylesheet" href="../css/animate.css">
     <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="static/css/icomoon.css">
+    <link rel="stylesheet" href="../css/icomoon.css">
     <!-- Simple Line Icons -->
-    <link rel="stylesheet" href="static/css/simple-line-icons.css">
+    <link rel="stylesheet" href="../css/simple-line-icons.css">
     <!-- Bootstrap  -->
-    <link rel="stylesheet" href="static/css/bootstrap.css">
-
+    <link rel="stylesheet" href="../css/bootstrap.css">
     <!-- Style -->
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+
 
     <!-- Modernizr JS -->
-    <script src="static/js/modernizr-2.6.2.min.js"></script>
+    <script src="js/modernizr-2.6.2.min.js"></script>
 
-    <script src="static/js/respond.min.js"></script>
+    <script src="js/respond.min.js"></script>
 </head>
 
 <body>
@@ -52,24 +55,16 @@
                     <!-- Mobile Toggle Menu Button -->
                     <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse"
                        data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-                    <a class="navbar-brand" href="index.html">EAcademy</a>
+                    <a class="navbar-brand" href="../index.html">EAcademy</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="active"><a onclick="location.href='index.html';" data-nav-section="home">
+                            <span>Группы</span></a>
+                        </li>
+
+                        <li><a onclick="location.href='index.html';" data-nav-section="testimony">
                             <span>Дисциплины</span></a>
-                        </li>
-
-                        <li><a onclick="location.href='index.html';" data-nav-section="testimony">
-                            <span>Тестирования</span></a>
-                        </li>
-
-                        <li><a onclick="location.href='index.html';" data-nav-section="testimony">
-                            <span>Расписание</span></a>
-                        </li>
-
-                        <li><a onclick="location.href='index.html';" data-nav-section="testimony">
-                            <span>Оценки</span></a>
                         </li>
 
                         <li><a onclick="location.href='index.html';"
@@ -85,56 +80,46 @@
 </header>
 
 <section id="fh5co-explore" data-section="explore">
-    <div class="container" style="width: 100%">
-        <div class="row" style="margin-bottom: 25px">
-            <div class="col-md-8" style="color:#000000">Задание</div>
-            <div class="col-md-2" style="color:#000000">Отправить работу</div>
-            <div class="col-md-2" style="color:#000000">Баллы</div>
-        </div>
+    <div class="container">
         <div class="row">
-            <div class="col-md-8" style="color:#000000">Решить линейное уравнение</div>
-            <div class="col-md-8">Задание зачтено и в журнал выставлена оценка</div>
-            <div class="form-group col-md-2">
-                <input type="submit" class="btn btn-send-message btn-md"
-                       value="Отправить работу">
+            <div class="col-sm-4">
+                <div class="col-md-12 section-heading text-center">
+                    <h2 class="animate-box">Учебный процесс</h2>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 subtext animate-box">
+                            <h3>Действия, связанные с обучением</h3>
+                        </div>
+                    </div>
+                    <a onclick="location.href='authorization.html';" data-nav-section="blog"><span>Мои группы</span></a><br/>
+                    <a onclick="location.href='teacher_subjects.html';"
+                       data-nav-section="blog"><span>Мои дисциплины</span></a>
+                </div>
             </div>
-            <div class="col-md-2" style="color:#000000">18</div>
-        </div>
-        <div class="row">
-            <div class="col-md-8" style="color:#000000">Лаба1</div>
-            <div class="col-md-8">Задание зачтено и в журнал выставлена оценка</div>
-            <div class="form-group col-md-2">
-                <input type="submit" class="btn btn-send-message btn-md"
-                       value="Отправить работу">
+            <div class="col-sm-4">
+                <div class="col-md-12 section-heading text-center">
+                    <h2 class="animate-box">Пользователь</h2>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 subtext animate-box">
+                            <h3>Моя страница</h3>
+                        </div>
+                    </div>
+                    Здесь будет вывод информации о пользователе
+                </div>
             </div>
-            <div class="col-md-2" style="color:#000000">18</div>
-        </div>
-        <div class="row">
-            <div class="col-md-8" style="color:#000000">Лаба2</div>
-            <div class="col-md-8">Отправленных заданий нет</div>
-            <div class="form-group col-md-2">
-                <input type="submit" class="btn btn-send-message btn-md"
-                       value="Отправить работу">
+            <div class="col-sm-4">
+                <div class="col-md-12 section-heading text-center">
+                    <h2 class="animate-box">Справка</h2>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 subtext animate-box">
+                            <h3>Дополнительные сведения о системе или учебном процессе</h3>
+                        </div>
+                    </div>
+                    <a onclick="location.href='authorization.html';"
+                       data-nav-section="blog"><span>Помощь</span></a><br/>
+                    <a onclick="location.href='teacher_subjects.html';"
+                       data-nav-section="blog"><span>Поддержка</span></a>
+                </div>
             </div>
-            <div class="col-md-2" style="color:#000000"></div>
-        </div>
-        <div class="row">
-            <div class="col-md-8" style="color:#000000">Лаба3</div>
-            <div class="col-md-8">Задание зачтено и в журнал выставлена оценка</div>
-            <div class="form-group col-md-2">
-                <input type="submit" class="btn btn-send-message btn-md"
-                       value="Отправить работу">
-            </div>
-            <div class="col-md-2" style="color:#000000">18</div>
-        </div>
-        <div class="row">
-            <div class="col-md-8" style="color:#000000">Лаба4</div>
-            <div class="col-md-8">Отправленных заданий нет</div>
-            <div class="form-group col-md-2">
-                <input type="submit" class="btn btn-send-message btn-md"
-                       value="Отправить работу">
-            </div>
-            <div class="col-md-2" style="color:#000000"></div>
         </div>
     </div>
 </section>
@@ -190,19 +175,19 @@
 </div>
 
 <!-- jQuery -->
-<script src="static/js/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
 <!-- jQuery Easing -->
-<script src="static/js/jquery.easing.1.3.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
 <!-- Bootstrap -->
-<script src="static/js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <!-- Waypoints -->
-<script src="static/js/jquery.waypoints.min.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
 <!-- Stellar Parallax -->
-<script src="static/js/jquery.stellar.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
 <!-- Counters -->
-<script src="static/js/jquery.countTo.js"></script>
+<script src="js/jquery.countTo.js"></script>
 <!-- Main JS (Do not remove) -->
-<script src="static/js/main.js"></script>
+<script src="js/main.js"></script>
 
 </body>
 </html>

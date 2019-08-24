@@ -14,6 +14,7 @@ import ru.eltex.accountsystem.repository.TeacherRepository;
 
 import java.util.ArrayList;
 
+
 @SpringBootApplication
 public class Main {
     public static void main(java.lang.String[] args) {
@@ -24,12 +25,12 @@ public class Main {
     public CommandLineRunner demo(StudentRepository studentRepository, SubjectRepository subjectRepository, TeacherRepository teacherRepository) {
         return (args) -> {
 
-            ArrayList<String> subjects = new ArrayList<>();
-            Subject subject = new Subject("title", new ArrayList<String>(), new ArrayList<Group>(), new ArrayList<String>());
-            subjectRepository.save(subject);
-
-            Teacher teacher = new Teacher("teacher", "password", "qwerty@mail.ru", "Bob", Role.TEACHER, subjects);
-            teacherRepository.save(teacher);
+//            List<String> subjects = new ArrayList<>();
+//            Subject subject = new Subject("title", new ArrayList<String>(), new ArrayList<Group>(), new ArrayList<String>());
+//            subjectRepository.save(subject);
+//
+//            Teacher teacher = new Teacher("teacher", "password", "qwerty@mail.ru", "Bob", Role.TEACHER, subjects);
+//            teacherRepository.save(teacher);
         };
     }
 }

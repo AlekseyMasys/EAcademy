@@ -94,7 +94,8 @@ public class StudentService {
 
         return tests;
     }
-    //    public void addSubjectForStudent(String studentId, String grId) {
+
+//    public void addSubjectForStudent(String studentId, String grId) {
 //        ArrayList<Subject> subjects = new ArrayList<>();
 //        Student student = studentRepository.findById(studentId).get();
 //        //заполнение предметов у студента
@@ -103,3 +104,4 @@ public class StudentService {
 //        studentRepository.save(student);
 //    }
 }
+

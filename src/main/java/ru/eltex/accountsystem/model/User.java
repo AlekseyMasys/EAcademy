@@ -6,10 +6,11 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import ru.eltex.accountsystem.enums.Role;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 public abstract class User {
-    @Id
     private String id;
     private String login;
     private String password;
@@ -18,6 +19,7 @@ public abstract class User {
     private Role role;
 
     public User(String login, String password, String email, String fio, Role role) {
+        this.id = UUID.randomUUID().toString();
         this.login = login;
         this.password = password;
         this.email = email;

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import ru.eltex.accountsystem.enums.Role;
-import ru.eltex.accountsystem.model.users.UserRole;
+import ru.eltex.accountsystem.model.UserRole;
 import ru.eltex.accountsystem.service.StudentService;
 import ru.eltex.accountsystem.service.TeacherService;
 import ru.eltex.accountsystem.service.UserService;

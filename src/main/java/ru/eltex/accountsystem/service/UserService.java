@@ -2,7 +2,7 @@ package ru.eltex.accountsystem.service;
 
 import org.springframework.stereotype.Service;
 import ru.eltex.accountsystem.dao.UserRoleRepository;
-import ru.eltex.accountsystem.model.users.UserRole;
+import ru.eltex.accountsystem.model.UserRole;
 
 @Service
 public class UserService {

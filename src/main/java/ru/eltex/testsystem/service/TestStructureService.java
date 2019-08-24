@@ -44,7 +44,6 @@ public class TestStructureService {
     }
 
     public TestStructure loadTest(String id, String idSubject, String idTest) {
-//        Map<String, String> result = objectMapper.convertValue(request, Map.class);
         TestStructure testStructure = testStructureRepository.getById(idTest);
         for(QuestionModel q:testStructure.getTest()){
             q.setTrueAnswer(null);

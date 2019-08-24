@@ -23,8 +23,7 @@ public class TestAPI {
 
     @RequestMapping(value = "/student/{id}/subject/{idSubject}/{idTest}", method = RequestMethod.GET)
     public String showtest(Model model, @PathVariable("id") String id, @PathVariable("idSubject") String idSubject, @PathVariable("idTest") String idTest) {
-        TestStructure testStructure = testStructureService.loadTest(id, idSubject, idTest);
-        model.addAttribute("testmodel",testStructure);
+        model.addAttribute("testmodel",testStructureService.loadTest(id, idSubject, idTest));
         return "showtest";
     }
 

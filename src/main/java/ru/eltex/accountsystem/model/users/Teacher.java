@@ -3,7 +3,6 @@ package ru.eltex.accountsystem.model.users;
 import org.springframework.data.mongodb.core.mapping.Document;
 import ru.eltex.accountsystem.enums.Role;
 import ru.eltex.accountsystem.model.User;
-import ru.eltex.accountsystem.model.Subject;
 import java.util.ArrayList;
 import lombok.Getter;
 import lombok.Setter;

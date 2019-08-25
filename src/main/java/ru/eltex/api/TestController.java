@@ -24,15 +24,6 @@ public class TestController {
         return;
     }
 
-    /* @PostMapping("/node/api/objects/{id}/stat")
-    public String getStat(@PathVariable String id,
-                              @RequestBody ControllerCurrentStatus stat) {*/
-    @RequestMapping(value = "/load_test", method = RequestMethod.POST)
-    @ResponseBody
-    public TestStructure loadTest(@RequestBody JsonNode request) {
-
-        return testStructureService.loadTest(request);
-    }
 
     @RequestMapping(value = "/get_all_tests", method = RequestMethod.GET)
     public List<java.lang.String> getAllTests() {

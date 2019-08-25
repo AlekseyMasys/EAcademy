@@ -1,5 +1,7 @@
 package ru.eltex.accountsystem.service;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.eltex.accountsystem.enums.Role;
 import ru.eltex.accountsystem.model.User;
 import ru.eltex.accountsystem.model.UserRole;
@@ -8,8 +10,8 @@ import ru.eltex.accountsystem.model.users.Graduate;
 import ru.eltex.accountsystem.model.users.Student;
 import ru.eltex.accountsystem.model.users.Teacher;
 import ru.eltex.accountsystem.repository.*;
-
-public class UserRegistrationService {
+@Service
+  public class UserRegistrationService {
 
     private final AllUserRepository allUserRepository;
     private final StudentRepository studentRepository;

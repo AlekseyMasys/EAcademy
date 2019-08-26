@@ -3,9 +3,7 @@ package ru.eltex.accountsystem.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.eltex.accountsystem.dao.TaskResultRepository;
-import ru.eltex.accountsystem.model.Subject;
-import ru.eltex.accountsystem.model.TaskResult;
-import ru.eltex.accountsystem.model.TestResult;
+import ru.eltex.accountsystem.model.*;
 import ru.eltex.accountsystem.model.users.Student;
 import ru.eltex.accountsystem.repository.StudentRepository;
 import ru.eltex.accountsystem.repository.SubjectRepository;
@@ -24,14 +22,16 @@ public class StudentService {
     private final TaskResultRepository taskResultRepository;
     private final TestResultRepository testResultRepository;
     private final TestStructureRepository testStructureRepository;
+    private final TableService tableService;
 
     @Autowired
-    public StudentService(StudentRepository studentRepository, SubjectRepository subjectRepository, TaskResultRepository taskResultRepository, TestResultRepository testResultRepository, TestStructureRepository testStructureRepository) {
+    public StudentService(StudentRepository studentRepository, SubjectRepository subjectRepository, TaskResultRepository taskResultRepository, TestResultRepository testResultRepository, TestStructureRepository testStructureRepository, TableService tableService) {
         this.studentRepository = studentRepository;
         this.subjectRepository = subjectRepository;
         this.taskResultRepository = taskResultRepository;
         this.testResultRepository = testResultRepository;
         this.testStructureRepository = testStructureRepository;
+        this.tableService = tableService;
     }
 
     public Student getStudentById(String idStudent) {
@@ -95,13 +95,19 @@ public class StudentService {
         return tests;
     }
 
-//    public void addSubjectForStudent(String studentId, String grId) {
-//        ArrayList<Subject> subjects = new ArrayList<>();
-//        Student student = studentRepository.findById(studentId).get();
-//        //заполнение предметов у студента
-//        subjectRepository.findAll().forEach(elem -> elem.getGroups().stream().filter(gr -> gr.getId().equals(grId)).forEach(elem2 -> subjects.add(elem)));
-//        student.setSubjects(subjects);
-//        studentRepository.save(student);
-//    }
+    public void addSubjectForStudent(String studentId, String grId) {
+        ArrayList<String> subjects = new ArrayList<>();
+        Student student = studentRepository.findById(studentId).get(); //Студент находится в репозитории но его предметы пока еще не заполнены
+        //заполнение предметов у студента: получаем все предметы, затем у каждого предмета получаем список групп и если в этом списке
+        // присутсвует группа с grId то добавляем id предмета к списку id предметов студента.
+        subjectRepository.findAll().forEach(elem -> elem.getGroups().stream().filter(gr -> gr.getId().equals(grId)).forEach(elem2 -> subjects.add(elem.getId()))); //правильность под вопросом=))
+        student.setSubjects(subjects);
+        studentRepository.save(student);
+    }
+
+    public Table getTableForStudent(String studentId) {
+        Student student = getStudentById(studentId);
+        return tableService.loadTable(student.getGroupId());
+    }
 }
 

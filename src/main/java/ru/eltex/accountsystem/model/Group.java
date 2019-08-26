@@ -20,15 +20,17 @@ public class Group {
     private String title;
     private String table;
     private ArrayList<Student> students;
-    private JsonNode scheduleUrl;
 
-    public Group(String title, ArrayList<Student> students, JsonNode scheduleUrl) {
+    public Group(String title, ArrayList<Student> students) {
         this.title = title;
         this.students = students;
-        this.scheduleUrl = scheduleUrl;
     }
 
-    public JsonNode getScheduleUrl() {
-        return scheduleUrl;
+    public void setTable(String table) {
+        this.table = table;
+    }
+
+    public String getTable() {
+        return table;
     }
 }

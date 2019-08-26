@@ -20,10 +20,9 @@ public class GroupService {
 
     public void addGroup(Group group) {
         groupRepository.save(group);
-        //если group.students != null заполнение у студентов subjects
     }
 
-    private Group getGroup(String id) {
+    public Group getGroup(String id) {
         return groupRepository.findById(id).get();
     }
 

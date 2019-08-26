@@ -1,5 +1,6 @@
 package ru.eltex.api;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ public class TeacherController {
     private final GroupService groupService;
     private final StudentService studentService;
 
+    @Autowired
     public TeacherController(TeacherService teacherService, GroupService groupService, StudentService studentService) {
         this.teacherService = teacherService;
         this.groupService = groupService;

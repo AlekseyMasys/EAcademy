@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.eltex.accountsystem.model.Group;
 import ru.eltex.accountsystem.model.Subject;
 import ru.eltex.accountsystem.service.GroupService;
+import ru.eltex.accountsystem.service.StudentService;
 import ru.eltex.accountsystem.service.TeacherService;
 
 @Controller
@@ -13,10 +14,12 @@ import ru.eltex.accountsystem.service.TeacherService;
 public class TeacherController {
     private final TeacherService teacherService;
     private final GroupService groupService;
+    private final StudentService studentService;
 
-    public TeacherController(TeacherService teacherService, GroupService groupService) {
+    public TeacherController(TeacherService teacherService, GroupService groupService, StudentService studentService) {
         this.teacherService = teacherService;
         this.groupService = groupService;
+        this.studentService = studentService;
     }
 
     @RequestMapping(value = "/teacher/{id}", method = RequestMethod.GET)
@@ -59,6 +62,7 @@ public class TeacherController {
     @RequestMapping(value = "/addStudent/{groupId}/{studentId}", method = RequestMethod.POST)
     public void addStudentInGroup(@PathVariable("groupId") String groupId, @PathVariable("studentId") String studentId) {
         groupService.addStudent(groupId, studentId);
+        studentService.addSubjectForStudent(studentId, groupId);
         //заполнение у студента subjects
     }
 

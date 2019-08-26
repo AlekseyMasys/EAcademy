@@ -13,12 +13,10 @@ import ru.eltex.accountsystem.service.UserRegistrationService;
 public class RegistrationController {
     private final UserRegistrationService userRegistrationService;
     private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
-    private final ObjectMapper objectMapper;
 
     @Autowired
-    public RegistrationController(UserRegistrationService userRegistrationService, ObjectMapper objectMapper) {
+    public RegistrationController(UserRegistrationService userRegistrationService) {
         this.userRegistrationService = userRegistrationService;
-        this.objectMapper = objectMapper;
     }
 
     @PostMapping(value = "/registration")

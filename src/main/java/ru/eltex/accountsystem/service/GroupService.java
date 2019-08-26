@@ -20,7 +20,6 @@ public class GroupService {
 
     public void addGroup(Group group) {
         groupRepository.save(group);
-        //если group.students != null заполнение у студентов subjects
     }
 
     public Group getGroup(String id) {

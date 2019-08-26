@@ -43,7 +43,7 @@ public class TestStructureService {
 
     }
 
-    public TestStructure loadTest(String id, String idSubject, String idTest) {
+    public TestStructure loadTest(String id,  String idTest) {
         TestStructure testStructure = testStructureRepository.getById(idTest);
         for(QuestionModel q:testStructure.getTest()){
             q.setTrueAnswer(null);

@@ -17,7 +17,6 @@
     $( "input" ).checkboxradio();
   } );
 
-
     </script>
 
 
@@ -31,7 +30,7 @@
 
 <div class="widget">
     <br/>
-    <form action="#" th:action="@{/testresult}" th:object="${testAnswers}" method="post">
+    <form action="#" th:action="@{/student/{id}/{idTest}/saveCurrentResult}" th:object="${testAnswers}" method="post">
 
         <th:block th:each="task,taskStat : ${testmodel.test}">
             <div class="container">
@@ -42,20 +41,21 @@
                         <h4 align="center" th:utext="'Вопрос №'+${taskStat.count}"></h4>
 
                         <legend th:utext="${task.question}"></legend>
-                        <br/>
                         <th:block th:each="answer,answerStat : ${task.answers}">
                             <input type="checkbox" th:field="*{checkedItems[__${taskStat.index}__]}"
-                                   th:value="${answerStat.count}">
+                                   th:value="${answerStat.count}"/>
                             <label th:for="'checkedItems' + ${taskStat.index}+${answerStat.count}"
                                    th:text="${answer}"></label>
                             <br/>
+
                         </th:block>
+                        <input type="submit" text="Check Test"/>
+
                     </div>
                 </div>
             </div>
             <br/>
         </th:block>
-        <input type="submit"  text="Check Test"/>
     </form>
 </body>
 </html>

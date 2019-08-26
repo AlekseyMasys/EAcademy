@@ -25,12 +25,12 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping("/")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String get() {
         return "authorization";
     }
 
-    @RequestMapping(value = "user/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "user/{id}", method = RequestMethod.POST)
     public String getUser(@PathVariable("id") String id, Model modelUser) {
         UserRole userRole = userService.getUserRole(id);
         if (userRole.getUserRole().equals(Role.TEACHER)) {

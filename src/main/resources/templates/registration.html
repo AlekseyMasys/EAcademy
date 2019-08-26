@@ -81,15 +81,19 @@
             <div class="row">
                 <form class="contact-form">
                     <div class="form-group">
-                        <label for="login" class="sr-only">Логин</label>
-                        <input type="login" id="login" class="form-control" placeholder="Введите логин">
+                        <label for="name" class="sr-only">Ваше Ф.И.О.</label>
+                        <input type="fio" class="form-control" placeholder="Ваше Ф.И.О.">
                     </div>
                     <div class="form-group">
-                        <label for="password" class="sr-only">Пароль</label>
-                        <input type="password" id="password" class="form-control" placeholder="Введите пароль">
+                        <label for="email" class="sr-only">Ваш логин</label>
+                        <input type="login" class="form-control" placeholder="Ваш логин">
                     </div>
                     <div class="form-group">
-                        <input onclick="Authorize()" type="submit" class="btn btn-send-message btn-md"
+                        <label for="name" class="sr-only">Ваш пароль</label>
+                        <input type="password" class="form-control" placeholder="Ваш пароль">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-send-message btn-md"
                                value="Авторизироваться">
                     </div>
                 </form>
@@ -164,8 +168,6 @@
 <script src="js/jquery.countTo.js"></script>
 <!-- Main JS (Do not remove) -->
 <script src="js/main.js"></script>
-
-<script src="js/authorization.js"></script>
 
 </body>
 </html>

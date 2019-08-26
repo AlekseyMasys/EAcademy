@@ -20,7 +20,7 @@ function displayContents(contents) {
                contentType: "application/json; charset=UTF-8",
                url: "/teacher/123/subject/5d5d1220f494475475d12c40/createTest",
                data: contents,
-               dataType: "Json",
+               dataType: "Json"
            });
 }
 
@@ -90,9 +90,9 @@ function parseFile(contents){
                 if(i==objStr.length-1)data.substring(0,data.length-1);
 
         }
-           data += "] }"
+           data += "] }";
     displayContents(data) ;
     }
 
-    document.getElementById('file-input')
+    document.getElementById('file-input');
     document.addEventListener('change', readSingleFile, false);

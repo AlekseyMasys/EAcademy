@@ -64,7 +64,6 @@
                         <li class="active"><a onclick="location.href='index.html';" data-nav-section="home">
                             <span>О нас</span></a>
                         </li>
-
                         <li><a onclick="location.href='index.html';"
                                data-nav-section="pricing"><span>Зарегистрироваться</span></a>
                         </li>
@@ -81,20 +80,28 @@
             <div class="row">
                 <form class="contact-form">
                     <div class="form-group">
-                        <label for="name" class="sr-only">Ваше Ф.И.О.</label>
-                        <input type="fio" class="form-control" placeholder="Ваше Ф.И.О.">
+                        <label for="login" class="sr-only">Ваш логин</label>
+                        <input id="login" class="form-control" placeholder="Ваш логин">
                     </div>
                     <div class="form-group">
-                        <label for="email" class="sr-only">Ваш логин</label>
-                        <input type="login" class="form-control" placeholder="Ваш логин">
+                        <label for="fio" class="sr-only">Ваше Ф.И.О.</label>
+                        <input id="fio" class="form-control" placeholder="Ваше Ф.И.О.">
                     </div>
                     <div class="form-group">
-                        <label for="name" class="sr-only">Ваш пароль</label>
-                        <input type="password" class="form-control" placeholder="Ваш пароль">
+                        <label for="email" class="sr-only">Ваш email</label>
+                        <input type="email" id="email" class="form-control" placeholder="Ваш email">
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-send-message btn-md"
-                               value="Авторизироваться">
+                        <label for="role" class="sr-only">Роль</label>
+                        <input id="role" class="form-control" placeholder="Роль">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="sr-only">Ваш пароль</label>
+                        <input type="password" id="password" class="form-control" placeholder="Ваш пароль">
+                    </div>
+                    <div class="form-group">
+                        <input onclick="getRegistration()" type="submit" class="btn btn-send-message btn-md"
+                               value="Зарегистрироваться">
                     </div>
                 </form>
             </div>
@@ -108,9 +115,7 @@
             <div class="col-md-4 animate-box">
                 <h3 class="section-title">EAcademy</h3>
                 <p>Серверное программное решение для учета успеваемости и тестирования студентов.</p>
-
             </div>
-
             <div class="col-md-4 animate-box">
                 <h3 class="section-title">Наш адрес</h3>
                 <ul class="contact-info">
@@ -131,12 +136,12 @@
                 <h3 class="section-title">Обратная связь</h3>
                 <form class="contact-form">
                     <div class="form-group">
-                        <label for="name" class="sr-only">Введите логин</label>
-                        <input type="name" class="form-control" id="name" placeholder="Введите логин">
+                        <label for="login2" class="sr-only">Введите логин</label>
+                        <input type="login2" class="form-control" id="login2" placeholder="Введите логин">
                     </div>
                     <div class="form-group">
-                        <label for="email" class="sr-only">Введите email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Введите email">
+                        <label for="email2" class="sr-only">Введите email</label>
+                        <input type="email2" class="form-control" id="email2" placeholder="Введите email">
                     </div>
                     <div class="form-group">
                         <label for="message" class="sr-only">Сообщение</label>
@@ -148,8 +153,6 @@
                     </div>
                 </form>
             </div>
-        </div>
-        <div class="row">
         </div>
     </div>
 </div>
@@ -168,7 +171,7 @@
 <script src="js/jquery.countTo.js"></script>
 <!-- Main JS (Do not remove) -->
 <script src="js/main.js"></script>
-
+<script src="js/registration.js"></script>
 </body>
 </html>
 

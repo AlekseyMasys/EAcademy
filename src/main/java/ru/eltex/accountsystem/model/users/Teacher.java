@@ -1,5 +1,6 @@
 package ru.eltex.accountsystem.model.users;
 
+import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 import ru.eltex.accountsystem.enums.Role;
 import ru.eltex.accountsystem.model.User;
@@ -12,6 +13,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Document(collection = "teachers")
 public class Teacher extends User {
     private ArrayList<String> subjects;

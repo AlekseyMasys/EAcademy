@@ -5,12 +5,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.eltex.accountsystem.model.Group;
 import ru.eltex.accountsystem.model.Subject;
+import ru.eltex.accountsystem.model.users.Teacher;
 import ru.eltex.accountsystem.service.GroupService;
 import ru.eltex.accountsystem.service.StudentService;
 import ru.eltex.accountsystem.service.TeacherService;
 
 @Controller
-@RestController
 public class TeacherController {
     private final TeacherService teacherService;
     private final GroupService groupService;
@@ -26,6 +26,11 @@ public class TeacherController {
     public String getTeacher(@PathVariable("id") String id, Model modelTeacher) {
         modelTeacher.addAttribute("teacher", teacherService.getTeacher(id));
         return "teacher/main";
+    }
+
+    @GetMapping(value = "/teacher/{id}/get")
+    public Teacher getTeacherInfo(@PathVariable("id") String id) {
+        return teacherService.getTeacher(id);
     }
 
     @RequestMapping(value = "/teacher/{id}/subjects", method = RequestMethod.GET)
@@ -54,12 +59,14 @@ public class TeacherController {
     }
 
     @RequestMapping(value = "/addGroup", method = RequestMethod.POST)
+    @ResponseBody
     public void addGroup(@RequestBody Group group) {
         groupService.addGroup(group);
         //если group.students != null заполнение у студентов subjects
     }
 
     @RequestMapping(value = "/addStudent/{groupId}/{studentId}", method = RequestMethod.POST)
+    @ResponseBody
     public void addStudentInGroup(@PathVariable("groupId") String groupId, @PathVariable("studentId") String studentId) {
         groupService.addStudent(groupId, studentId);
         studentService.addSubjectForStudent(studentId, groupId);
@@ -67,11 +74,13 @@ public class TeacherController {
     }
 
     @RequestMapping(value = "/addSubject", method = RequestMethod.POST)
+    @ResponseBody
     public void addSubject(@RequestBody Subject subject) {
         teacherService.addSubject(subject);
     }
 
     @RequestMapping(value = "/addScores/{studentId}/{taskId}/{scores}/{status}", method = RequestMethod.POST)
+    @ResponseBody
     public void addScores(@PathVariable("studentId") String studentId,
                           @PathVariable("taskId") String taskId,
                           @PathVariable("scores") Integer scores,

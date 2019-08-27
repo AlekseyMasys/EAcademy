@@ -24,7 +24,7 @@ public class StudentController {
     // В методах, отдающих страницы, в URL адрессе не должно содержаться слэшей, это меняет работу Thymeleaf.
     // Страницы html НЕ менуются по верблюжьей нотации. Лучше использовать нижнее подчеркивание.
 
-    @RequestMapping(value = "/teacher_{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/student_{id}", method = RequestMethod.GET)
     public String getStudent(@PathVariable("id") String id, Model modelTeacher) {
         modelTeacher.addAttribute("student", studentService.getStudentById(id));
         return "student_main";

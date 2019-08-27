@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html class="no-js lt-ie9 lt-ie8 lt-ie7">
+<html xml:th="http://thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml" lang="ru">
+
 <html class="no-js lt-ie9 lt-ie8">
 <html class="no-js lt-ie9">
-<html class="no-js"> <!--<![endif]-->
+<html class="no-js">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
     <title>EAcademy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Free HTML5 Template by FreeHTML5.co"/>
@@ -24,25 +27,35 @@
     <meta name="twitter:card" content=""/>
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="shortcut icon" href="favicon.ico">
-
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400" rel="stylesheet">
+    <link rel="shortcut icon" th:href="@{favicon.ico}">
+    <link th:href="@{https://fonts.googleapis.com/css?family=Roboto+Mono:300,400}" rel="stylesheet">
+    <!-- Animate.css -->
+    <link th:href="@{css/animate.css}" rel="stylesheet">
+    <!-- Icomoon Icon Fonts-->
+    <link th:href="@{css/icomoon.css}" rel="stylesheet">
+    <!-- Simple Line Icons -->
+    <link th:href="@{css/simple-line-icons.css}" rel="stylesheet">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost:8089/webjars/bootstrap/4.1.3/css/bootstrap.min.css"/>
+    <!-- Style -->
+    <link rel="stylesheet" th:href="@{css/style.css}">
 
     <!-- Animate.css -->
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" th:href="@{css/animate.css}">
     <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" th:href="@{css/icomoon.css}">
     <!-- Simple Line Icons -->
-    <link rel="stylesheet" href="css/simple-line-icons.css">
+    <link rel="stylesheet" th:href="@{css/simple-line-icons.css}">
     <!-- Bootstrap  -->
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" th:href="@{css/bootstrap.css}">
     <!-- Style -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" th:href="@{css/style.css}">
 
     <!-- Modernizr JS -->
-    <script src="js/modernizr-2.6.2.min.js"></script>
+    <script th:src="@{js/modernizr-2.6.2.min.js}"></script>
 
-    <script src="js/respond.min.js"></script>
+    <script th:src="@{js/respond.min.js}"></script>
 </head>
 
 <body>
@@ -52,52 +65,25 @@
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="navbar-header">
                     <!-- Mobile Toggle Menu Button -->
-                    <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse"
+                    <a th:href="@{#}" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse"
                        data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-                    <a class="navbar-brand" href="index.html">EAcademy</a>
+                    <a class="navbar-brand" th:href="@{index.html}">EAcademy</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-
-                        <!--                        <li class="active">-->
-                        <!--                            <a class="custom-select" required onclick="location.href='index.html';"-->
-                        <!--                               data-nav-section="testimony">-->
-                        <!--                                <span>-->
-                        <!--                                    <select>-->
-                        <!--                                        <option value="">Open this select menu</option>-->
-                        <!--                                        <option value="1">One</option>-->
-                        <!--                                        <option value="2">Two</option>-->
-                        <!--                                        <option value="3">Three</option>-->
-                        <!--                                    </select>-->
-                        <!--                                </span>-->
-                        <!--                            </a>-->
-                        <!--                        </li>-->
-
-                        <li class="dropdown">
-                            <a href="#" onclick="location.href='index.html';" data-nav-section="testimony"
-                               data-toggle="dropdown" class="dropdown-toggle">
-                                Меню
-                                <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Текст подпункта</a></li>
-                                <li><a href="#">Текст подпункта</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Текст подпункта</a></li>
-                            </ul>
+                        <li class="active"><a onclick="location.href='@{index.html}';" data-nav-section="home">
+                            <span>Группы</span></a>
                         </li>
 
+                        <li><a onclick="location.href='@{index.html}';" data-nav-section="testimony">
+                            <span>Дисциплины</span></a>
+                        </li>
 
-                        <li><a onclick="location.href='index.html';" data-nav-section="testimony">
-                            <span>Расписание</span></a>
+                        <li><a onclick="location.href='@{index.html}';"
+                               data-nav-section="pricing"><span>Моя страница</span></a>
                         </li>
-                        <li><a onclick="location.href='index.html';" data-nav-section="testimony">
-                            <span>Оценки</span></a>
-                        </li>
-                        <li><a onclick="location.href='index.html';" data-nav-section="pricing">
-                            <span>Моя страница</span></a>
-                        </li>
-                        <li><a onclick="location.href='authorization.html';" data-nav-section="blog"><span>Выход</span></a>
+                        <li><a onclick="location.href='@{authorization.html}';"
+                               data-nav-section="blog"><span>Выход</span></a>
                         </li>
                     </ul>
                 </div>
@@ -107,7 +93,7 @@
 </header>
 
 <section id="fh5co-pricing" data-section="pricing"
-         style="background-image: url(images/full_image_4.jpg); background-size: cover"
+         style="background-image: url(../static/images/full_image_4.jpg); background-size: cover"
          data-stellar-background-ratio="0.5">
     <section class="pricing-section bg-3">
         <div class="container">
@@ -134,16 +120,10 @@
                         <ul class="pricing__feature-list">
                             <li class="pricing__feature"><a style="color:#000000"
                                                             onclick="location.href='student_subjects.html';"
-                                                            data-nav-section="blog"><span>Дисциплины</span></a></li>
+                                                            data-nav-section="blog"><span>Мои группы</span></a></li>
                             <li class="pricing__feature"><a style="color:#000000"
                                                             onclick="location.href='authorization.html';"
-                                                            data-nav-section="blog"><span>Тестирование</span></a></li>
-                            <li class="pricing__feature"><a style="color:#000000"
-                                                            onclick="location.href='authorization.html';"
-                                                            data-nav-section="blog"><span>Расписание</span></a></li>
-                            <li class="pricing__feature"><a style="color:#000000"
-                                                            onclick="location.href='authorization.html';"
-                                                            data-nav-section="blog"><span>Оценки</span></a></li>
+                                                            data-nav-section="blog"><span>Мои дисциплины</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -156,8 +136,12 @@
                             Моя страница
                         </div>
                         </p>
-                        <ul class="pricing__feature-list">
-                            <li class="pricing__feature"></li>
+
+                        <ul id="teacherInfo" class="pricing__feature-list">
+                            <li id="teacherLogin" class="pricing__feature"><p th:utext="${teacher.getLogin()}"></p></li>
+                            <li id="teacherFio" class="pricing__feature"><p th:utext="${teacher.getFio()}"></p></li>
+                            <li id="teacherEmail" class="pricing__feature"><p th:utext="${teacher.getEmail()}"></li>
+                            <li id="teacherRole" class="pricing__feature"><p th:utext="${teacher.getRole()}"></li>
                         </ul>
                     </div>
                 </div>
@@ -171,9 +155,11 @@
                         </div>
                         </p>
                         <ul class="pricing__feature-list">
-                            <li class="pricing__feature"><a style="color: #0b0b0b" onclick="location.href='help.html';"
+                            <li class="pricing__feature"><a style="color: #0b0b0b"
+                                                            onclick="location.href='help.html';"
                                                             data-nav-section="blog"><span>Помощь</span></a></li>
-                            <li class="pricing__feature"><a style="color: #0b0b0b" onclick="location.href='help.html';"
+                            <li class="pricing__feature"><a style="color: #0b0b0b"
+                                                            onclick="location.href='help.html';"
                                                             data-nav-section="blog"><span>Поддержка</span></a></li>
                         </ul>
                     </div>
@@ -234,20 +220,20 @@
 </div>
 
 <!-- jQuery -->
-<script src="js/jquery.min.js"></script>
+<script th:src="@{js/jquery.min.js}"></script>
 <!-- jQuery Easing -->
-<script src="js/jquery.easing.1.3.js"></script>
+<script th:src="@{js/jquery.easing.1.3.js}"></script>
 <!-- Bootstrap -->
-<script src="js/bootstrap.min.js"></script>
+<script th:src="@{js/bootstrap.min.js}"></script>
+<script type="text/javascript" src="webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <!-- Waypoints -->
-<script src="js/jquery.waypoints.min.js"></script>
+<script th:src="@{js/jquery.waypoints.min.js}"></script>
 <!-- Stellar Parallax -->
-<script src="js/jquery.stellar.min.js"></script>
+<script th:src="@{js/jquery.stellar.min.js}"></script>
 <!-- Counters -->
-<script src="js/jquery.countTo.js"></script>
+<script th:src="@{js/jquery.countTo.js}"></script>
 <!-- Main JS (Do not remove) -->
-<script src="js/main.js"></script>
-
+<script th:src="@{js/main.js}"></script>
 </body>
 </html>
 

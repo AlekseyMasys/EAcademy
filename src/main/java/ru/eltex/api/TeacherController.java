@@ -24,40 +24,45 @@ public class TeacherController {
         this.studentService = studentService;
     }
 
-    @RequestMapping(value = "/teacher/{id}", method = RequestMethod.GET)
+    // В методах, отдающих страницы, в URL адрессе не должно содержаться слэшей, это меняет работу Thymeleaf.
+    // Страницы html НЕ менуются по верблюжьей нотации. Лучше использовать нижнее подчеркивание.
+
+    @RequestMapping(value = "/teacher_{id}", method = RequestMethod.GET)
     public String getTeacher(@PathVariable("id") String id, Model modelTeacher) {
         modelTeacher.addAttribute("teacher", teacherService.getTeacher(id));
-        return "teacher/main";
+        return "teacher_main";
     }
 
-    @GetMapping(value = "/teacher/{id}/get")
-    public Teacher getTeacherInfo(@PathVariable("id") String id) {
-        return teacherService.getTeacher(id);
-    }
-
-    @RequestMapping(value = "/teacher/{id}/subjects", method = RequestMethod.GET)
+    @RequestMapping(value = "/teacher_{id}_subjects", method = RequestMethod.GET)
     public String getTeacherSubjects(@PathVariable("id") String id, Model modelSubjects) {
         modelSubjects.addAllAttributes(teacherService.getTeacherSubjects(id));
-        return "teacher/subjects";
+        return "teacher_subjects";
     }
 
-    @RequestMapping(value = "/teacher/{id}/groups", method = RequestMethod.GET)
+    @RequestMapping(value = "/teacher_{id}_groups", method = RequestMethod.GET)
     public String getTeacherGroups(@PathVariable("id") String id, Model modelGroup) {
         modelGroup.addAllAttributes(teacherService.getTeacherGroups(id));
-        return "teacher/groups";
+        return "teacher_groups";
     }
 
-    @RequestMapping(value = "/teacher/{id}/subject/{idSubject}", method = RequestMethod.GET)
+    @RequestMapping(value = "/teacher_{id}_subject_{idSubject}", method = RequestMethod.GET)
     public String getSubjectGroups(@PathVariable("id") String id, @PathVariable("idSubject") String idSubject, Model modelGroup) {
         modelGroup.addAllAttributes(teacherService.getSubjectGroups(id, idSubject));
-        return "teacher/subjectGroups";
+        return "teacher_subjectGroups";
     }
 
-    @RequestMapping(value = "/getStudentsFromGroup/{id}/{idSubject}/{idGroup}", method = RequestMethod.GET)
+    @RequestMapping(value = "/teacher_{id}_getStudentsFromGroup_{idSubject}_{idGroup}", method = RequestMethod.GET)
     public String getStudentsFromGroup(@PathVariable("id") String id, @PathVariable("idGroup") String idGroup,
                                        @PathVariable String idSubject, Model modelStudents) {
         modelStudents.addAllAttributes(teacherService.getStudentsFromGroup(id, idGroup, idSubject));
-        return "teacher/studentsFromGroup";
+        return "teacher_students_from_group";
+    }
+
+    //REST METHODS
+    @GetMapping(value = "/teacher/{id}/getInfo")
+    @ResponseBody
+    public Teacher getTeacherInfo(@PathVariable("id") String id) {
+        return teacherService.getTeacher(id);
     }
 
     @RequestMapping(value = "/addGroup", method = RequestMethod.POST)

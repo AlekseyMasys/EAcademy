@@ -25,20 +25,23 @@ public class UserController {
         this.userService = userService;
     }
 
+    // В методах, отдающих страницы, в URL адрессе не должно содержаться слэшей, это меняет работу Thymeleaf.
+    // Страницы html НЕ именуются по верблюжьей нотации. Лучше использовать нижнее подчеркивание.
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String get() {
         return "authorization";
     }
 
-    @RequestMapping(value = "user/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "user_{id}", method = RequestMethod.POST)
     public String getUser(@PathVariable("id") String id, Model modelUser) {
         UserRole userRole = userService.getUserRole(id);
         if (userRole.getUserRole().equals(Role.TEACHER)) {
             modelUser.addAttribute("teacher", teacherService.getTeacher(userRole.getUserId()));
-            return "teacher/main";
+            return "teacher_main";
         } else {
             modelUser.addAttribute("student", studentService.getStudentById(userRole.getUserId()));
-            return "student/main";
+            return "student_main";
         }
     }
 }

@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-<html xml:th="http://thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
-
-<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<html class="no-js lt-ie9"> <![endif]-->
+<html class="no-js lt-ie9 lt-ie8 lt-ie7">
+<html class="no-js lt-ie9 lt-ie8">
+<html class="no-js lt-ie9">
 <html class="no-js"> <!--<![endif]-->
-
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -28,26 +24,25 @@
     <meta name="twitter:card" content=""/>
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="shortcut icon" th:href="@{favicon.ico}">
+    <link rel="shortcut icon" href="favicon.ico">
 
-    <link th:href="@{https://fonts.googleapis.com/css?family=Roboto+Mono:300,400}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400" rel="stylesheet">
 
     <!-- Animate.css -->
-    <link rel="stylesheet" th:href="@{css/animate.css}">
+    <link rel="stylesheet" href="../static/css/animate.css">
     <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" th:href="@{css/icomoon.css}">
+    <link rel="stylesheet" href="../static/css/icomoon.css">
     <!-- Simple Line Icons -->
-    <link rel="stylesheet" th:href="@{css/simple-line-icons.css}">
+    <link rel="stylesheet" href="../static/css/simple-line-icons.css">
     <!-- Bootstrap  -->
-    <link rel="stylesheet" th:href="@{css/bootstrap.css}">
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
     <!-- Style -->
-    <link rel="stylesheet" th:href="@{css/style.css}">
-
+    <link rel="stylesheet" href="../static/css/style.css">
 
     <!-- Modernizr JS -->
-    <script th:src="@{js/modernizr-2.6.2.min.js}"></script>
+    <script src="../static/js/modernizr-2.6.2.min.js"></script>
 
-    <script th:src="@{js/respond.min.js}"></script>
+    <script src="../static/js/respond.min.js"></script>
 </head>
 
 <body>
@@ -57,25 +52,52 @@
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="navbar-header">
                     <!-- Mobile Toggle Menu Button -->
-                    <a th:href="@{#}" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse"
+                    <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse"
                        data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-                    <a class="navbar-brand" th:href="@{index.html}">EAcademy</a>
+                    <a class="navbar-brand" href="index.html">EAcademy</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a onclick="location.href='@{index.html}';" data-nav-section="home">
-                            <span>Группы</span></a>
+
+                        <!--                        <li class="active">-->
+                        <!--                            <a class="custom-select" required onclick="location.href='index.html';"-->
+                        <!--                               data-nav-section="testimony">-->
+                        <!--                                <span>-->
+                        <!--                                    <select>-->
+                        <!--                                        <option value="">Open this select menu</option>-->
+                        <!--                                        <option value="1">One</option>-->
+                        <!--                                        <option value="2">Two</option>-->
+                        <!--                                        <option value="3">Three</option>-->
+                        <!--                                    </select>-->
+                        <!--                                </span>-->
+                        <!--                            </a>-->
+                        <!--                        </li>-->
+
+                        <li class="dropdown">
+                            <a href="#" onclick="location.href='index.html';" data-nav-section="testimony"
+                               data-toggle="dropdown" class="dropdown-toggle">
+                                Меню
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Текст подпункта</a></li>
+                                <li><a href="#">Текст подпункта</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Текст подпункта</a></li>
+                            </ul>
                         </li>
 
-                        <li><a onclick="location.href='@{index.html}';" data-nav-section="testimony">
-                            <span>Дисциплины</span></a>
-                        </li>
 
-                        <li><a onclick="location.href='@{index.html}';"
-                               data-nav-section="pricing"><span>Моя страница</span></a>
+                        <li><a onclick="location.href='index.html';" data-nav-section="testimony">
+                            <span>Расписание</span></a>
                         </li>
-                        <li><a onclick="location.href='@{authorization.html}';"
-                               data-nav-section="blog"><span>Выход</span></a>
+                        <li><a onclick="location.href='index.html';" data-nav-section="testimony">
+                            <span>Оценки</span></a>
+                        </li>
+                        <li><a onclick="location.href='index.html';" data-nav-section="pricing">
+                            <span>Моя страница</span></a>
+                        </li>
+                        <li><a onclick="location.href='authorization.html';" data-nav-section="blog"><span>Выход</span></a>
                         </li>
                     </ul>
                 </div>
@@ -85,7 +107,7 @@
 </header>
 
 <section id="fh5co-pricing" data-section="pricing"
-         style="background-image: url(images/full_image_4.jpg); background-size: cover"
+         style="background-image: url(../static/images/full_image_4.jpg); background-size: cover"
          data-stellar-background-ratio="0.5">
     <section class="pricing-section bg-3">
         <div class="container">
@@ -112,11 +134,16 @@
                         <ul class="pricing__feature-list">
                             <li class="pricing__feature"><a style="color:#000000"
                                                             onclick="location.href='student_subjects.html';"
-                                                            data-nav-section="blog"><span>Мои группы</span></a></li>
+                                                            data-nav-section="blog"><span>Дисциплины</span></a></li>
                             <li class="pricing__feature"><a style="color:#000000"
                                                             onclick="location.href='authorization.html';"
-                                                            data-nav-section="blog"><span>Мои дисциплины</span></a></li>
-
+                                                            data-nav-section="blog"><span>Тестирование</span></a></li>
+                            <li class="pricing__feature"><a style="color:#000000"
+                                                            onclick="location.href='authorization.html';"
+                                                            data-nav-section="blog"><span>Расписание</span></a></li>
+                            <li class="pricing__feature"><a style="color:#000000"
+                                                            onclick="location.href='authorization.html';"
+                                                            data-nav-section="blog"><span>Оценки</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -129,12 +156,8 @@
                             Моя страница
                         </div>
                         </p>
-
-                        <ul id="teacherInfo" class="pricing__feature-list">
-                            <li id="teacherLogin" class="pricing__feature"><p th:utext="${teacher.getLogin()}"></p></li>
-                            <li id="teacherFio" class="pricing__feature"><p th:utext="${teacher.getFio()}"></p></li>
-                            <li id="teacherEmail" class="pricing__feature"></li>
-                            <li id="teacherRole" class="pricing__feature"></li>
+                        <ul class="pricing__feature-list">
+                            <li class="pricing__feature"></li>
                         </ul>
                     </div>
                 </div>
@@ -148,11 +171,9 @@
                         </div>
                         </p>
                         <ul class="pricing__feature-list">
-                            <li class="pricing__feature"><a style="color: #0b0b0b"
-                                                            onclick="location.href='help.html';"
+                            <li class="pricing__feature"><a style="color: #0b0b0b" onclick="location.href='help.html';"
                                                             data-nav-section="blog"><span>Помощь</span></a></li>
-                            <li class="pricing__feature"><a style="color: #0b0b0b"
-                                                            onclick="location.href='help.html';"
+                            <li class="pricing__feature"><a style="color: #0b0b0b" onclick="location.href='help.html';"
                                                             data-nav-section="blog"><span>Поддержка</span></a></li>
                         </ul>
                     </div>
@@ -176,15 +197,15 @@
                 <ul class="contact-info">
                     <li><i class="icon-map"></i>Окружная ул., 29В, Новосибирск, Новосибирская обл., 630020</li>
                     <li><i class="icon-phone"></i>+7 913 789 67 77</li>
-                    <li><i class="icon-envelope"></i><a th:href="#">eacademy@gmail.com</a></li>
-                    <li><i class="icon-globe"></i><a th:href="#">www.eacademy.com</a></li>
+                    <li><i class="icon-envelope"></i><a href="#">eacademy@gmail.com</a></li>
+                    <li><i class="icon-globe"></i><a href="#">www.eacademy.com</a></li>
                 </ul>
                 <h3 class="section-title">Свяжитесь с нами</h3>
                 <ul class="social-media">
-                    <li><a th:href="#" class="facebook"><i class="icon-facebook"></i></a></li>
-                    <li><a th:href="#" class="twitter"><i class="icon-twitter"></i></a></li>
-                    <li><a th:href="#" class="dribbble"><i class="icon-dribbble"></i></a></li>
-                    <li><a th:href="#" class="github"><i class="icon-github-alt"></i></a></li>
+                    <li><a href="#" class="facebook"><i class="icon-facebook"></i></a></li>
+                    <li><a href="#" class="twitter"><i class="icon-twitter"></i></a></li>
+                    <li><a href="#" class="dribbble"><i class="icon-dribbble"></i></a></li>
+                    <li><a href="#" class="github"><i class="icon-github-alt"></i></a></li>
                 </ul>
             </div>
             <div class="col-md-4 animate-box">
@@ -212,21 +233,21 @@
     </div>
 </div>
 
-
 <!-- jQuery -->
-<script th:src="@{js/jquery.min.js}"></script>
+<script src="../static/js/jquery.min.js"></script>
 <!-- jQuery Easing -->
-<script th:src="@{js/jquery.easing.1.3.js}"></script>
+<script src="../static/js/jquery.easing.1.3.js"></script>
 <!-- Bootstrap -->
-<script th:src="@{js/bootstrap.min.js}"></script>
+<script src="../static/js/bootstrap.min.js"></script>
 <!-- Waypoints -->
-<script th:src="@{js/jquery.waypoints.min.js}"></script>
+<script src="../static/js/jquery.waypoints.min.js"></script>
 <!-- Stellar Parallax -->
-<script th:src="@{js/jquery.stellar.min.js}"></script>
+<script src="../static/js/jquery.stellar.min.js"></script>
 <!-- Counters -->
-<script th:src="@{js/jquery.countTo.js}"></script>
+<script src="../static/js/jquery.countTo.js"></script>
 <!-- Main JS (Do not remove) -->
-<script th:src="@{js/main.js}"></script>
+<script src="../static/js/main.js"></script>
+
 </body>
 </html>
 

@@ -60,7 +60,7 @@ public class StudentService {
             ArrayList<TestResult> testResults = new ArrayList<>();
 
 
-            subject.getTests().forEach(elem-> testResults.add(testResultRepository.findByTestId(elem)));
+            subject.getTests().forEach(elem-> testResults.add(testResultRepository.getByIdAndIdTest(idStudent,elem)));
 
             for(TestResult elem: testResults) {
                 mark+= elem.getResult();

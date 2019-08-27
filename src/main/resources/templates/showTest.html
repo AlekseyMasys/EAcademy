@@ -12,16 +12,27 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-  $( function() {
-    $( "input" ).checkboxradio();
-  } );
-
-    </script>
 
 
 </head>
 <script type="text/javascript">
+
+function displayContents() {
+  var contents ={name:"1",id:"12"};
+  console.log(contents);
+  $.ajax({
+               type: "POST",
+               contentType: "application/json; charset=UTF-8",
+               url: "/vvv",
+               data: JSON.stringify(contents),
+               dataType: "Json",
+           });
+}
+
+
+
+
+
 </script>
 <body style="background-color:DodgerBlue">
 <br/>
@@ -30,7 +41,9 @@
 
 <div class="widget">
     <br/>
-    <form action="#" th:action="@{/student/{id}/{idTest}/saveCurrentResult}" th:object="${testAnswers}" method="post">
+        <form action="#" th:action="@{/student/{id}/{idTest}/finishtest}" th:object="${testAnswers}" method="post">
+<!--    <form  th:object="${testAnswers}" method="post">-->
+
 
         <th:block th:each="task,taskStat : ${testmodel.test}">
             <div class="container">
@@ -49,13 +62,14 @@
                             <br/>
 
                         </th:block>
-                        <input type="submit" text="Check Test"/>
-
+                        <input type="submit" name="input" id="input" value="Отправить тест на проверку">
+                        <button type="button" onclick="displayContents()">Current Result</button>
                     </div>
                 </div>
             </div>
             <br/>
         </th:block>
     </form>
+</div>
 </body>
 </html>

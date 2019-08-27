@@ -1,21 +1,20 @@
 package ru.eltex.testsystem.service;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.eltex.accountsystem.model.Subject;
-import ru.eltex.accountsystem.model.users.Teacher;
+import ru.eltex.accountsystem.model.TestResult;
 import ru.eltex.accountsystem.repository.SubjectRepository;
 import ru.eltex.accountsystem.repository.TeacherRepository;
+import ru.eltex.accountsystem.repository.TestResultRepository;
 import ru.eltex.testsystem.model.QuestionModel;
+import ru.eltex.testsystem.model.TestAnswers;
 import ru.eltex.testsystem.model.TestStructure;
 import ru.eltex.testsystem.repository.TestStructureRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @Service
 public class TestStructureService {
@@ -27,7 +26,7 @@ public class TestStructureService {
 
     @Autowired
     public TestStructureService(TestStructureRepository testStructureRepository, ObjectMapper objectMapper,
-                                TeacherRepository teacherRepository, SubjectRepository subjectRepository) {
+                                TeacherRepository teacherRepository, SubjectRepository subjectRepository, TestResultRepository testResultRepository) {
         this.testStructureRepository = testStructureRepository;
         this.objectMapper = objectMapper;
         this.teacherRepository = teacherRepository;
@@ -43,9 +42,9 @@ public class TestStructureService {
 
     }
 
-    public TestStructure loadTest(String id,  String idTest) {
-        TestStructure testStructure = testStructureRepository.getById(idTest);
-        for(QuestionModel q:testStructure.getTest()){
+    public TestStructure loadTest(String id, String testId) {
+        TestStructure testStructure = testStructureRepository.getById(testId);
+        for (QuestionModel q : testStructure.getTest()) {
             q.setTrueAnswer(null);
         }
         return testStructure;
@@ -57,4 +56,7 @@ public class TestStructureService {
         strings.forEach(p -> testNames.add(p.getName()));
         return testNames;
     }
+
+
+
 }

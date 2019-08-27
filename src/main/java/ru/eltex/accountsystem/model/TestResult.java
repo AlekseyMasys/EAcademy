@@ -26,4 +26,5 @@ public class TestResult {
         this.result = result;
         this.timeOfTest = timeOfTest;
     }
+
 }

@@ -51,7 +51,7 @@ public class StudentService {
         for (Subject subject : subjects) {
             Integer mark = 0;
             ArrayList<TaskResult> tasksResult = new ArrayList<>();
-            subject.getTasks().stream().forEach(elem-> tasksResult.add(taskResultRepository.findByIdTask(elem)));
+            subject.getTasksId().stream().forEach(elem-> tasksResult.add(taskResultRepository.findByIdTask(elem)));
 
             for(TaskResult elem: tasksResult) {
                 mark+= elem.getScores();
@@ -60,7 +60,7 @@ public class StudentService {
             ArrayList<TestResult> testResults = new ArrayList<>();
 
 
-            subject.getTests().forEach(elem-> testResults.add(testResultRepository.findByTestId(elem)));
+            subject.getTestsId().forEach(elem-> testResults.add(testResultRepository.findByTestId(elem)));
 
             for(TestResult elem: testResults) {
                 mark+= elem.getResult();
@@ -77,9 +77,9 @@ public class StudentService {
         return subjectRepository.findById(idSubject).get();
     }
 
-    public ArrayList<String> getAllTasksByOneSubject(String idSubject) {
+    public List<String> getAllTasksByOneSubject(String idSubject) {
         Subject subject = subjectRepository.findById(idSubject).get();
-        return subject.getTasks();
+        return subject.getTasksId();
     }
 
     public List<String> getTests(String idStudent) {
@@ -88,7 +88,7 @@ public class StudentService {
         List<String> tests = new ArrayList<>();
 
         for (Subject subject : subjects) {
-            subject.getTests().forEach(elem->tests.add(testStructureRepository.findById(elem).get().getName()));
+            subject.getTestsId().forEach(elem->tests.add(testStructureRepository.findById(elem).get().getName()));
 
         }
 

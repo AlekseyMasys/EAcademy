@@ -13,7 +13,7 @@ import java.util.ArrayList;
 @Getter
 @Setter
 @NoArgsConstructor
-@Document(collection = "Groups")
+@Document(collection = "groups")
 public class Group {
     @Id
     private String id;
@@ -23,6 +23,12 @@ public class Group {
 
     public Group(String title, ArrayList<Student> students) {
         this.title = title;
+        this.students = students;
+    }
+
+    public Group(String title, String table, ArrayList<Student> students) {
+        this.title = title;
+        this.table = table;
         this.students = students;
     }
 

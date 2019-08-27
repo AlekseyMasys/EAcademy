@@ -33,13 +33,9 @@ public class TeacherService {
         return teacherRepository.findById(id).get();
     }
 
-    public List<Subject> getTeacherSubjects(String id) {
+    public List<String> getTeacherSubjects(String id) {
         Teacher teacher = teacherRepository.findById(id).get();
-        List<Subject> subjects= new ArrayList<Subject>();
-        teacher.getSubjects().stream().forEach(p->{
-            subjects.add(subjectRepository.findById(p).get());
-        });
-        return subjects;
+        return teacher.getSubjects();
     }
 
     public List<Group> getTeacherGroups(String id) {

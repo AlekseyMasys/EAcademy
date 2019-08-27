@@ -5,8 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,14 +15,14 @@ public class Subject {
     @Id
     private String id;
     private String title;
-    private ArrayList<String> tasks;
-    private ArrayList<Group> groups;
-    private ArrayList<String> tests;
+    private List<String> tasksId;
+    private List<Group> groups;
+    private List<String> testsId;
 
-    public Subject(String title, ArrayList<String> tasks, ArrayList<Group> groups, ArrayList<String> tests) {
+    public Subject(String title, List<String> tasksId, List<Group> groups, List<String> testsId) {
         this.title = title;
-        this.tasks = tasks;
+        this.tasksId = tasksId;
         this.groups = groups;
-        this.tests = tests;
+        this.testsId = testsId;
     }
 }

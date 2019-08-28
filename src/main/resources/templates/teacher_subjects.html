@@ -87,10 +87,10 @@
                                 <li><a href="#">Текст подпункта</a></li>
                             </ul>
                         </li>
-<!--                        <li><a class="external" th:href="@{'/teacher_'+${teacher.id}+'_subjects'}"-->
-<!--                               data-nav-section="testimony">-->
-<!--                            <span>Дисциплины</span></a>-->
-<!--                        </li>-->
+                        <!--                        <li><a class="external" th:href="@{'/teacher_'+${teacher.id}+'_subjects'}"-->
+                        <!--                               data-nav-section="testimony">-->
+                        <!--                            <span>Дисциплины</span></a>-->
+                        <!--                        </li>-->
                         <li><a class="external" th:href="@{/teacher_{id}}"
                                data-nav-section="pricing">
                             <span>Моя страница</span></a>
@@ -108,12 +108,12 @@
 
 <section id="fh5co-explore" data-section="explore">
     <div class="container" style="width: 100%">
-        <div class="row">
-            <div class="col-md-10" style="color:#000000">Линейная алгебра</div>
+        <div class="row" th:each="subject : ${subjects}">
+            <div class="col-md-10" style="color:#000000" th:utext="${subject.title}"></div>
             <div class="col-md-10">Лисицин И.И.</div>
             <div class="form-group col-md-2">
                 <input type="submit" class="btn btn-send-message btn-md"
-                       value="Отправка работ и оценки">
+                       value="Перейти к проверке работ">
             </div>
         </div>
     </div>

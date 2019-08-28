@@ -71,30 +71,27 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
 
-
-                        <li class="active"><a class="external" th:href="@{/teacher_{id}_groups}"
-                                              data-nav-section="home">
-                            <span>Группы</span></a>
-                        </li>
-
-                        <li class="dropdown">
-                            <a class="external" href="#" data-nav-section="testimony"
-                               data-toggle="dropdown">
+                        <li class="dropdown" data-nav-section="pricing">
+                            <a class="external" data-toggle="dropdown">
                                 Группы
                                 <b class="caret"></b>
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Текст подпункта</a></li>
-                                <li><a href="#">Текст подпункта</a></li>
-<!--                                <li class="divider"></li>-->
-                                <li><a href="#">Текст подпункта</a></li>
+                            <ul class="dropdown-menu external" th:each="group : ${groups}">
+                                <li><a th:href="@{'/teacher_' + ${teacher.id} + '_group'}"
+                                       class="external" th:utext="${group.title}"></a></li>
                             </ul>
                         </li>
 
-
-                        <li><a class="external" th:href="@{'/teacher_' + ${teacher.id} + '_subjects'}"
-                               data-nav-section="testimony">
-                            <span>Дисциплины</span></a>
+                        <li class="dropdown" data-nav-section="pricing">
+                            <a class="external" data-toggle="dropdown">
+                                Дисциплины
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu external" th:each="subject : ${subjects}">
+                                <li><a th:href="@{'/teacher_' + ${teacher.id} + '_subjects'}"
+                                       class="external" th:utext="${subject.title}"></a></li>
+                                <!--                                <li class="divider"></li>-->
+                            </ul>
                         </li>
                         <li><a class="external" th:href="@{/teacher_{id}}"
                                data-nav-section="pricing">
@@ -117,15 +114,15 @@
     <section class="pricing-section bg-3">
         <div class="container">
             <!--            <div class="row">-->
-                <div class="col-md-12 section-heading text-center">
-                    <h2 class="animate-box">Мы EAcademy</h2>
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2 subtext animate-box">
-                            <h3>Лучшая система учета студентов.</h3>
-                        </div>
+            <div class="col-md-12 section-heading text-center">
+                <h2 class="animate-box">Мы EAcademy</h2>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 subtext animate-box">
+                        <h3>Лучшая система учета студентов.</h3>
                     </div>
                 </div>
-<!--            </div>-->
+            </div>
+            <!--            </div>-->
             <div class="row">
                 <div class="col-md-4 text-center animate-box">
                     <div class="pricing__item">
@@ -138,10 +135,14 @@
                         </div>
                         <ul class="pricing__feature-list">
                             <li class="pricing__feature"><a style="color:#000000"
-                                                            onclick="location.href='student_subjects.html';"
+                                                            class="external"
+                                                            href="teacher_groups.html"
+                                                            th:href="@{'/teacher_' + ${teacher.id} + '_groups'}"
                                                             data-nav-section="blog"><span>Мои группы</span></a></li>
                             <li class="pricing__feature"><a style="color:#000000"
-                                                            onclick="location.href='authorization.html';"
+                                                            class="external"
+                                                            href="teacher_subjects.html"
+                                                            th:href="@{'/teacher_' + ${teacher.id} + '_subjects'}"
                                                             data-nav-section="blog"><span>Мои дисциплины</span></a></li>
                         </ul>
                     </div>

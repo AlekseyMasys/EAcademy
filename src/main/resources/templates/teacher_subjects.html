@@ -107,15 +107,17 @@
 </header>
 
 <section id="fh5co-explore" data-section="explore">
-    <div class="container" style="width: 100%">
-        <div class="row" th:each="subject : ${subjects}">
-            <div class="col-md-10" style="color:#000000" th:utext="${subject.title}"></div>
+    <div class="container external" style="width: 100%">
+        <th:block th:each="subject : ${teacherSubjects}">
+            <!--            <div class="row" th:each="subject : ${teacherSubjects}">-->
+            <div class="col-md-10 external" style="color:#000000" th:text="${subject}"></div>
             <div class="col-md-10">Лисицин И.И.</div>
             <div class="form-group col-md-2">
                 <input type="submit" class="btn btn-send-message btn-md"
                        value="Перейти к проверке работ">
             </div>
-        </div>
+            <!--            </div>-->
+        </th:block>
     </div>
 </section>
 

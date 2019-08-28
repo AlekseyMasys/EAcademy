@@ -21,6 +21,8 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-parent")
 
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile "org.thymeleaf:thymeleaf-spring4:3.0.1.RELEASE"
+    compile "org.thymeleaf.extras:thymeleaf-extras-springsecurity4:3.0.1.RELEASE"
 
     compile group: 'org.webjars', name: 'bootstrap', version: '4.1.3'
 

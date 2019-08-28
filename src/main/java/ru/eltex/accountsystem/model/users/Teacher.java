@@ -17,18 +17,18 @@ import lombok.Setter;
 @ToString
 @Document(collection = "teachers")
 public class Teacher extends User {
-    private List<String> subjects;
+    private List<String> subjectIds;
 
     public Teacher(String login, String password, String email,
                    String fio, Role role,
-                   List<String> subjects) {
+                   List<String> subjectIds) {
         super(login, password, email, fio, role);
 
-        this.subjects = subjects;
+        this.subjectIds = subjectIds;
     }
 
-    public Teacher(Map<String, String> user, List<String> subjects) {
+    public Teacher(Map<String, String> user, List<String> subjectIds) {
         super(user.get("login"), user.get("password"), user.get("email"), user.get("fio"), Role.valueOf(user.get("role")));
-        this.subjects = subjects;
+        this.subjectIds = subjectIds;
     }
 }

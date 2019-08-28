@@ -30,14 +30,12 @@ public class TeacherController {
     @RequestMapping(value = "/teacher_{id}", method = RequestMethod.GET)
     public String getTeacher(@PathVariable("id") String id, Model modelTeacher) {
         modelTeacher.addAttribute("teacher", teacherService.getTeacher(id));
-        System.out.println(teacherService.getTeacher(id));
         return "teacher_main";
     }
 
     @RequestMapping(value = "/teacher_{id}_subjects", method = RequestMethod.GET)
     public String getTeacherSubjects(@PathVariable("id") String id, Model modelSubjects) {
-        System.out.println(teacherService.getTeacherSubjects(id));
-        modelSubjects.addAllAttributes(teacherService.getTeacherSubjects(id));
+        modelSubjects.addAttribute("teacherSubjects", teacherService.getTeacherSubjects(id));
         return "teacher_subjects";
     }
 

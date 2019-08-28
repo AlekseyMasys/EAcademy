@@ -2,23 +2,28 @@ package ru.eltex.accountsystem.service;
 
 import org.springframework.stereotype.Service;
 import ru.eltex.accountsystem.model.Group;
+import ru.eltex.accountsystem.model.Subject;
 import ru.eltex.accountsystem.model.users.Student;
 import ru.eltex.accountsystem.repository.GroupRepository;
 import ru.eltex.accountsystem.repository.StudentRepository;
-
-import java.util.ArrayList;
+import ru.eltex.accountsystem.repository.SubjectRepository;
 
 @Service
 public class GroupService {
     private final GroupRepository groupRepository;
     private final StudentRepository studentRepository;
+    private final SubjectRepository subjectRepository;
 
-    public GroupService(GroupRepository groupRepository, StudentRepository studentRepository) {
+    public GroupService(GroupRepository groupRepository, StudentRepository studentRepository, SubjectRepository subjectRepository) {
         this.groupRepository = groupRepository;
         this.studentRepository = studentRepository;
+        this.subjectRepository = subjectRepository;
     }
 
-    public void addGroup(Group group) {
+    public void addGroup(String idSubject, Group group) {
+        Subject subject = subjectRepository.findById(idSubject).get();
+        subject.getGroupIds().add(group.getId());
+        subjectRepository.save(subject);
         groupRepository.save(group);
     }
 
@@ -29,9 +34,7 @@ public class GroupService {
     public void addStudent(String idGroup, String studentId) {
         Student student = studentRepository.findById(studentId).get();
         Group group = getGroup(idGroup);
-        ArrayList<Student> groupStudents = group.getStudents();
-        groupStudents.add(student);
-        group.setStudents(groupStudents);
+        group.getStudentIds().add(student.getId());
         groupRepository.save(group);
         //заполнение у студента subjects
     }

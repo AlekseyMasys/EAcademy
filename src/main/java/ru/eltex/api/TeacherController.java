@@ -48,15 +48,14 @@ public class TeacherController {
     }
 
     @RequestMapping(value = "/teacher_{id}_subject_{idSubject}", method = RequestMethod.GET)
-    public String getSubjectGroups(@PathVariable("id") String id, @PathVariable("idSubject") String idSubject, Model modelGroup) {
-        modelGroup.addAllAttributes(teacherService.getSubjectGroups(id, idSubject));
+    public String getSubjectGroups(@PathVariable("idSubject") String idSubject, Model modelGroup) {
+        modelGroup.addAllAttributes(teacherService.getSubjectGroups(idSubject));
         return "teacher_subjectGroups";
     }
 
-    @RequestMapping(value = "/teacher_{id}_getStudentsFromGroup_{idSubject}_{idGroup}", method = RequestMethod.GET)
-    public String getStudentsFromGroup(@PathVariable("id") String id, @PathVariable("idGroup") String idGroup,
-                                       @PathVariable String idSubject, Model modelStudents) {
-        modelStudents.addAllAttributes(teacherService.getStudentsFromGroup(id, idGroup, idSubject));
+    @RequestMapping(value = "/teacher_{id}_getStudentsFromGroup_{idGroup}", method = RequestMethod.GET)
+    public String getStudentsFromGroup(@PathVariable("idGroup") String idGroup, Model modelStudents) {
+        modelStudents.addAllAttributes(teacherService.getStudentsFromGroup(idGroup));
         return "teacher_students_from_group";
     }
 
@@ -67,10 +66,10 @@ public class TeacherController {
         return teacherService.getTeacher(id);
     }
 
-    @RequestMapping(value = "/addGroup", method = RequestMethod.POST)
+    @RequestMapping(value = "/teacher/{id}/subjects/{idSubject}/addGroup", method = RequestMethod.POST)
     @ResponseBody
-    public void addGroup(@RequestBody Group group) {
-        groupService.addGroup(group);
+    public void addGroup(@PathVariable("idSubject") String idSubject, @RequestBody Group group) {
+        groupService.addGroup(idSubject, group);
         //если group.students != null заполнение у студентов subjects
     }
 
@@ -78,7 +77,7 @@ public class TeacherController {
     @ResponseBody
     public void addStudentInGroup(@PathVariable("groupId") String groupId, @PathVariable("studentId") String studentId) {
         groupService.addStudent(groupId, studentId);
-        studentService.addSubjectForStudent(studentId, groupId);
+        studentService.addSubjectForStudent(studentId);
         //заполнение у студента subjects
     }
 

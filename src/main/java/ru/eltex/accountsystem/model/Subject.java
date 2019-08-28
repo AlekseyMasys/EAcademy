@@ -15,14 +15,14 @@ public class Subject {
     @Id
     private String id;
     private String title;
-    private List<String> tasksId;
-    private List<Group> groups;
-    private List<String> testsId;
+    private List<String> taskIds;
+    private List<String> groupIds;
+    private List<String> testIds;
 
-    public Subject(String title, List<String> tasksId, List<Group> groups, List<String> testsId) {
+    public Subject(String title, List<String> taskIds, List<String> groupIds, List<String> testIds) {
         this.title = title;
-        this.tasksId = tasksId;
-        this.groups = groups;
-        this.testsId = testsId;
+        this.taskIds = taskIds;
+        this.groupIds = groupIds;
+        this.testIds = testIds;
     }
 }

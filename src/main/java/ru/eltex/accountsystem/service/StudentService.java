@@ -51,25 +51,21 @@ public class StudentService {
         for (Subject subject : subjects) {
             Integer mark = 0;
             ArrayList<TaskResult> tasksResult = new ArrayList<>();
-            subject.getTasksId().stream().forEach(elem-> tasksResult.add(taskResultRepository.findByIdTask(elem)));
+            subject.getTaskIds().stream().forEach(elem-> tasksResult.add(taskResultRepository.findByIdTask(elem)));
 
             for(TaskResult elem: tasksResult) {
                 mark+= elem.getScores();
             }
 
             ArrayList<TestResult> testResults = new ArrayList<>();
-
-
-            subject.getTestsId().forEach(elem-> testResults.add(testResultRepository.findByTestId(elem)));
+            subject.getTestIds().forEach(elem-> testResults.add(testResultRepository.findByTestId(elem)));
 
             for(TestResult elem: testResults) {
                 mark+= elem.getResult();
             }
 
             marks.put(subject, mark);
-
         }
-
         return marks;
     }
 
@@ -79,7 +75,7 @@ public class StudentService {
 
     public List<String> getAllTasksByOneSubject(String idSubject) {
         Subject subject = subjectRepository.findById(idSubject).get();
-        return subject.getTasksId();
+        return subject.getTaskIds();
     }
 
     public List<String> getTests(String idStudent) {
@@ -88,19 +84,18 @@ public class StudentService {
         List<String> tests = new ArrayList<>();
 
         for (Subject subject : subjects) {
-            subject.getTestsId().forEach(elem->tests.add(testStructureRepository.findById(elem).get().getName()));
-
+            subject.getTestIds().forEach(elem->tests.add(testStructureRepository.findById(elem).get().getName()));
         }
-
         return tests;
     }
 
-    public void addSubjectForStudent(String studentId, String grId) {
+    public void addSubjectForStudent(String studentId) {
         ArrayList<String> subjects = new ArrayList<>();
         Student student = studentRepository.findById(studentId).get(); //Студент находится в репозитории но его предметы пока еще не заполнены
         //заполнение предметов у студента: получаем все предметы, затем у каждого предмета получаем список групп и если в этом списке
         // присутсвует группа с grId то добавляем id предмета к списку id предметов студента.
-        subjectRepository.findAll().forEach(elem -> elem.getGroups().stream().filter(gr -> gr.getId().equals(grId)).forEach(elem2 -> subjects.add(elem.getId()))); //правильность под вопросом=))
+
+        subjectRepository.findAll().forEach(subject -> subject.getGroupIds().stream().filter(groupId -> groupId.equals(student.getGroupId())).forEach(elem2 -> subjects.add(subject.getId())));
         student.setSubjects(subjects);
         studentRepository.save(student);
     }

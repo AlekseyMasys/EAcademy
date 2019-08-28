@@ -3,7 +3,6 @@ package ru.eltex.accountsystem.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.codehaus.jackson.JsonNode;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import ru.eltex.accountsystem.model.users.Student;

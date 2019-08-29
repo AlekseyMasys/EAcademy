@@ -25,36 +25,23 @@
     <meta name="twitter:image" content=""/>
     <meta name="twitter:url" content=""/>
     <meta name="twitter:card" content=""/>
-
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="shortcut icon" th:href="@{favicon.ico}">
-    <link th:href="@{https://fonts.googleapis.com/css?family=Roboto+Mono:300,400}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400" rel="stylesheet">
     <!-- Animate.css -->
-    <link th:href="@{css/animate.css}" rel="stylesheet">
+    <link href="../../css/animate.css" rel="stylesheet">
     <!-- Icomoon Icon Fonts-->
-    <link th:href="@{css/icomoon.css}" rel="stylesheet">
+    <link href="../../css/icomoon.css" rel="stylesheet">
     <!-- Simple Line Icons -->
-    <link th:href="@{css/simple-line-icons.css}" rel="stylesheet">
+    <link href="../../css/simple-line-icons.css" rel="stylesheet">
     <!-- Bootstrap  -->
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/bootstrap.css">
     <!-- Style -->
-    <link rel="stylesheet" th:href="@{css/style.css}">
-
-    <!-- Animate.css -->
-    <link rel="stylesheet" th:href="@{css/animate.css}">
-    <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" th:href="@{css/icomoon.css}">
-    <!-- Simple Line Icons -->
-    <link rel="stylesheet" th:href="@{css/simple-line-icons.css}">
-    <!-- Bootstrap  -->
-    <link rel="stylesheet" th:href="@{css/bootstrap.css}">
-    <!-- Style -->
-    <link rel="stylesheet" th:href="@{css/style.css}">
-
+    <link rel="stylesheet" href="../../css/style.css">
     <!-- Modernizr JS -->
-    <script th:src="@{js/modernizr-2.6.2.min.js}"></script>
+    <script src="../../js/modernizr-2.6.2.min.js"></script>
 
-    <script th:src="@{js/respond.min.js}"></script>
+    <script src="../../js/respond.min.js"></script>
 </head>
 
 <body>
@@ -116,7 +103,7 @@
 <section id="fh5co-explore" data-section="explore">
     <div class="container external" style="width: 100%">
         <div id="teacherInfo" class="row" th:each="subject : ${teacherSubjects}">
-           <div class="col-md-10 external"><a th:utext="${subject.title}" style="color: #0b0b0b"  th:href= "@{'/teacher_' + ${teacher.id} + '_subject1'}"></a></div>
+           <div class="col-md-10 external"><a th:utext="${subject.title}" style="color: #0b0b0b"  th:href= "@{'/teacher/' + ${teacher.id} + '/subject/'+${subject.id}}"></a></div>
             <div class="col-md-10" id="teacherFio">
                <!-- <p th:utext="${teacher.fio}"></p> -->
             </div>
@@ -178,19 +165,20 @@
 </div>
 
 <!-- jQuery -->
-<script th:src="@{js/jquery.min.js}"></script>
+<script src="../../js/jquery.min.js"></script>
 <!-- jQuery Easing -->
-<script th:src="@{js/jquery.easing.1.3.js}"></script>
+<script src="../../js/jquery.easing.1.3.js"></script>
 <!-- Bootstrap -->
-<script th:src="@{js/bootstrap.min.js}"></script>
-<script type="text/javascript" src="webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="../../webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 <!-- Waypoints -->
-<script th:src="@{js/jquery.waypoints.min.js}"></script>
+<script src="../../js/jquery.waypoints.min.js"></script>
 <!-- Stellar Parallax -->
-<script th:src="@{js/jquery.stellar.min.js}"></script>
+<script src="../../js/jquery.stellar.min.js"></script>
 <!-- Counters -->
-<script th:src="@{js/jquery.countTo.js}"></script>
+<script src="../../js/jquery.countTo.js"></script>
 <!-- Main JS (Do not remove) -->
-<script th:src="@{js/main.js}"></script>
+<!-- Main JS (Do not remove) -->
+<script src="../../js/main.js"></script>
 </body>
 </html>

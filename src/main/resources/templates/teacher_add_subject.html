@@ -42,15 +42,6 @@
     <script src="../../js/modernizr-2.6.2.min.js"></script>
 
     <script src="../../js/respond.min.js"></script>
-
-    <script>function setSubjectName() {
-        document.getElementById("subject_name").style.display='block';}
-        function f() {
-            
-        }
-    </script>
-    
-    
 </head>
 
 <body>
@@ -114,16 +105,8 @@
                         <span><i class="icon-chemistry"></i></span>
                     </div>
                     <div class="fh5co-post animate-box">
-                        <a onclick="setSubjectName()"><h3>Добавить предмет</h3></a>
+                        <a th:href="@{'/teacher/' + ${teacher.id}}"><h3>Добавить предмет</h3></a>
                     </div>
-                    <form id="subject_name" style="display:none" onsubmit="createSubject()">
-                        <div class="form-group">
-                            <label for="text" class="sr-only">Введите название предмета</label>
-                            <input type="text" id="text" class="form-control" placeholder="Введите название предмета">
-                        </div>
-                        <input type="submit" class="btn btn-send-message btn-md"
-                               value="Готово">
-                    </form>
                 </div>
             </div>
         </div>

@@ -116,9 +116,9 @@
 <section id="fh5co-explore" data-section="explore">
     <div class="container external" style="width: 100%">
         <div id="teacherInfo" class="row" th:each="subject : ${teacherSubjects}">
-            <div class="col-md-10 external"><a th:utext="${subject.title}" style="color: #0b0b0b" th:href= "@{'/teacher_' + ${teacher.id} + '_subject_' + ${subject.id}}"></a></div>
+           <div class="col-md-10 external"><a th:utext="${subject.title}" style="color: #0b0b0b"  th:href= "@{'/teacher_' + ${teacher.id} + '_subject1'}"></a></div>
             <div class="col-md-10" id="teacherFio">
-                <p th:utext="${teacher.fio}"></p>
+               <!-- <p th:utext="${teacher.fio}"></p> -->
             </div>
             <div class="form-group col-md-2">
                 <input type="submit" class="btn btn-send-message btn-md"

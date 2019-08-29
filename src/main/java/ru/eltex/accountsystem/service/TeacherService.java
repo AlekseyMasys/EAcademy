@@ -33,16 +33,16 @@ public class TeacherService {
         this.taskResultRepository = taskResultRepository;
     }
 
-    public Teacher getTeacher(String id) {
-        return teacherRepository.findById(id).get();
+    public Teacher getTeacher(String idTeacher) {
+        return teacherRepository.findById(idTeacher).get();
     }
 
-    public List<String> getTeacherSubjectsIds(String id) {
-        return teacherRepository.findById(id).get().getSubjectIds();
+    public List<String> getTeacherSubjectsIds(String idTeacher) {
+        return teacherRepository.findById(idTeacher).get().getSubjectIds();
     }
 
-    public List<Subject> getTeacherSubjects(String id) {
-        List<String> subjectIds = getTeacherSubjectsIds(id);
+    public List<Subject> getTeacherSubjects(String idTeacher) {
+        List<String> subjectIds = getTeacherSubjectsIds(idTeacher);
 
         ArrayList<Subject> subjects = new ArrayList<>();
         subjectIds.forEach(subjectId -> subjects.add(subjectRepository.findById(subjectId).get()));

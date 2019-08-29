@@ -5,4 +5,5 @@ import ru.eltex.accountsystem.model.TaskResult;
 
 public interface TaskResultRepository extends MongoRepository<TaskResult, String> {
     TaskResult findByIdTask(String idTask);
+    TaskResult findByIdStudent(String idStudent);
 }

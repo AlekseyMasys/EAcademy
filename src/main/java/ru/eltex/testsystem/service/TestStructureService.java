@@ -35,9 +35,9 @@ public class TestStructureService {
 
     public void saveTest(TestStructure request, String id, String idSubject) {
         Subject subject = subjectRepository.findById(idSubject).get();
-        List<String> testNames = subject.getTestsId();
+        List<String> testNames = subject.getTestIds();
         testNames.add(request.getId());
-        subject.setTestsId(testNames);
+        subject.setTestIds(testNames);
         subjectRepository.save(subject);
         testStructureRepository.save(request);
     }

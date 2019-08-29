@@ -32,6 +32,8 @@ dependencies {
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.9'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb', version: '2.1.6.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: '2.1.6.RELEASE', ext: 'pom'
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.1.7.RELEASE'
+
 
     compile group: 'log4j', name: 'log4j', version: '1.2.17'
 

@@ -1,5 +1,6 @@
 package ru.eltex.accountsystem.model.users;
 
+import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 import ru.eltex.accountsystem.enums.Role;
 import ru.eltex.accountsystem.model.User;
@@ -9,7 +10,7 @@ import java.util.Map;
 
 import lombok.Getter;
 import lombok.Setter;
-
+@NoArgsConstructor
 @Getter
 @Setter
 @Document(collection = "students")

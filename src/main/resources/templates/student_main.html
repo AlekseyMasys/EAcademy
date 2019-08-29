@@ -106,7 +106,7 @@
 </header>
 
 <section id="fh5co-pricing" data-section="pricing"
-         style="background-image: url(../static/images/full_image_4.jpg); background-size: cover"
+         style="background-image: url(../images/full_image_4.jpg); background-size: cover"
          data-stellar-background-ratio="0.5">
     <section class="pricing-section bg-3">
         <div class="container">
@@ -132,7 +132,7 @@
                         </div>
                         <ul class="pricing__feature-list">
                             <li class="pricing__feature"><a style="color:#000000"
-                                                            onclick="location.href='student/subjects';"
+                                                            th:href="@{__${#httpServletRequest.requestURI}__/subjects}"
                                                             data-nav-section="blog"><span>Дисциплины</span></a></li>
                             <li class="pricing__feature"><a style="color:#000000"
                                                             onclick="location.href='authorization.html';"

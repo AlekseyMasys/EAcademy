@@ -39,9 +39,16 @@ public class TeacherService {
         return teacherRepository.findById(id).get();
     }
 
-    public List<String> getTeacherSubjects(String id) {
-        Teacher teacher = teacherRepository.findById(id).get();
+    public List<String> getTeacherSubjectIds(String idTeacher) {
+        Teacher teacher = teacherRepository.findById(idTeacher).get();
         return teacher.getSubjectIds();
+    }
+
+    public List<Subject> getTeacherSubjects(String idTeacher) {
+        List<String> subjectIds = getTeacherSubjectIds(idTeacher);
+        List<Subject> subjects = new ArrayList<>();
+        subjectIds.forEach(subjectId -> subjects.add(subjectRepository.findById(subjectId).get()));
+        return subjects;
     }
 
     public List<Group> getTeacherGroups(String id) {
@@ -96,10 +103,10 @@ public class TeacherService {
         subjectRepository.save(subject);
         List<String> listGroupsId = subject.getGroupIds();
 
-        for(String idGroup: listGroupsId) {  //добавление тасок всем студентам которые есть в группах пренадлежащих переданному в метод предмету
+        for (String idGroup : listGroupsId) {  //добавление тасок всем студентам которые есть в группах пренадлежащих переданному в метод предмету
             Group group = groupRepository.findById(idGroup).get();
             List<String> studentsId = group.getStudentIds();
-            for(String idStudent: studentsId) {
+            for (String idStudent : studentsId) {
                 TaskResult taskResult = new TaskResult(teacherId, idStudent, null, null);
                 taskResultRepository.save(taskResult);
             }
@@ -110,9 +117,9 @@ public class TeacherService {
         List<TaskResult> taskResults = new ArrayList<>();
         Group group = groupRepository.findById(groupId).get();
         List<String> studentsId = group.getStudentIds();
-        for(String idStudent: studentsId) {
+        for (String idStudent : studentsId) {
             taskResults.add(taskResultRepository.findByIdStudent(idStudent));
         }
-        return  taskResults;
+        return taskResults;
     }
 }

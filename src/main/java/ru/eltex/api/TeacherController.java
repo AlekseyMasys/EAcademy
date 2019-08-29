@@ -1,6 +1,5 @@
 package ru.eltex.api;
 
-import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,17 +7,13 @@ import org.springframework.web.bind.annotation.*;
 import ru.eltex.accountsystem.model.Group;
 import ru.eltex.accountsystem.model.Subject;
 import ru.eltex.accountsystem.model.Task;
-import ru.eltex.accountsystem.model.TaskResult;
 import ru.eltex.accountsystem.model.users.Teacher;
 import ru.eltex.accountsystem.service.GroupService;
 import ru.eltex.accountsystem.service.StudentService;
 import ru.eltex.accountsystem.service.TeacherService;
 
-import java.util.List;
-
 @Controller
 public class TeacherController {
-
     private final TeacherService teacherService;
     private final GroupService groupService;
     private final StudentService studentService;

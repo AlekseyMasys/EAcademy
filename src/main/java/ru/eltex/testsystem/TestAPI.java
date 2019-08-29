@@ -16,7 +16,6 @@ public class TestAPI {
     private final TestStructureService testStructureService;
     private final TestResultService testResultService;
 
-
     @Autowired
     public TestAPI(TestStructureService testStructureService, TestResultService testResultService) {
         this.testStructureService = testStructureService;
@@ -31,7 +30,7 @@ public class TestAPI {
 
     @RequestMapping(value = "/student/{id}/{testId}", method = RequestMethod.GET)
     public String showtest(Model model, @PathVariable("id") String id,  @PathVariable("testId") String testId) {
-        model.addAttribute("testmodel", testStructureService.loadTest(id, testId));
+        model.addAttribute("testmodel", testStructureService.loadTest(testId));
         testResultService.initTestResult(id,testId);
 
 //      Если в БД нет Такого TestResult то создаем его в БД
@@ -44,16 +43,12 @@ public class TestAPI {
         list2.add(list);
         TestAnswers testAnswers = new TestAnswers();
         testAnswers.setCheckedItems(list2);
-//        TestResult testResult = new TestResult();
         model.addAttribute("testAnswers",testAnswers);
 
         System.out.println(testAnswers.toString());
 
         return "showTest";
     }
-//    @PostMapping("/student/{id}/{idTest}/saveCurrentResult")     сохранить в текущите ответы
-
-
 
     @PostMapping("/student/{id}/{testId}/finishtest")
     public String getDataTest( @ModelAttribute("testAnswers") TestAnswers testAnswers) {
@@ -63,14 +58,10 @@ public class TestAPI {
         return "help";
     }
 
-
     @RequestMapping(value = "/student/{id}/{testId}/saveCurrentResult", method = RequestMethod.POST)
     @ResponseBody
     public void addGroup(@RequestBody TestAnswers testAnswers, @PathVariable("id") String id,  @PathVariable("idTest") String idTest) {
         System.out.println("Внести в БД текущие данные теста");
         testResultService.setTestCurrentResult(id,idTest,testAnswers  );
-
     }
-
-
 }

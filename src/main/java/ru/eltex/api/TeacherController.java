@@ -40,10 +40,9 @@ public class TeacherController {
         return "teacher_subjects";
     }
 
-//    @RequestMapping(value = "/teacher_{idTeacher}_subject_{idSubject}", method = RequestMethod.GET)
+    //    @RequestMapping(value = "/teacher_{idTeacher}_subject_{idSubject}", method = RequestMethod.GET)
     @RequestMapping(value = "/teacher_{idTeacher}_subject1", method = RequestMethod.GET)
     public String getSubjectGroups(@PathVariable("idTeacher") String idTeacher,
-
 //                                   @PathVariable("idSubject") String idSubject,
                                    Model model) {
         model.addAttribute("teacher", teacherService.getTeacher(idTeacher));
@@ -57,11 +56,15 @@ public class TeacherController {
         return "teacher_groups";
     }
 
-
     @RequestMapping(value = "/teacher_{id}_getStudentsFromGroup_{idGroup}", method = RequestMethod.GET)
     public String getStudentsFromGroup(@PathVariable("id") String id, @PathVariable("idGroup") String idGroup, Model modelStudents) {
         modelStudents.addAllAttributes(teacherService.getStudentsFromGroup(idGroup));
         return "teacher_students_from_group";
+    }
+
+    @RequestMapping(value = "/teacher_{idTeacher}_create_test")
+    public String createTest(@PathVariable("idTeacher") String idTeacher, Model modelStudents) {
+        return "teacher_file_upload";
     }
 
     //REST METHODS

@@ -17,34 +17,25 @@
 </head>
 <script type="text/javascript">
 
-<!--function displayContents() {-->
-<!--  var contents ={name:"1",id:"12"};-->
-<!--  console.log(contents);-->
-<!--  $.ajax({-->
-<!--               type: "POST",-->
-<!--               contentType: "application/json; charset=UTF-8",-->
-<!--               url: "/vvv",-->
-<!--               data: JSON.stringify(contents),-->
-<!--               dataType: "Json",-->
-<!--           });-->
-<!--}-->
-
-
-
-
-
-
 
 </script>
 <body style="background-color:DodgerBlue">
-<br/>
-<h1 align="center" style="color:white" th:utext="'РЕЗУЛЬТАТЫ ТЕСТИРОВАНИЯ:'"></h1>
-<!--<h1 align="center" style="color:white" th:utext="Тест уже был выполнен ранее"></h1>-->
-<h1 align="center" style="color:white" th:utext="'Вы набрали '+${testResult.result}+' из '+${#lists.size(testmodel.test)+' баллов'}"></h1>
-<h1 align="center" style="color:white" th:utext="'Ваша оценка:'"></h1>
-
-
-
+<div class="widget">
+    <div class="container">
+        <div class="col-md-12" style="width:1200px;
+                                        border:5px solid #444444;
+                                        background-color:lightgray;
+                                        top:200px;">
+            <h1 align="center" style="color:black" th:utext="'Тест уже был выполнен ранее!'"></h1>
+            <br/>
+            <h2 align="center" style="color:black" th:utext="'Результаты вашего тестирования:'"></h2>
+            <br/>
+            <h3 align="left" style="color:black"
+                th:utext="'Вы набрали: '+${testResult.result}+' из '+${#lists.size(testmodel.test)+' баллов'}"></h3>
+            <h3 align="left" style="color:black" th:utext="'Ваша оценка: '+${testResult.mark}"></h3>
+        </div>
+    </div>
+</div>
 <!--<div class="widget">-->
 <!--    <br/>-->
 <!--    <form action="#" th:action="@{/student/{id}/{idTest}/finishtest}" th:object="${testAnswers}" method="post">-->

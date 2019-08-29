@@ -25,9 +25,6 @@ public class TestAPI {
         return "bootstrap4/file_upload";
     }
 
-
-
-
     @RequestMapping(value = "/student/{id}/{testId}", method = RequestMethod.GET)
     public String showtest(Model model, @PathVariable("id") String id,  @PathVariable("testId") String testId) {
         model.addAttribute("testmodel", testStructureService.loadTest(id, testId));
@@ -54,6 +51,9 @@ public class TestAPI {
     @PostMapping("/student/{id}/{testId}/finishtest")
     public String getDataTest(Model model, @ModelAttribute("testAnswers") TestAnswers testAnswers,
                               @PathVariable("id") String id,  @PathVariable("testId") String testId) {
+//        model.addAttribute("testmodel", testStructureService.loadTest(id, testId));
+//        model.addAttribute("testResult", testResultService.getTestResult(id, testId));
+
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!  ТЕСТ ЗАВЕРШЕН  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         System.out.println(testAnswers.toString());
         testResultService.setTestResult(id,testId,testAnswers);

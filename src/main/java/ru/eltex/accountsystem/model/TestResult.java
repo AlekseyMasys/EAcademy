@@ -15,11 +15,12 @@ public class TestResult {
     private String studentId;
     private String testId;
     private Integer result;
+    private String mark;
     private Integer timeOfTest;
     private TestAnswers testCurrentAnswers;
     private TestAnswers testFinishAnswers;
 
-    public TestResult(String studentId, String testId, Integer result, Integer timeOfTest, TestAnswers testCurrentAnswers, TestAnswers testFinishAnswers) {
+    public TestResult(String studentId, String testId, Integer result, String mark, Integer timeOfTest, TestAnswers testCurrentAnswers, TestAnswers testFinishAnswers) {
         this.studentId = studentId;
         this.testId = testId;
         this.result = result;

@@ -3,15 +3,15 @@ package ru.eltex.accountsystem.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.eltex.accountsystem.dao.*;
+import ru.eltex.accountsystem.enums.TaskStatus;
 import ru.eltex.accountsystem.model.Group;
 import ru.eltex.accountsystem.model.Subject;
+import ru.eltex.accountsystem.model.Task;
 import ru.eltex.accountsystem.model.TaskResult;
 import ru.eltex.accountsystem.model.users.Student;
 import ru.eltex.accountsystem.model.users.Teacher;
-import ru.eltex.accountsystem.repository.GroupRepository;
-import ru.eltex.accountsystem.repository.StudentRepository;
-import ru.eltex.accountsystem.repository.SubjectRepository;
-import ru.eltex.accountsystem.repository.TeacherRepository;
+import ru.eltex.accountsystem.repository.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,31 +22,26 @@ public class TeacherService {
     private final SubjectRepository subjectRepository;
     private final GroupRepository groupRepository;
     private final TaskResultRepository taskResultRepository;
+    private final TaskRepository taskRepository;
 
     @Autowired
     public TeacherService(TeacherRepository _repository, StudentRepository studentRepository, SubjectRepository subjectRepository,
-                          GroupRepository groupRepository, TaskResultRepository taskResultRepository) {
+                          GroupRepository groupRepository, TaskResultRepository taskResultRepository, TaskRepository taskRepository) {
         this.teacherRepository = _repository;
         this.studentRepository = studentRepository;
         this.subjectRepository = subjectRepository;
         this.groupRepository = groupRepository;
         this.taskResultRepository = taskResultRepository;
+        this.taskRepository = taskRepository;
     }
 
-    public Teacher getTeacher(String idTeacher) {
-        return teacherRepository.findById(idTeacher).get();
+    public Teacher getTeacher(String id) {
+        return teacherRepository.findById(id).get();
     }
 
-    public List<String> getTeacherSubjectsIds(String idTeacher) {
-        return teacherRepository.findById(idTeacher).get().getSubjectIds();
-    }
-
-    public List<Subject> getTeacherSubjects(String idTeacher) {
-        List<String> subjectIds = getTeacherSubjectsIds(idTeacher);
-
-        ArrayList<Subject> subjects = new ArrayList<>();
-        subjectIds.forEach(subjectId -> subjects.add(subjectRepository.findById(subjectId).get()));
-        return subjects;
+    public List<String> getTeacherSubjects(String id) {
+        Teacher teacher = teacherRepository.findById(id).get();
+        return teacher.getSubjectIds();
     }
 
     public List<Group> getTeacherGroups(String id) {
@@ -88,7 +83,36 @@ public class TeacherService {
                 .findFirst()
                 .orElseThrow(RuntimeException::new);
         task.setScores(scores);
-        task.setStatus(status);
+        task.setTaskStatus(TaskStatus.valueOf(status));
         taskResultRepository.save(task);
+    }
+
+    public void addTask(String teacherId, String subjectId, Task task) {
+        Subject subject = subjectRepository.findById(subjectId).get();
+        List<String> tasksIdList = subject.getTaskIds();
+        taskRepository.save(task);
+        tasksIdList.add(task.getId());
+        subject.setTaskIds(tasksIdList);
+        subjectRepository.save(subject);
+        List<String> listGroupsId = subject.getGroupIds();
+
+        for(String idGroup: listGroupsId) {  //добавление тасок всем студентам которые есть в группах пренадлежащих переданному в метод предмету
+            Group group = groupRepository.findById(idGroup).get();
+            List<String> studentsId = group.getStudentIds();
+            for(String idStudent: studentsId) {
+                TaskResult taskResult = new TaskResult(teacherId, idStudent, null, null);
+                taskResultRepository.save(taskResult);
+            }
+        }
+    }
+
+    public List<TaskResult> getTasks(String groupId) {
+        List<TaskResult> taskResults = new ArrayList<>();
+        Group group = groupRepository.findById(groupId).get();
+        List<String> studentsId = group.getStudentIds();
+        for(String idStudent: studentsId) {
+            taskResults.add(taskResultRepository.findByIdStudent(idStudent));
+        }
+        return  taskResults;
     }
 }

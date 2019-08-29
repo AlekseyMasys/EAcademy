@@ -5,5 +5,5 @@ import ru.eltex.accountsystem.dao.TeacherRepositoryCustom;
 import ru.eltex.accountsystem.model.users.Teacher;
 
 public interface TeacherRepository extends MongoRepository<Teacher, String>, TeacherRepositoryCustom {
-
+    Teacher findByFio(String fio);
 }

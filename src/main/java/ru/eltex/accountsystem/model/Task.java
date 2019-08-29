@@ -5,11 +5,13 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @Document(collection = "taskTeacher")
 public class Task {
-    @Id
+
     private String id;
     private String title;
     private String description;
@@ -19,5 +21,6 @@ public class Task {
         this.title = title;
         this.description = description;
         this.maxScores = maxScores;
+        id = UUID.randomUUID().toString();
     }
 }

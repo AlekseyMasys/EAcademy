@@ -2,34 +2,26 @@ package ru.eltex.accountsystem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.eltex.accountsystem.dao.TaskResultRepository;
 import ru.eltex.accountsystem.model.*;
 import ru.eltex.accountsystem.model.users.Student;
 import ru.eltex.accountsystem.repository.StudentRepository;
 import ru.eltex.accountsystem.repository.SubjectRepository;
-import ru.eltex.accountsystem.repository.TestResultRepository;
 import ru.eltex.testsystem.repository.TestStructureRepository;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class StudentService {
     private final StudentRepository studentRepository;
     private final SubjectRepository subjectRepository;
-    private final TaskResultRepository taskResultRepository;
-    private final TestResultRepository testResultRepository;
     private final TestStructureRepository testStructureRepository;
     private final TableService tableService;
 
     @Autowired
-    public StudentService(StudentRepository studentRepository, SubjectRepository subjectRepository, TaskResultRepository taskResultRepository, TestResultRepository testResultRepository, TestStructureRepository testStructureRepository, TableService tableService) {
+    public StudentService(StudentRepository studentRepository, SubjectRepository subjectRepository, TestStructureRepository testStructureRepository, TableService tableService) {
         this.studentRepository = studentRepository;
         this.subjectRepository = subjectRepository;
-        this.taskResultRepository = taskResultRepository;
-        this.testResultRepository = testResultRepository;
         this.testStructureRepository = testStructureRepository;
         this.tableService = tableService;
     }
@@ -44,30 +36,30 @@ public class StudentService {
         return subjects;
     }
 
-    public Map<Subject, Integer> getMarks(String idStudent) {
-        Map<Subject, Integer> marks = new HashMap<>();
-        ArrayList<Subject> subjects = new ArrayList<>();
-        getStudentById(idStudent).getSubjects().forEach(elem-> subjects.add(subjectRepository.findById(elem).get()));
-        for (Subject subject : subjects) {
-            Integer mark = 0;
-            ArrayList<TaskResult> tasksResult = new ArrayList<>();
-            subject.getTaskIds().stream().forEach(elem-> tasksResult.add(taskResultRepository.findByIdTask(elem)));
-
-            for(TaskResult elem: tasksResult) {
-                mark+= elem.getScores();
-            }
-
-            ArrayList<TestResult> testResults = new ArrayList<>();
-            subject.getTestIds().forEach(elem-> testResults.add(testResultRepository.findByTestId(elem)));
-
-            for(TestResult elem: testResults) {
-                mark+= elem.getResult();
-            }
-
-            marks.put(subject, mark);
-        }
-        return marks;
-    }
+//    public Map<Subject, Integer> getMarks(String idStudent) {
+//        Map<Subject, Integer> marks = new HashMap<>();
+//        ArrayList<Subject> subjects = new ArrayList<>();
+//        getStudentById(idStudent).getSubjects().forEach(elem-> subjects.add(subjectRepository.findById(elem).get()));
+//        for (Subject subject : subjects) {
+//            Integer mark = 0;
+//            ArrayList<TaskResult> tasksResult = new ArrayList<>();
+//            subject.getTaskIds().stream().forEach(elem-> tasksResult.add(taskResultRepository.findByIdTask(elem)));
+//
+//            for(TaskResult elem: tasksResult) {
+//                mark+= elem.getScores();
+//            }
+//
+//            ArrayList<TestResult> testResults = new ArrayList<>();
+//            subject.getTestIds().forEach(elem-> testResults.add(testResultRepository.findByTestId(elem)));
+//
+//            for(TestResult elem: testResults) {
+//                mark+= elem.getResult();
+//            }
+//
+//            marks.put(subject, mark);
+//        }
+//        return marks;
+//    }
 
     public Subject getSubjectById(String idSubject) {
         return subjectRepository.findById(idSubject).get();

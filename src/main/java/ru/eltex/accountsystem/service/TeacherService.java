@@ -41,13 +41,13 @@ public class TeacherService {
 
     public List<String> getTeacherSubjects(String id) {
         Teacher teacher = teacherRepository.findById(id).get();
-        return teacher.getSubjects();
+        return teacher.getSubjectIds();
     }
 
     public List<Group> getTeacherGroups(String id) {
         Teacher teacher = teacherRepository.findById(id).get();
         List<Subject> teacherSubjects = new ArrayList<>();
-        teacher.getSubjects().stream().forEach(p -> {
+        teacher.getSubjectIds().stream().forEach(p -> {
             teacherSubjects.add(subjectRepository.findById(p).get());
         });
         List<Group> groups = new ArrayList<>();

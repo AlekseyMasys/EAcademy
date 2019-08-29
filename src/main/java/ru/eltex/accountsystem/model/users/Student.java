@@ -10,9 +10,10 @@ import java.util.Map;
 
 import lombok.Getter;
 import lombok.Setter;
-@NoArgsConstructor
+
 @Getter
 @Setter
+@NoArgsConstructor
 @Document(collection = "students")
 public class Student extends User {
     ArrayList<String> subjects;

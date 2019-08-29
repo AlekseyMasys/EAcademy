@@ -29,7 +29,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class TeacherControllerTest {
 
-
     @Autowired
     private TeacherController teacherController;
 
@@ -48,10 +47,18 @@ public class TeacherControllerTest {
         Teacher teacher = new Teacher("login_test", "password_test", "email_test", "fio_test", Role.TEACHER, null);
         teacherRepository.save(teacher);
         Teacher teacher1 = teacherRepository.findByFio("fio_test");
-        this.mockMvc.perform(get("http://localhost:8089/teacher_" + teacher1.getId())).andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string(containsString("Лучшая система учета студентов."))).andExpect(content().string(containsString("Обратная связь")));
-        teacherRepository.deleteById(teacher1.getId());
+        try {
+            this.mockMvc.perform(get("http://localhost:8089/teacher/" + teacher1.getId())).andDo(print()).andExpect(status().isOk())
+                    .andExpect(content().string(containsString("Лучшая система учета студентов"))).andExpect(content().string(containsString("Обратная связь")))
+                    .andExpect(content().string(containsString("Ф.И.О.: fio_test"))).andExpect(content().string(containsString("Email: email_test")));
+        }
+        finally {
+            teacherRepository.deleteById(teacher1.getId());
+        }
     }
+
+
+
 
 }
 

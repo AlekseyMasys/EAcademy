@@ -14,21 +14,43 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
+<!--    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+<!--    <script  th:src="@{ajax.js}"></script>-->
+
+
 </head>
 <script type="text/javascript">
 
+
+
+
 function displayContents() {
-  var contents ={name:"1",id:"12"};
-  console.log(contents);
-  $.ajax({
+<!-- var line="";-->
+<!--     for (let i=0; i<testmodel.test.length; i++){-->
+<!---->
+<!--        for (let j=0; j<length; j++){-->
+<!--            var idUser = document.getElementById('checkedItems'+i+j).value;-->
+<!--            var line += idUser"<br/>" ;-->
+<!--        }-->
+<!--     }-->
+    var contents = $("#testform").serialize("") ;
+
+<!--    var indexed_array = {};-->
+<!---->
+<!--    $.map(contents, function(n, i){-->
+<!--        indexed_array[n['name']] = n['value'];-->
+<!--    });-->
+    console.log(contents);
+    $.ajax({
                type: "POST",
                contentType: "application/json; charset=UTF-8",
-               url: "/vvv",
+               url: document.URL + "/saveCurrentResult",
                data: JSON.stringify(contents),
                dataType: "Json",
-           });
+    });
 }
-
+<!--/student/128/47e26186-2dca-4345-835c-cc5391327688-->
+<!--               url: "/student/128/47e26186-2dca-4345-835c-cc5391327688/saveCurrentResult",-->
 
 
 
@@ -41,11 +63,10 @@ function displayContents() {
 
 <div class="widget">
     <br/>
-        <form action="#" th:action="@{/student/{id}/{idTest}/finishtest}" th:object="${testAnswers}" method="post">
-<!--    <form  th:object="${testAnswers}" method="post">-->
-
-
+    <form action="#" id="testform" th:action=      "@{__${#httpServletRequest.requestURI}__/finishtest}" th:object="${testAnswers}" method="post">
         <th:block th:each="task,taskStat : ${testmodel.test}">
+
+
             <div class="container">
                 <div class="row">
                     <div class="col-md-12" style="width:777px;
@@ -62,13 +83,16 @@ function displayContents() {
                             <br/>
 
                         </th:block>
-                        <input type="submit" name="input" id="input" value="Отправить тест на проверку">
-                        <button type="button" onclick="displayContents()">Current Result</button>
+                        <button type="button" onclick="displayContents()">Отправить текущий результат</button>
+<!--                        <button type="button" onclick="'javascript:displayContents(\'' + ${testmodel} + '\');'">Current Result</button>-->
+
                     </div>
                 </div>
             </div>
             <br/>
         </th:block>
+        <input type="submit" name="input" id="input" value="Отправить тест на проверку">
+
     </form>
 </div>
 </body>

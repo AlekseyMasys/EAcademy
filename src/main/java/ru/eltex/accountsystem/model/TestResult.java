@@ -19,12 +19,25 @@ public class TestResult {
     private TestAnswers testCurrentAnswers;
     private TestAnswers testFinishAnswers;
 
-
-    public TestResult(String studentId, String testId, Integer result, Integer timeOfTest) {
+    public TestResult(String studentId, String testId, Integer result, Integer timeOfTest, TestAnswers testCurrentAnswers, TestAnswers testFinishAnswers) {
         this.studentId = studentId;
         this.testId = testId;
         this.result = result;
         this.timeOfTest = timeOfTest;
+        this.testCurrentAnswers = testCurrentAnswers;
+        this.testFinishAnswers = testFinishAnswers;
     }
 
+    @Override
+    public String toString() {
+        return "TestResult{" +
+                "id='" + id + '\'' +
+                ", studentId='" + studentId + '\'' +
+                ", testId='" + testId + '\'' +
+                ", result=" + result +
+                ", timeOfTest=" + timeOfTest +
+                ", testCurrentAnswers=" + testCurrentAnswers +
+                ", testFinishAnswers=" + testFinishAnswers +
+                '}';
+    }
 }

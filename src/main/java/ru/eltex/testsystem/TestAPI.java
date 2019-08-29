@@ -8,9 +8,6 @@ import ru.eltex.accountsystem.service.TestResultService;
 import ru.eltex.testsystem.model.TestAnswers;
 import ru.eltex.testsystem.service.TestStructureService;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 public class TestAPI {
     private final TestStructureService testStructureService;
@@ -29,48 +26,38 @@ public class TestAPI {
     }
 
 
+
+
     @RequestMapping(value = "/student/{id}/{testId}", method = RequestMethod.GET)
     public String showtest(Model model, @PathVariable("id") String id,  @PathVariable("testId") String testId) {
         model.addAttribute("testmodel", testStructureService.loadTest(id, testId));
-        testResultService.initTestResult(id,testId);
-
-//      Если в БД нет Такого TestResult то создаем его в БД
-
-
-        List<String> list = new ArrayList<>();
-        list.add("1");
-        list.add("2");
-        List<List<String>> list2 = new ArrayList<>();
-        list2.add(list);
-        TestAnswers testAnswers = new TestAnswers();
-        testAnswers.setCheckedItems(list2);
-//        TestResult testResult = new TestResult();
-        model.addAttribute("testAnswers",testAnswers);
-
-        System.out.println(testAnswers.toString());
-
+        testResultService.initTestResult(id,testId); // Если в БД нет Такого TestResult то создаем его в БД
+        TestAnswers testCurrentAnswers = testResultService.getTestResult(id,testId).getTestCurrentAnswers();
+        System.out.println(testCurrentAnswers);
+        if(testResultService.getTestResult(id,testId).getTestFinishAnswers()!=null) {
+            model.addAttribute("testResult", testResultService.getTestResult(id, testId));
+            return "test_alredy_done";
+        }
+        model.addAttribute("testAnswers",testCurrentAnswers);
         return "showTest";
     }
-//    @PostMapping("/student/{id}/{idTest}/saveCurrentResult")     сохранить в текущите ответы
-
-
-
-    @PostMapping("/student/{id}/{testId}/finishtest")
-    public String getDataTest( @ModelAttribute("testAnswers") TestAnswers testAnswers) {
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!  ТЕСТ ЗАВЕРШЕН  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        System.out.println(testAnswers.toString());
-
-        return "help";
-    }
-
 
     @RequestMapping(value = "/student/{id}/{testId}/saveCurrentResult", method = RequestMethod.POST)
     @ResponseBody
-    public void addGroup(@RequestBody TestAnswers testAnswers, @PathVariable("id") String id,  @PathVariable("idTest") String idTest) {
+    public void addGroup(@RequestBody String testCurrentAnswers, @PathVariable("id") String id
+            ,@PathVariable("testId") String idTest) {
+        System.out.println(testCurrentAnswers);
         System.out.println("Внести в БД текущие данные теста");
-        testResultService.setTestCurrentResult(id,idTest,testAnswers  );
-
+//        testResultService.setTestCurrentAnswers(id,idTest,testCurrentAnswers);
     }
 
+    @PostMapping("/student/{id}/{testId}/finishtest")
+    public String getDataTest(Model model, @ModelAttribute("testAnswers") TestAnswers testAnswers,
+                              @PathVariable("id") String id,  @PathVariable("testId") String testId) {
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!  ТЕСТ ЗАВЕРШЕН  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println(testAnswers.toString());
+        testResultService.setTestResult(id,testId,testAnswers);
+        return "test_result";
+    }
 
 }

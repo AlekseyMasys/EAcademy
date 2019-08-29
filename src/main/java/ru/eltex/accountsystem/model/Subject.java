@@ -14,6 +14,18 @@ import java.util.List;
 public class Subject {
     @Id
     private String id;
+
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", taskIds=" + taskIds +
+                ", groupIds=" + groupIds +
+                ", testIds=" + testIds +
+                '}';
+    }
+
     private String title;
     private List<String> taskIds;
     private List<String> groupIds;

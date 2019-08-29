@@ -19,6 +19,16 @@ public class Group {
     private String table;
     private ArrayList<String> studentIds;
 
+    @Override
+    public String toString() {
+        return "Group{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", table='" + table + '\'' +
+                ", studentIds=" + studentIds +
+                '}';
+    }
+
     public Group(String title, ArrayList<String> studentIds) {
         id = UUID.randomUUID().toString();
         this.title = title;

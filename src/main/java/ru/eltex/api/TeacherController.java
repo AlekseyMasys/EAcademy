@@ -44,7 +44,6 @@ public class TeacherController {
 //    @RequestMapping(value = "/teacher_{idTeacher}_subject_{idSubject}", method = RequestMethod.GET)
     @RequestMapping(value = "/teacher/{idTeacher}/subject/{idSubject}", method = RequestMethod.GET)
     public String getSubjectGroups(@PathVariable("idTeacher") String idTeacher,
-
                                    @PathVariable("idSubject") String idSubject,
                                    Model model) {
         model.addAttribute("teacher", teacherService.getTeacher(idTeacher));
@@ -52,18 +51,23 @@ public class TeacherController {
         return "teacher_sbjct_grps";
     }
 
-    @RequestMapping(value = "/teacher_{id}_groups", method = RequestMethod.GET)
-    public String getTeacherGroups(@PathVariable("id") String id, Model modelGroup) {
-        modelGroup.addAllAttributes(teacherService.getTeacherGroups(id));
+    @RequestMapping(value = "/teacher/{idTeacher}/subjects/add_subject", method = RequestMethod.GET)
+    public String addSubject(Model model){
+        return "teacher_add_subject";
+    }
+
+    @RequestMapping(value = "/teacher_{idTeacher}_groups", method = RequestMethod.GET)
+    public String getTeacherGroups(@PathVariable("idTeacher") String idTeacher, Model modelGroup) {
+        modelGroup.addAllAttributes(teacherService.getTeacherGroups(idTeacher));
         return "teacher_groups";
     }
 
-
-    @RequestMapping(value = "/teacher_{id}_getStudentsFromGroup_{idGroup}", method = RequestMethod.GET)
-    public String getStudentsFromGroup(@PathVariable("id") String id, @PathVariable("idGroup") String idGroup, Model modelStudents) {
+    @RequestMapping(value = "/teacher_{idTeacher}_getStudentsFromGroup_{idGroup}", method = RequestMethod.GET)
+    public String getStudentsFromGroup(@PathVariable("idTeacher") String id, @PathVariable("idGroup") String idGroup, Model modelStudents) {
         modelStudents.addAllAttributes(teacherService.getStudentsFromGroup(idGroup));
         return "teacher_students_from_group";
     }
+
 
     //REST METHODS
     @GetMapping(value = "/teacher/{id}/getInfo")

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import ru.eltex.accountsystem.enums.TaskStatus;
 
 @Getter
 @Setter
@@ -15,13 +16,13 @@ public class TaskResult{
     private String idStudent;
     private String answer;
     private Integer scores;
-    private String status;
+    private TaskStatus taskStatus;
 
-    public TaskResult(String idTeacherTask, String idStudent, String answer, Integer scores, String status) {
+    public TaskResult(String idTeacherTask, String idStudent, String answer, Integer scores) {
         this.idTask = idTeacherTask;
         this.idStudent = idStudent;
         this.answer = answer;
         this.scores = scores;
-        this.status = status;
+        this.taskStatus = TaskStatus.UNCHECKED;
     }
 }

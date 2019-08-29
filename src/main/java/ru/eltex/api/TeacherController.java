@@ -1,18 +1,24 @@
 package ru.eltex.api;
 
+import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.eltex.accountsystem.model.Group;
 import ru.eltex.accountsystem.model.Subject;
+import ru.eltex.accountsystem.model.Task;
+import ru.eltex.accountsystem.model.TaskResult;
 import ru.eltex.accountsystem.model.users.Teacher;
 import ru.eltex.accountsystem.service.GroupService;
 import ru.eltex.accountsystem.service.StudentService;
 import ru.eltex.accountsystem.service.TeacherService;
 
+import java.util.List;
+
 @Controller
 public class TeacherController {
+
     private final TeacherService teacherService;
     private final GroupService groupService;
     private final StudentService studentService;
@@ -99,5 +105,18 @@ public class TeacherController {
                           @PathVariable("scores") Integer scores,
                           @PathVariable("status") String status) {
         teacherService.addScores(studentId, taskId, status, scores);
+    }
+
+
+    @RequestMapping(value = "teacher_{teacherId}_subjects_{subjectId}_addTask", method = RequestMethod.POST)
+    public void addTask(@PathVariable("teacherId") String teacherId, @PathVariable("subjectId") String subjectId, @RequestBody Task task) {
+        teacherService.addTask(teacherId, subjectId, task);
+    }
+
+    // нужна отдельная страничка (Работа для Маши=))
+    @RequestMapping(value = "teacher_{teacherId}_subjects_{subjectId}_{groupId}_TasksResults", method = RequestMethod.GET)
+    public String getTasksResults(@PathVariable("groupId") String groupId, Model model) {
+        model.addAttribute("tasksResults", teacherService.getTasks(groupId)); // добавление всех результатов тестов конкретной группы
+        return "teacher_tasks_results";
     }
 }

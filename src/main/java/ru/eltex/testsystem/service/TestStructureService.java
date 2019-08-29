@@ -16,7 +16,6 @@ public class TestStructureService {
     private final TestStructureRepository testStructureRepository;
     private final SubjectRepository subjectRepository;
 
-
     @Autowired
     public TestStructureService(TestStructureRepository testStructureRepository, SubjectRepository subjectRepository) {
         this.testStructureRepository = testStructureRepository;

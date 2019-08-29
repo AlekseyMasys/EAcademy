@@ -48,11 +48,11 @@ public class TeacherController {
     @RequestMapping(value = "/teacher_{id}_subject_{idSubject}", method = RequestMethod.GET)
     public String getSubjectGroups(@PathVariable("idSubject") String idSubject, Model modelGroup) {
         modelGroup.addAllAttributes(teacherService.getSubjectGroups(idSubject));
-        return "teacher_subjectGroups";
+        return "teacher_subject_groups";
     }
 
     @RequestMapping(value = "/teacher_{id}_getStudentsFromGroup_{idGroup}", method = RequestMethod.GET)
-    public String getStudentsFromGroup(@PathVariable("idGroup") String idGroup, Model modelStudents) {
+    public String getStudentsFromGroup(@PathVariable("id") String id, @PathVariable("idGroup") String idGroup, Model modelStudents) {
         modelStudents.addAllAttributes(teacherService.getStudentsFromGroup(idGroup));
         return "teacher_students_from_group";
     }

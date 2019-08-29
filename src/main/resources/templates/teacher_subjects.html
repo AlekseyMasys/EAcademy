@@ -70,29 +70,36 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a class="external" th:href="@{/teacher_{id}_groups}"
-                                              data-nav-section="home">
-                            <span>Группы</span></a>
-                        </li>
-                        <li class="dropdown">
-                            <a class="external" href="#" data-nav-section="testimony"
-                               data-toggle="dropdown">
-                                Меню
+
+                        <li class="dropdown" data-nav-section="pricing">
+                            <a class="external" data-toggle="dropdown">
+                                Группы
                                 <b class="caret"></b>
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Текст подпункта</a></li>
-                                <li><a href="#">Текст подпункта</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Текст подпункта</a></li>
+                            <ul class="dropdown-menu external" th:each="group : ${groups}">
+                                <li><a th:href="@{'/teacher_' + ${teacher.id} + '_group'}"
+                                       class="external" th:utext="'privet ' + ${group.title}"></a></li>
                             </ul>
                         </li>
-                        <!--                        <li><a class="external" th:href="@{'/teacher_'+${teacher.id}+'_subjects'}"-->
-                        <!--                               data-nav-section="testimony">-->
-                        <!--                            <span>Дисциплины</span></a>-->
-                        <!--                        </li>-->
-                        <li><a class="external" th:href="@{/teacher_{id}}"
-                               data-nav-section="pricing">
+
+                        <li class="dropdown">
+                            <a class="external" data-nav-section="testimony" data-toggle="dropdown">
+                                Дисциплины
+                                <b class="caret external"></b>
+                            </a>
+                            <ul class="dropdown-menu external">
+                                <label>
+                                    <select th:object="${subject}">
+                                        <option class="external" th:each="subject : ${teacherSubjects}"
+                                                th:text="${subject.title}">
+                                        </option>
+                                    </select>
+                                </label>
+                            </ul>
+                        </li>
+
+                        <li><a class="external" data-nav-section="pricing">
+                            <!--                               th:href="@{'/teacher_' + ${teacher.id}}" -->
                             <span>Моя страница</span></a>
                         </li>
                         <li><a class="external" th:href="@{/}"
@@ -108,16 +115,16 @@
 
 <section id="fh5co-explore" data-section="explore">
     <div class="container external" style="width: 100%">
-        <th:block th:each="subject : ${teacherSubjects}">
-            <!--            <div class="row" th:each="subject : ${teacherSubjects}">-->
-            <div class="col-md-10 external" style="color:#000000" th:text="${subject}"></div>
-            <div class="col-md-10">Лисицин И.И.</div>
+        <div id="teacherInfo" class="row" th:each="subject : ${teacherSubjects}">
+            <div class="col-md-10 external"><a th:utext="${subject.title}" style="color: #0b0b0b" th:href= "@{'/teacher_' + ${teacher.id} + '_subject_' + ${subject.id}}"></a></div>
+            <div class="col-md-10" id="teacherFio">
+                <p th:utext="${teacher.fio}"></p>
+            </div>
             <div class="form-group col-md-2">
                 <input type="submit" class="btn btn-send-message btn-md"
-                       value="Перейти к проверке работ">
+                       value="Перейти к проверке работ"/>
             </div>
-            <!--            </div>-->
-        </th:block>
+        </div>
     </div>
 </section>
 

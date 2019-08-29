@@ -12,7 +12,6 @@ import ru.eltex.accountsystem.repository.GroupRepository;
 import ru.eltex.accountsystem.repository.StudentRepository;
 import ru.eltex.accountsystem.repository.SubjectRepository;
 import ru.eltex.accountsystem.repository.TeacherRepository;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,10 +41,13 @@ public class TeacherService {
         return teacherRepository.findById(id).get().getSubjectIds();
     }
 
-//    public List<Subject> getTeacherSubjects(String id) {
-//        ArrayList<String> subjectIds = (ArrayList<String>) getTeacherSubjectsIds(id);
-//
-//    }
+    public List<Subject> getTeacherSubjects(String id) {
+        List<String> subjectIds = getTeacherSubjectsIds(id);
+
+        ArrayList<Subject> subjects = new ArrayList<>();
+        subjectIds.forEach(subjectId -> subjects.add(subjectRepository.findById(subjectId).get()));
+        return subjects;
+    }
 
     public List<Group> getTeacherGroups(String id) {
         Teacher teacher = teacherRepository.findById(id).get();

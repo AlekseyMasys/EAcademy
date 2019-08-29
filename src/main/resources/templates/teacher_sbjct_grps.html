@@ -58,208 +58,139 @@
 </head>
 
 <body>
-<!--<header role="banner" id="fh5co-header">-->
-<!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--            <nav class="navbar navbar-default navbar-fixed-top">-->
-<!--                <div class="navbar-header">-->
-<!--                    &lt;!&ndash; Mobile Toggle Menu Button &ndash;&gt;-->
-<!--                    <a th:href="@{#}" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse"-->
-<!--                       data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>-->
-<!--                    <a class="navbar-brand" th:href="@{index.html}">EAcademy</a>-->
-<!--                </div>-->
-<!--                <div id="navbar" class="navbar-collapse collapse">-->
-<!--                    <ul class="nav navbar-nav navbar-right">-->
+<header role="banner" id="fh5co-header">
+    <div class="container">
+        <div class="row">
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="navbar-header">
+                    <!-- Mobile Toggle Menu Button -->
+                    <a th:href="@{#}" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse"
+                       data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
+                    <a class="navbar-brand" th:href="@{index.html}">EAcademy</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
 
-<!--                        <li class="dropdown" data-nav-section="pricing">-->
-<!--                            <a class="external" data-toggle="dropdown">-->
-<!--                                Группы-->
-<!--                                <b class="caret"></b>-->
-<!--                            </a>-->
-<!--                            <ul class="dropdown-menu external" th:each="group : ${groups}">-->
-<!--                                <li><a th:href="@{'/teacher_' + ${teacher.id} + '_group'}"-->
-<!--                                       class="external" th:utext="'privet ' + ${group.title}"></a></li>-->
-<!--                            </ul>-->
-<!--                        </li>-->
+                        <li class="dropdown" data-nav-section="pricing">
+                            <a class="external" data-toggle="dropdown">
+                                Группы
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu external" th:each="group : ${groups}">
+                                <li><a th:href="@{'/teacher_' + ${teacher.id} + '_group'}"
+                                       class="external" th:utext="'privet ' + ${group.title}"></a></li>
+                            </ul>
+                        </li>
 
-<!--                        <li class="dropdown">-->
-<!--                            <a class="external" data-nav-section="testimony" data-toggle="dropdown">-->
-<!--                                Дисциплины-->
-<!--                                <b class="caret external"></b>-->
-<!--                            </a>-->
-<!--                            <ul class="dropdown-menu external">-->
-<!--                                <label>-->
-<!--                                    <select th:object="${subject}">-->
-<!--                                        <option class="external" th:each="subject : ${teacherSubjects}">-->
-<!--                                            <div th:text="${subject.title}"></div>-->
-<!--                                        </option>-->
-<!--                                    </select>-->
-<!--                                </label>-->
-<!--                            </ul>-->
-<!--                        </li>-->
+                        <li class="dropdown">
+                            <a class="external" data-nav-section="testimony" data-toggle="dropdown">
+                                Дисциплины
+                                <b class="caret external"></b>
+                            </a>
+                            <ul class="dropdown-menu external">
+                                <label>
+                                    <select th:object="${subject}">
+                                        <option class="external" th:each="subject : ${teacherSubjects}"
+                                                th:text="${subject.title}">
+                                        </option>
+                                    </select>
+                                </label>
+                            </ul>
+                        </li>
 
-<!--                        <li><a class="external" th:href="@{'/teacher_'+${teacher.id}}"-->
-<!--                               data-nav-section="pricing">-->
-<!--                            <span>Моя страница</span></a>-->
-<!--                        </li>-->
-<!--                        <li><a class="external" th:href="@{/}"-->
-<!--                               data-nav-section="blog">-->
-<!--                            <span>Выход</span></a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </div>-->
-<!--            </nav>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</header>-->
+                        <li><a class="external" data-nav-section="pricing">
+                            <!--                               th:href="@{'/teacher_' + ${teacher.id}}" -->
+                            <span>Моя страница</span></a>
+                        </li>
+                        <li><a class="external" th:href="@{/}"
+                               data-nav-section="blog">
+                            <span>Выход</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
 
-<!--<section id="fh5co-pricing" data-section="pricing"-->
-<!--         style="background-image: url(/images/full_image_4.jpg); background-size: cover"-->
-<!--         data-stellar-background-ratio="0.5">-->
-<!--    <section class="pricing-section bg-3">-->
-<!--        <div class="container">-->
-<!--            &lt;!&ndash;            <div class="row">&ndash;&gt;-->
-<!--            <div class="col-md-12 section-heading text-center">-->
-<!--                <h2 class="animate-box">Мы EAcademy</h2>-->
-<!--                <div class="row">-->
-<!--                    <div class="col-md-8 col-md-offset-2 subtext animate-box">-->
-<!--                        <h3>Лучшая система учета студентов.</h3>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--            <div class="row">-->
-<!--                <div class="col-md-4 text-center animate-box">-->
-<!--                    <div class="pricing__item">-->
-<!--                        <div class="subtext animate-box">-->
-<!--                            <h3 class="pricing__title">Учебный процесс</h3>-->
-<!--                        </div>-->
-<!--                        <div class="pricing__price"><span class="pricing_currency">◕‿‿◕</span></div>-->
-<!--                        <div class="subtext animate-box">-->
-<!--                            Действия, связанные с обучением-->
-<!--                        </div>-->
-<!--                        <ul class="pricing__feature-list">-->
-<!--                            <li class="pricing__feature"><a style="color:#000000"-->
-<!--                                                            class="external"-->
-<!--                                                            href="teacher_groups.html"-->
-<!--                                                            th:href="@{'/teacher_' + ${teacher.id} + '_groups'}"-->
-<!--                                                            data-nav-section="blog"><span>Мои группы</span></a></li>-->
-<!--                            <li class="pricing__feature"><a style="color:#000000"-->
-<!--                                                            class="external"-->
-<!--                                                            href="teacher_subjects.html"-->
-<!--                                                            th:href="@{'/teacher_' + ${teacher.id} + '_subjects'}"-->
-<!--                                                            data-nav-section="blog"><span>Мои дисциплины</span></a></li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-4 text-center animate-box">-->
-<!--                    <div class="pricing__item">-->
-<!--                        <h3 class="pricing__title">Пользователь</h3>-->
-<!--                        <div class="pricing__price"><span class="pricing_currency">(◠‿◠)</span></div>-->
-<!--                        <p class="pricing__sentence">-->
-<!--                        <div class="subtext animate-box">-->
-<!--                            Моя страница-->
-<!--                        </div>-->
-<!--                        </p>-->
-<!--                        <ul id="teacherInfo" class="pricing__feature-list" style="color: #0b0b0b">-->
-<!--                            <li id="teacherLogin" class="pricing__feature">-->
-<!--                                <p th:utext="'Логин: ' + ${teacher.getLogin()}"></p></li>-->
-<!--                            <li id="teacherFio" class="pricing__feature">-->
-<!--                                <p th:utext="'Ф.И.О.: ' + ${teacher.getFio()}"></p></li>-->
-<!--                            <li id="teacherEmail" class="pricing__feature">-->
-<!--                                <p th:utext="'Email: ' + ${teacher.getEmail()}"></p></li>-->
-<!--                            <li id="teacherRole" class="pricing__feature">-->
-<!--                                <p th:utext="'Статус: ' + ${teacher.getRole()}"></p></li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="col-md-4 text-center animate-box">-->
-<!--                    <div class="pricing__item">-->
-<!--                        <h3 class="pricing__title">Справка</h3>-->
-<!--                        <div class="pricing__price"><span class="pricing_currency">◕‿‿◕</span></div>-->
-<!--                        <p class="pricing__sentence">-->
-<!--                        <div class="subtext animate-box">-->
-<!--                            Дополнительные сведения о системе или учебном процессе-->
-<!--                        </div>-->
-<!--                        </p>-->
-<!--                        <ul class="pricing__feature-list">-->
-<!--                            <li class="pricing__feature"><a style="color: #0b0b0b"-->
-<!--                                                            onclick="location.href='help.html';"-->
-<!--                                                            data-nav-section="blog"><span>Помощь</span></a></li>-->
-<!--                            <li class="pricing__feature"><a style="color: #0b0b0b"-->
-<!--                                                            onclick="location.href='help.html';"-->
-<!--                                                            data-nav-section="blog"><span>Поддержка</span></a></li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </section>-->
-<!--</section>-->
+<section id="fh5co-explore" data-section="explore">
+    <div class="container external" style="width: 100%">
+        <div id="teacherInfo" class="row" th:each="subject : ${teacherSubjects}">
+            <div class="col-md-10 external"><a th:utext="${subject.title}" style="color: #0b0b0b"  th:href= "@{'/teacher_' + ${teacher.id} + '_subject1'}"></a></div>
+            <div class="col-md-10" id="teacherFio">
+                <!-- <p th:utext="${teacher.fio}"></p> -->
+            </div>
+            <div class="form-group col-md-2">
+                <input type="submit" class="btn btn-send-message btn-md"
+                       value="Перейти к проверке работ"/>
+            </div>
+        </div>
+    </div>
+</section>
 
-<!--<div id="fh5co-footer" role="contentinfo">-->
-<!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--            <div class="col-md-4 animate-box">-->
-<!--                <h3 class="section-title">EAcademy</h3>-->
-<!--                <p>Серверное программное решение для учета успеваемости и тестирования студентов.</p>-->
-<!--            </div>-->
-<!--            <div class="col-md-4 animate-box">-->
-<!--                <h3 class="section-title">Наш адрес</h3>-->
-<!--                <ul class="contact-info">-->
-<!--                    <li><i class="icon-map"></i>Окружная ул., 29В, Новосибирск, Новосибирская обл., 630020</li>-->
-<!--                    <li><i class="icon-phone"></i>+7 913 789 67 77</li>-->
-<!--                    <li><i class="icon-envelope"></i><a href="#">eacademy@gmail.com</a></li>-->
-<!--                    <li><i class="icon-globe"></i><a href="#">www.eacademy.com</a></li>-->
-<!--                </ul>-->
-<!--                <h3 class="section-title">Свяжитесь с нами</h3>-->
-<!--                <ul class="social-media">-->
-<!--                    <li><a href="#" class="facebook"><i class="icon-facebook"></i></a></li>-->
-<!--                    <li><a href="#" class="twitter"><i class="icon-twitter"></i></a></li>-->
-<!--                    <li><a href="#" class="dribbble"><i class="icon-dribbble"></i></a></li>-->
-<!--                    <li><a href="#" class="github"><i class="icon-github-alt"></i></a></li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--            <div class="col-md-4 animate-box">-->
-<!--                <h3 class="section-title">Обратная связь</h3>-->
-<!--                <form class="contact-form">-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="name" class="sr-only">Введите логин</label>-->
-<!--                        <input type="name" class="form-control" id="name" placeholder="Введите логин">-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="email" class="sr-only">Введите email</label>-->
-<!--                        <input type="email" class="form-control" id="email" placeholder="Введите email">-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <label for="message" class="sr-only">Сообщение</label>-->
-<!--                        <textarea class="form-control" id="message" rows="7" placeholder="Сообщение"></textarea>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <input type="submit" id="btn-submit" class="btn btn-send-message btn-md"-->
-<!--                               value="Отправить сообщение">-->
-<!--                    </div>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+<div id="fh5co-footer" role="contentinfo">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 animate-box">
+                <h3 class="section-title">EAcademy</h3>
+                <p>Серверное программное решение для учета успеваемости и тестирования студентов.</p>
+            </div>
+            <div class="col-md-4 animate-box">
+                <h3 class="section-title">Наш адрес</h3>
+                <ul class="contact-info">
+                    <li><i class="icon-map"></i>Окружная ул., 29В, Новосибирск, Новосибирская обл., 630020</li>
+                    <li><i class="icon-phone"></i>+7 913 789 67 77</li>
+                    <li><i class="icon-envelope"></i><a href="#">eacademy@gmail.com</a></li>
+                    <li><i class="icon-globe"></i><a href="#">www.eacademy.com</a></li>
+                </ul>
+                <h3 class="section-title">Свяжитесь с нами</h3>
+                <ul class="social-media">
+                    <li><a href="#" class="facebook"><i class="icon-facebook"></i></a></li>
+                    <li><a href="#" class="twitter"><i class="icon-twitter"></i></a></li>
+                    <li><a href="#" class="dribbble"><i class="icon-dribbble"></i></a></li>
+                    <li><a href="#" class="github"><i class="icon-github-alt"></i></a></li>
+                </ul>
+            </div>
+            <div class="col-md-4 animate-box">
+                <h3 class="section-title">Обратная связь</h3>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name" class="sr-only">Введите логин</label>
+                        <input type="name" class="form-control" id="name" placeholder="Введите логин">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="sr-only">Введите email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Введите email">
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="sr-only">Сообщение</label>
+                        <textarea class="form-control" id="message" rows="7" placeholder="Сообщение"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" id="btn-submit" class="btn btn-send-message btn-md"
+                               value="Отправить сообщение">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-<!-- jQuery -->
-<!--<script th:src="@{js/jquery.min.js}"></script>-->
-<!--&lt;!&ndash; jQuery Easing &ndash;&gt;-->
-<!--<script th:src="@{js/jquery.easing.1.3.js}"></script>-->
-<!--&lt;!&ndash; Bootstrap &ndash;&gt;-->
-<!--<script th:src="@{js/bootstrap.min.js}"></script>-->
-<!--<script type="text/javascript" src="webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>-->
-<!--&lt;!&ndash; Waypoints &ndash;&gt;-->
-<!--<script th:src="@{js/jquery.waypoints.min.js}"></script>-->
-<!--&lt;!&ndash; Stellar Parallax &ndash;&gt;-->
-<!--<script th:src="@{js/jquery.stellar.min.js}"></script>-->
-<!--&lt;!&ndash; Counters &ndash;&gt;-->
-<!--<script th:src="@{js/jquery.countTo.js}"></script>-->
-<!--&lt;!&ndash; Main JS (Do not remove) &ndash;&gt;-->
-<!--<script th:src="@{js/main.js}"></script>-->
+jQuery
+<script th:src="@{js/jquery.min.js}"></script>
+<!-- jQuery Easing -->
+<script th:src="@{js/jquery.easing.1.3.js}"></script>
+<!-- Bootstrap -->
+<script th:src="@{js/bootstrap.min.js}"></script>
+<script type="text/javascript" src="webjars/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script th:src="@{js/jquery.waypoints.min.js}"></script>
+<!-- Stellar Parallax -->
+<script th:src="@{js/jquery.stellar.min.js}"></script>
+<!-- Counters -->
+<script th:src="@{js/jquery.countTo.js}"></script>
+<!-- Main JS (Do not remove) -->
+<script th:src="@{js/main.js}"></script>
 </body>
 </html>
 

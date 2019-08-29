@@ -57,14 +57,14 @@ public class TeacherController {
         return "teacher_sbjct_grps";
     }
 
-    @RequestMapping(value = "/teacher_{id}_groups", method = RequestMethod.GET)
+    @RequestMapping(value = "/teacher/{id}/groups", method = RequestMethod.GET)
     public String getTeacherGroups(@PathVariable("id") String id, Model modelGroup) {
         modelGroup.addAllAttributes(teacherService.getTeacherGroups(id));
         return "teacher_groups";
     }
 
 
-    @RequestMapping(value = "/teacher_{id}_getStudentsFromGroup_{idGroup}", method = RequestMethod.GET)
+    @RequestMapping(value = "/teacher/{id}/getStudentsFromGroup/{idGroup}", method = RequestMethod.GET)
     public String getStudentsFromGroup(@PathVariable("id") String id, @PathVariable("idGroup") String idGroup, Model modelStudents) {
         modelStudents.addAllAttributes(teacherService.getStudentsFromGroup(idGroup));
         return "teacher_students_from_group";

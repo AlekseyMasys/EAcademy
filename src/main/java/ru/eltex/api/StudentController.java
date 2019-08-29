@@ -30,25 +30,25 @@ public class StudentController {
         return "student_main";
     }
 
-    @RequestMapping(value = "student/{studentId}/getSubjects", method = RequestMethod.GET)
+    @RequestMapping(value = "student/{studentId}/subjects", method = RequestMethod.GET)
     public String getSubjects(@PathVariable("studentId") String studentId, Model model) {
         model.addAttribute("subjects", studentService.getAllSubjects(studentId));
         return "student_subjects";
     }
 
-    @RequestMapping(value = "student/{studentId}/getSubjects/{subjectId}/getTasks", method = RequestMethod.GET)
+    @RequestMapping(value = "student/{studentId}/subjects/{subjectId}/tasks", method = RequestMethod.GET)
     public String getTasks(@PathVariable("studentId") String studentId, @PathVariable("subjectId") String subjectId, Model model) {
         model.addAttribute("subjects", studentService.getAllTasksByOneSubject(subjectId));
         return "student_tasks";
     }
 
-    @RequestMapping(value = "student/{studentId}/getTests", method = RequestMethod.GET)
+    @RequestMapping(value = "student/{studentId}/tests", method = RequestMethod.GET)
     public String getTests(@PathVariable("studentId") String studentId, Model model) {
         model.addAttribute("tests", studentService.getTests(studentId));
         return "student_tests";
     }
 
-    @RequestMapping(value = "student/{studentId}/getTable", method = RequestMethod.GET)
+    @RequestMapping(value = "student/{studentId}/table", method = RequestMethod.GET)
     public String getTable(@PathVariable("studentId") String studentId, Model model) {
         model.addAttribute("table", studentService.getTableForStudent(studentId));
         return "student_timetable";
@@ -61,7 +61,7 @@ public class StudentController {
 //    }
 
     //REST METHOD
-    @RequestMapping(value = "student/{studentId}/getSubjects", method = RequestMethod.POST)
+    @RequestMapping(value = "student/{studentId}/subjects", method = RequestMethod.POST)
     @ResponseBody
     public List<Subject> getSubjects(@PathVariable("studentId") String idStudent) {
         return studentService.getAllSubjects(idStudent);

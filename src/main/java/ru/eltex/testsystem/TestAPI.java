@@ -9,12 +9,12 @@ import ru.eltex.testsystem.model.TestAnswers;
 import ru.eltex.testsystem.service.TestStructureService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class TestAPI {
     private final TestStructureService testStructureService;
     private final TestResultService testResultService;
-
 
     @Autowired
     public TestAPI(TestStructureService testStructureService, TestResultService testResultService) {
@@ -27,6 +27,7 @@ public class TestAPI {
         return "bootstrap4/file_upload";
     }
 
+
     @RequestMapping(value = "/student/{id}/{testId}", method = RequestMethod.GET)
     public String showtest(Model model, @PathVariable("id") String id, @PathVariable("testId") String testId) {
         model.addAttribute("testmodel", testStructureService.loadTest(testId));
@@ -34,6 +35,7 @@ public class TestAPI {
         TestAnswers testCurrentAnswers = testResultService.getTestResult(id, testId).getTestCurrentAnswers();
         model.addAttribute("testResult", testResultService.getTestResult(id, testId));
         model.addAttribute("testAnswers", testCurrentAnswers);
+        model.addAttribute("testmodelFinal", testStructureService.getTest(testId));
 
         System.out.println(testCurrentAnswers);
         //TODO вместо true вставить перем.теста из шаблона
@@ -62,7 +64,7 @@ public class TestAPI {
         System.out.println(testAnswers.toString());
         testResultService.setTestResult(id, testId, testAnswers);
         model.addAttribute("badAnswers", testResultService.checkBadAnswers(id,testId));
-        model.addAttribute("testmodel", testStructureService.loadTest(testId));
+        model.addAttribute("testmodelFinal", testStructureService.getTest(testId));
         model.addAttribute("testResult", testResultService.getTestResult(id, testId));
         return "test_result";
     }

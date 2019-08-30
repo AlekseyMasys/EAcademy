@@ -1,6 +1,5 @@
 package ru.eltex.accountsystem.model.users;
 
-import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 import ru.eltex.accountsystem.enums.Role;
 import ru.eltex.accountsystem.model.User;
@@ -8,15 +7,24 @@ import ru.eltex.accountsystem.model.User;
 import java.util.ArrayList;
 import java.util.Map;
 
+import lombok.NoArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Класс представления студента
+ * @author Maria Koloskova
+ * @version v2.0
+ */
 @Getter
 @Setter
 @NoArgsConstructor
 @Document(collection = "students")
 public class Student extends User {
+    /** Поле идентификаторов дисциплин */
     ArrayList<String> subjectIds;
+
+    /** Поле идентификатора группы*/
     String groupId;
 
     public Student(String login, String password,

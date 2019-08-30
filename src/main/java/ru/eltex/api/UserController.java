@@ -32,7 +32,6 @@ public class UserController {
     public String get() {
         return "authorization";
     }
-
     @RequestMapping(value = "user_{id}", method = RequestMethod.POST)
     public String getUser(@PathVariable("id") String id, Model modelUser) {
         UserRole userRole = userService.getUserRole(id);

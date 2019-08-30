@@ -1,5 +1,6 @@
 package ru.eltex.api;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,19 +43,20 @@ public class TeacherController {
     }
 
 //    @RequestMapping(value = "/teacher_{idTeacher}_subject_{idSubject}", method = RequestMethod.GET)
-    @RequestMapping(value = "/teacher/{idTeacher}/subject/{idSubject}", method = RequestMethod.GET)
+    @RequestMapping(value = "/teacher/{idTeacher}/subjects/{idSubject}", method = RequestMethod.GET)
     public String getSubjectGroups(@PathVariable("idTeacher") String idTeacher,
                                    @PathVariable("idSubject") String idSubject,
                                    Model model) {
         model.addAttribute("teacher", teacherService.getTeacher(idTeacher));
-        model.addAttribute("teacherSubject", teacherService.getTeacherSubjects(idTeacher));
+        model.addAttribute("teacherSubjects", teacherService.getTeacherSubjects(idTeacher));
+        model.addAttribute("students",studentService.getAllStudent());
         return "teacher_sbjct_grps";
     }
 
-    @RequestMapping(value = "/teacher/{idTeacher}/subjects/add_subject", method = RequestMethod.GET)
-    public String addSubject(Model model){
-        return "teacher_add_subject";
-    }
+//    @RequestMapping(value = "/teacher/{idTeacher}/subjects/add_subject", method = RequestMethod.GET)
+//    public String addSubject(Model model){
+//        return "teacher_add_subject";
+//    }
 
     @RequestMapping(value = "/teacher_{idTeacher}_groups", method = RequestMethod.GET)
     public String getTeacherGroups(@PathVariable("idTeacher") String idTeacher, Model modelGroup) {
@@ -76,11 +78,12 @@ public class TeacherController {
         return teacherService.getTeacher(id);
     }
 
-    @RequestMapping(value = "/teacher/{id}/subjects/{idSubject}/addGroup", method = RequestMethod.POST)
+    @RequestMapping(value = "/teacher/{id}/subjects/{idSubject}/add_group", method = RequestMethod.POST)
     @ResponseBody
-    public void addGroup(@PathVariable("idSubject") String idSubject, @RequestBody Group group) {
+    public String addGroup(@PathVariable("idSubject") String idSubject, @RequestBody Group group) {
         groupService.addGroup(idSubject, group);
         //если group.students != null заполнение у студентов subjects
+        return "cool";
     }
 
     @RequestMapping(value = "/addStudent/{groupId}/{studentId}", method = RequestMethod.POST)
@@ -91,10 +94,10 @@ public class TeacherController {
         //заполнение у студента subjects
     }
 
-    @RequestMapping(value = "/addSubject", method = RequestMethod.POST)
+    @RequestMapping(value = "/teacher/{teacherId}/subjects/add_subject", method = RequestMethod.POST)
     @ResponseBody
-    public void addSubject(@RequestBody Subject subject) {
-        teacherService.addSubject(subject);
+    public String addSubject(@PathVariable("teacherId") String teacherId,@RequestBody JsonNode subject) {
+     return   teacherService.addSubject(teacherId,subject);
     }
 
     @RequestMapping(value = "/addScores/{studentId}/{taskId}/{scores}/{status}", method = RequestMethod.POST)

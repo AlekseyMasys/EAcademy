@@ -1,17 +1,14 @@
 package ru.eltex.accountsystem.model;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
-import ru.eltex.accountsystem.model.users.Student;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @Document(collection = "groups")
 public class Group {
     private String id;
@@ -19,14 +16,8 @@ public class Group {
     private String table;
     private ArrayList<String> studentIds;
 
-    @Override
-    public String toString() {
-        return "Group{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", table='" + table + '\'' +
-                ", studentIds=" + studentIds +
-                '}';
+    public Group() {
+        this.id=UUID.randomUUID().toString();
     }
 
     public Group(String title, ArrayList<String> studentIds) {
@@ -48,5 +39,15 @@ public class Group {
 
     public String getTable() {
         return table;
+    }
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", table='" + table + '\'' +
+                ", studentIds=" + studentIds +
+                '}';
     }
 }

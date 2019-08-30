@@ -23,6 +23,12 @@ public class GroupService {
     public void addGroup(String idSubject, Group group) {
         Subject subject = subjectRepository.findById(idSubject).get();
         subject.getGroupIds().add(group.getId());
+        group.getStudentIds().stream().forEach(studentId->
+        {
+            Student student=studentRepository.findById(studentId).get();
+            student.setGroupId(group.getId());
+            studentRepository.save(student);
+        });
         subjectRepository.save(subject);
         groupRepository.save(group);
     }

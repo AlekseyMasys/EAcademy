@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ru.eltex.accountsystem.model.Subject;
-import ru.eltex.accountsystem.model.users.Student;
 import ru.eltex.accountsystem.service.StudentService;
 
 import java.util.List;
@@ -37,7 +36,7 @@ public class StudentController {
         return "student_main";
     }
 
-    @RequestMapping(value = "student/{studentId}/getSubjects", method = RequestMethod.GET)
+    @RequestMapping(value = "student/{studentId}/subjects", method = RequestMethod.GET)
     public String getSubjects(@PathVariable("studentId") String studentId, Model model) {
         logger.info("start getSubjects()");
         logger.debug("request studentId = " + studentId);
@@ -46,7 +45,7 @@ public class StudentController {
         return "student_subjects";
     }
 
-    @RequestMapping(value = "student/{studentId}/getSubjects/{subjectId}/getTasks", method = RequestMethod.GET)
+    @RequestMapping(value = "student/{studentId}/subjects/{subjectId}/tasks", method = RequestMethod.GET)
     public String getTasks(@PathVariable("studentId") String studentId, @PathVariable("subjectId") String subjectId, Model model) {
         logger.info("start getTasks()");
         logger.debug("request studentId = " + studentId + "subjectId = " + studentId);
@@ -55,7 +54,7 @@ public class StudentController {
         return "student_tasks";
     }
 
-    @RequestMapping(value = "student/{studentId}/getTests", method = RequestMethod.GET)
+    @RequestMapping(value = "student/{studentId}/tests", method = RequestMethod.GET)
     public String getTests(@PathVariable("studentId") String studentId, Model model) {
         logger.info("start getTests()");
         logger.debug("request studentId = " + studentId);
@@ -64,7 +63,7 @@ public class StudentController {
         return "student_tests";
     }
 
-    @RequestMapping(value = "student/{studentId}/getTable", method = RequestMethod.GET)
+    @RequestMapping(value = "student/{studentId}/table", method = RequestMethod.GET)
     public String getTable(@PathVariable("studentId") String studentId, Model model) {
         logger.info("start getTable()");
         logger.debug("request studentId = " + studentId);
@@ -80,13 +79,18 @@ public class StudentController {
 //    }
 
     //REST METHOD
-    @RequestMapping(value = "student/{studentId}/getSubjects", method = RequestMethod.POST)
+    @RequestMapping(value = "student/{studentId}/subjects", method = RequestMethod.POST)
     @ResponseBody
     public List<Subject> getSubjects(@PathVariable("studentId") String idStudent) {
         logger.info("start getSubjects()");
         logger.debug("request studentId = " + idStudent);
         List<Subject> subjects = studentService.getAllSubjects(idStudent);
-        logger.debug("response " + subjects.toString());
+        StringBuilder subjectsToString = new StringBuilder();
+        for (Subject subject: subjects) {
+            subjectsToString.append(subject);
+            subjectsToString.append(" ");
+        }
+        logger.debug("response " + subjectsToString.toString());
         return subjects;
     }
 }

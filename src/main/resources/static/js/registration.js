@@ -10,7 +10,7 @@ function getRegistration() {
     $.ajax({
         type: "POST",
         url: "/registration2",
-        contentType:"aplication/json",
+        contentType:"application/json",
         dataType: 'json',
         async: false,
         data: "{\"login\": \"" + login + "\", \"password\": \"" + password + "\", \"email\": \"" +  email +" \", \"fio\": \"" + fio + "\", \"role\": \"" + role + "\"}",

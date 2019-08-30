@@ -29,6 +29,9 @@ public class StudentService {
     public Student getStudentById(String idStudent) {
         return studentRepository.findById(idStudent).get();
     }
+    public List<Student> getAllStudent() {
+        return studentRepository.findAll();
+    }
 
     public ArrayList<Subject> getAllSubjects(String idStudent) {
         ArrayList<Subject> subjects = new ArrayList<>();

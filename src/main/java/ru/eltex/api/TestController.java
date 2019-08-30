@@ -40,7 +40,12 @@ public class TestController {
     public List<java.lang.String> getAllTests() {
         logger.info("start getAllTests()");
         List<java.lang.String> tests =  testStructureService.getAllTests();
-        logger.debug("response  = " + tests.toString());
+        StringBuilder testsToString = new StringBuilder();
+        for (String test: tests) {
+            testsToString.append(test);
+            testsToString.append(" ");
+        }
+        logger.debug("response  = " + testsToString.toString());
         return tests;
     }
 }

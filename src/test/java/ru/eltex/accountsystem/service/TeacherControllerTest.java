@@ -14,10 +14,8 @@ import ru.eltex.accountsystem.model.users.Teacher;
 import ru.eltex.accountsystem.repository.SubjectRepository;
 import ru.eltex.accountsystem.repository.TeacherRepository;
 import ru.eltex.api.TeacherController;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -46,16 +44,20 @@ public class TeacherControllerTest {
     private MockMvc mockMvc;
     @Test
     public void getTeacher() throws Exception {
-        Teacher teacher = new Teacher("login_test", "password_test", "email_test", "fio_test", Role.TEACHER, null);
-        teacherRepository.save(teacher);
-        Teacher teacher1 = teacherRepository.findByFio("fio_test");
+        Teacher teacher_test = null;
         try {
-            this.mockMvc.perform(get("http://localhost:8089/teacher/" + teacher1.getId())).andDo(print()).andExpect(status().isOk())
+            Teacher teacher = new Teacher("login_test", "password_test", "email_test", "fio_test", Role.TEACHER, null);
+            teacherRepository.save(teacher);
+            teacher_test = teacherRepository.findByFio("fio_test");
+
+            this.mockMvc.perform(get("http://localhost:8089/teacher/" + teacher_test.getId())).andDo(print()).andExpect(status().isOk())
                     .andExpect(content().string(containsString("Лучшая система учета студентов"))).andExpect(content().string(containsString("Обратная связь")))
                     .andExpect(content().string(containsString("Ф.И.О.: fio_test"))).andExpect(content().string(containsString("Email: email_test")));
         }
         finally {
-            teacherRepository.deleteById(teacher1.getId());
+            if(teacher_test.getId() != null) {
+                teacherRepository.deleteById(teacher_test.getId());
+            }
         }
     }
 

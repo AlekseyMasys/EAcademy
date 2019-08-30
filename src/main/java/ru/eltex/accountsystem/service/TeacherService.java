@@ -1,5 +1,7 @@
 package ru.eltex.accountsystem.service;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.eltex.accountsystem.dao.*;
@@ -14,6 +16,7 @@ import ru.eltex.accountsystem.repository.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class TeacherService {
@@ -23,7 +26,8 @@ public class TeacherService {
     private final GroupRepository groupRepository;
     private final TaskResultRepository taskResultRepository;
     private final TaskRepository taskRepository;
-
+    @Autowired
+    ObjectMapper objectMapper;
     @Autowired
     public TeacherService(TeacherRepository _repository, StudentRepository studentRepository, SubjectRepository subjectRepository,
                           GroupRepository groupRepository, TaskResultRepository taskResultRepository, TaskRepository taskRepository) {
@@ -79,8 +83,19 @@ public class TeacherService {
         return students;
     }
 
-    public void addSubject(Subject subject) {
+    public String addSubject(String teacherId,JsonNode jsonNode) {
+        Map<String,String> subjectName=objectMapper.convertValue(jsonNode,Map.class);
+        Subject subject=new Subject();
+        subject.setTitle(subjectName.get("subjectName"));
+        subject.setGroupIds(new ArrayList<>());
+        subject.setTaskIds(new ArrayList<>());
+        subject.setTestIds(new ArrayList<>());
+
+        Teacher teacher=teacherRepository.findById(teacherId).get();
+        teacher.getSubjectIds().add(subject.getId());
+        teacherRepository.save(teacher);
         subjectRepository.save(subject);
+        return subject.getId();
     }
 
     public void addScores(String studentId, String taskId, String status, Integer scores) {

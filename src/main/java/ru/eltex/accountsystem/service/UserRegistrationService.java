@@ -12,6 +12,7 @@ import ru.eltex.accountsystem.model.users.Student;
 import ru.eltex.accountsystem.model.users.Teacher;
 import ru.eltex.accountsystem.repository.*;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 @Service
@@ -47,12 +48,12 @@ public class UserRegistrationService {
                     break;
                 }
                 case TEACHER: {
-                    Teacher teacher = new Teacher(userMap, null);
+                    Teacher teacher = new Teacher(userMap, new ArrayList<>());
                     teacherRepository.save(teacher);
                     break;
                 }
                 case STUDENT: {
-                    Student student = new Student(userMap, null, null);
+                    Student student = new Student(userMap, new ArrayList<>(), "");
                     studentRepository.save(student);
                     break;
                 }

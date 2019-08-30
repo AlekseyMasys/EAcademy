@@ -37,7 +37,6 @@ public class UserController {
         logger.debug("response authorization");
         return "authorization";
     }
-
     @RequestMapping(value = "user_{id}", method = RequestMethod.POST)
     public String getUser(@PathVariable("id") String id, Model modelUser) {
         logger.info("start getUser()");

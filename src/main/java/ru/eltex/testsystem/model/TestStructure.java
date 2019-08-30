@@ -15,6 +15,21 @@ public class TestStructure {
     private String name;
     private ArrayList<Integer> graduation;
     private String type;
+
+    @Override
+    public String toString() {
+        return "TestStructure{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", graduation=" + graduation +
+                ", type='" + type + '\'' +
+                ", repassing='" + repassing + '\'' +
+                ", someAnswers='" + someAnswers + '\'' +
+                ", timelimite='" + timelimite + '\'' +
+                ", test=" + test +
+                '}';
+    }
+
     private String repassing;
     private String someAnswers;
     private String timelimite;

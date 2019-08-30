@@ -27,12 +27,12 @@ public class StudentController {
     // В методах, отдающих страницы, в URL адрессе не должно содержаться слэшей, это меняет работу Thymeleaf.
     // Страницы html НЕ менуются по верблюжьей нотации. Лучше использовать нижнее подчеркивание.
 
-    @RequestMapping(value = "/student/{id}", method = RequestMethod.GET)
-    public String getStudent(@PathVariable("id") String id, Model modelTeacher) {
+    @RequestMapping(value = "/student/{studentId}", method = RequestMethod.GET)
+    public String getStudent(@PathVariable("studentId") String studentId, Model modelStudent) {
         logger.info("start getStudent()");
-        logger.debug("request id = " + id);
+        logger.debug("request id = " + studentId);
         logger.debug("response student_main");
-        modelTeacher.addAttribute("student", studentService.getStudentById(id));
+        modelStudent.addAttribute("student", studentService.getStudentById(studentId));
         return "student_main";
     }
 
@@ -41,6 +41,7 @@ public class StudentController {
         logger.info("start getSubjects()");
         logger.debug("request studentId = " + studentId);
         logger.debug("response student_subjects");
+        model.addAttribute("student", studentService.getStudentById(studentId));
         model.addAttribute("subjects", studentService.getAllSubjects(studentId));
         return "student_subjects";
     }
@@ -50,7 +51,8 @@ public class StudentController {
         logger.info("start getTasks()");
         logger.debug("request studentId = " + studentId + "subjectId = " + studentId);
         logger.debug("response student_tasks");
-        model.addAttribute("subjects", studentService.getAllTasksByOneSubject(subjectId));
+        model.addAttribute("student", studentService.getStudentById(studentId));
+        model.addAttribute("tasks", studentService.getSubjectTasks(subjectId));
         return "student_tasks";
     }
 
@@ -86,7 +88,7 @@ public class StudentController {
         logger.debug("request studentId = " + idStudent);
         List<Subject> subjects = studentService.getAllSubjects(idStudent);
         StringBuilder subjectsToString = new StringBuilder();
-        for (Subject subject: subjects) {
+        for (Subject subject : subjects) {
             subjectsToString.append(subject);
             subjectsToString.append(" ");
         }

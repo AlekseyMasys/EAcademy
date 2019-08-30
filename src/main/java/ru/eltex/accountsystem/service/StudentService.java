@@ -6,6 +6,7 @@ import ru.eltex.accountsystem.model.*;
 import ru.eltex.accountsystem.model.users.Student;
 import ru.eltex.accountsystem.repository.StudentRepository;
 import ru.eltex.accountsystem.repository.SubjectRepository;
+import ru.eltex.accountsystem.repository.TaskRepository;
 import ru.eltex.testsystem.repository.TestStructureRepository;
 
 import java.util.ArrayList;
@@ -15,13 +16,15 @@ import java.util.List;
 public class StudentService {
     private final StudentRepository studentRepository;
     private final SubjectRepository subjectRepository;
+    private final TaskRepository taskRepository;
     private final TestStructureRepository testStructureRepository;
     private final TableService tableService;
 
     @Autowired
-    public StudentService(StudentRepository studentRepository, SubjectRepository subjectRepository, TestStructureRepository testStructureRepository, TableService tableService) {
+    public StudentService(StudentRepository studentRepository, SubjectRepository subjectRepository, TaskRepository taskRepository, TestStructureRepository testStructureRepository, TableService tableService) {
         this.studentRepository = studentRepository;
         this.subjectRepository = subjectRepository;
+        this.taskRepository = taskRepository;
         this.testStructureRepository = testStructureRepository;
         this.tableService = tableService;
     }
@@ -29,6 +32,7 @@ public class StudentService {
     public Student getStudentById(String idStudent) {
         return studentRepository.findById(idStudent).get();
     }
+
     public List<Student> getAllStudent() {
         return studentRepository.findAll();
     }
@@ -71,18 +75,25 @@ public class StudentService {
         return subjectRepository.findById(idSubject).get();
     }
 
-    public List<String> getAllTasksByOneSubject(String idSubject) {
+    public List<String> getSubjectTasksIds(String idSubject) {
         Subject subject = subjectRepository.findById(idSubject).get();
         return subject.getTaskIds();
     }
 
+    public List<Task> getSubjectTasks(String idSubject) {
+        List<Task> tasks = new ArrayList<>();
+        List<String> taskIds = getSubjectTasksIds(idSubject);
+        taskIds.forEach(taskId -> tasks.add(taskRepository.findById(taskId).get()));
+        return tasks;
+    }
+
     public List<String> getTests(String idStudent) {
         ArrayList<Subject> subjects = new ArrayList<>();
-        getStudentById(idStudent).getSubjectIds().forEach(elem-> subjects.add(subjectRepository.findById(elem).get()));
+        getStudentById(idStudent).getSubjectIds().forEach(elem -> subjects.add(subjectRepository.findById(elem).get()));
         List<String> tests = new ArrayList<>();
 
         for (Subject subject : subjects) {
-            subject.getTestIds().forEach(elem->tests.add(testStructureRepository.findById(elem).get().getName()));
+            subject.getTestIds().forEach(elem -> tests.add(testStructureRepository.findById(elem).get().getName()));
         }
         return tests;
     }
@@ -103,4 +114,3 @@ public class StudentService {
         return tableService.loadTable(student.getGroupId());
     }
 }
-

@@ -16,7 +16,6 @@ public class TableController {
     private TableService tableService;
     private static final Logger logger = LoggerFactory.getLogger(TableController.class);
 
-
     @PostMapping("/teacher/groupId")
     public void saveTable(@PathVariable String groupId, @RequestBody Table table) {
         logger.info("start saveTable()");

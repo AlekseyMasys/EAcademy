@@ -13,18 +13,6 @@ import java.util.UUID;
 @Document(collection = "subjects")
 public class Subject {
     private String id;
-
-    @Override
-    public String toString() {
-        return "Subject{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", taskIds=" + taskIds +
-                ", groupIds=" + groupIds +
-                ", testIds=" + testIds +
-                '}';
-    }
-
     private String title;
     private List<String> taskIds;
     private List<String> groupIds;
@@ -39,5 +27,16 @@ public class Subject {
         this.taskIds = taskIds;
         this.groupIds = groupIds;
         this.testIds = testIds;
+    }
+
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", taskIds=" + taskIds +
+                ", groupIds=" + groupIds +
+                ", testIds=" + testIds +
+                '}';
     }
 }

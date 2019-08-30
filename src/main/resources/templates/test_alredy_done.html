@@ -56,7 +56,8 @@
     <br/>
     <br/>
     <br/>
-    <h1 align="center" style="color:white" th:utext="'Список вопросов на которые вы дали неправильные ответы'"></h1>
+    <h1 align="center" style="color:white" th:utext="'На данные вопросы вы дали неправильные ответы:'"></h1>
+
 
     <form th:object="${testAnswers}"
           method="post">
@@ -72,22 +73,16 @@
                         <h4 style="border-bottom: 2px solid maroon" align="center"
                             th:utext="'Вопрос №'+${badAnswer+1}"></h4>
 
-                        <legend th:utext="${testmodel.test[__${badAnswer}__].question}"></legend>
+                        <legend th:utext="${testmodelFinal.test[__${badAnswer}__].question}"></legend>
                         <!--                        <th:block th:each="answer,answerStat : ${testmodel.test[__${badAnswer}__].answers}">-->
-                        <th:block th:each="answer,answerStat : ${testmodel.test[__${badAnswer}__].answers}">
+                        <th:block th:each="answ,answerStat : ${testmodelFinal.test[__${badAnswer}__].trueAnswer}">
 
                             <input type="checkbox" th:field="*{checkedItems[__${badAnswerStat.index}__]}"
                                    th:value="${answerStat.count}"/>
                             <label th:for="'checkedItems' + ${badAnswerStat.index}+${answerStat.count}"
-                                   th:text="${answer}"
-                                   th:style="${answerStat.last == true ? 'color: red;' : _ }"></label>
-                            <!--                                th:style="${answerStat.last == true ? 'color: red;' : _ }"  ></label>-->
-                            <h4 style="border-bottom: 2px solid maroon" align="center"
-                                th:utext="${testResult.testFinishAnswers.checkedItems[2]}"></h4>
-<!--                            th:utext="${testResult.testFinishAnswers.checkedItems[__${badAnswerStat.index}__]}"></h4>-->
-
+                                   th:utext="${testmodelFinal.test[__${badAnswer}__].answers[__${answ-1}__]}"
+                                   th:style="'color: green'"></label>
                             <br/>
-                        </th:block>
                     </div>
                 </div>
             </div>

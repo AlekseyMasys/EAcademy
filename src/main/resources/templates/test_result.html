@@ -47,7 +47,7 @@
             <h2 align="center" style="color:black" th:utext="'Результаты вашего тестирования:'"></h2>
             <br/>
             <h3 align="left" style="color:black"
-                th:utext="'Вы набрали: '+${testResult.result}+' из '+${#lists.size(testmodel.test)+' баллов'}"></h3>
+                th:utext="'Вы набрали: '+${testResult.result}+' из '+${#lists.size(testmodelFinal.test)+' баллов'}"></h3>
             <h3 align="left" style="color:black" th:utext="'Ваша оценка: '+${testResult.mark}"></h3>
         </div>
     </div>
@@ -66,6 +66,48 @@
     </div>
 </div>
 
+
+
+<div class="widget">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <h1 align="center" style="color:white" th:utext="'На данные вопросы вы дали неправильные ответы:'"></h1>
+
+
+    <form th:object="${testAnswers}"
+          method="post">
+        <th:block th:each="badAnswer,badAnswerStat : ${badAnswers}">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" style="width:777px;
+                                            border-radius: 20px 20px;
+                                            border:5px solid #444444;
+                                            background-color:lightgray;
+                                            top:30px;">
+                        <h4 style="border-bottom: 2px solid maroon" align="center"
+                            th:utext="'Вопрос №'+${badAnswer+1}"></h4>
+
+                        <legend th:utext="${testmodelFinal.test[__${badAnswer}__].question}"></legend>
+
+                        <th:block th:each="answ,answerStat : ${testmodelFinal.test[__${badAnswer}__].trueAnswer}">
+
+                            <input type="checkbox" th:field="*{checkedItems[__${badAnswerStat.index}__]}"
+                                   th:value="${answerStat.count}"/>
+                            <label th:for="'checkedItems' + ${badAnswerStat.index}+${answerStat.count}"
+                                   th:utext="${testmodelFinal.test[__${badAnswer}__].answers[__${answ-1}__]}"
+                                   th:style="'color: green'"></label>
+                            <br/>
+                    </div>
+                </div>
+            </div>
+            <br/>
+        </th:block>
+    </form>
+</div>
 
 
 </body>

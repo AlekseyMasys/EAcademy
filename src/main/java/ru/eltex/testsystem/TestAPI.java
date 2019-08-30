@@ -35,6 +35,7 @@ public class TestAPI {
         TestAnswers testCurrentAnswers = testResultService.getTestResult(id, testId).getTestCurrentAnswers();
         model.addAttribute("testResult", testResultService.getTestResult(id, testId));
         model.addAttribute("testAnswers", testCurrentAnswers);
+        model.addAttribute("testmodelFinal", testStructureService.getTest(testId));
 
         System.out.println(testCurrentAnswers);
         //TODO вместо true вставить перем.теста из шаблона
@@ -63,7 +64,7 @@ public class TestAPI {
         System.out.println(testAnswers.toString());
         testResultService.setTestResult(id, testId, testAnswers);
         model.addAttribute("badAnswers", testResultService.checkBadAnswers(id,testId));
-        model.addAttribute("testmodel", testStructureService.loadTest(testId));
+        model.addAttribute("testmodelFinal", testStructureService.getTest(testId));
         model.addAttribute("testResult", testResultService.getTestResult(id, testId));
         return "test_result";
     }

@@ -6,17 +6,17 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.eltex.accountsystem.enums.Role;
-import ru.eltex.accountsystem.model.User;
-import ru.eltex.accountsystem.model.users.Student;
+import ru.eltex.accountsystem.model.Subject;
 import ru.eltex.accountsystem.model.users.Teacher;
-import ru.eltex.accountsystem.repository.StudentRepository;
+import ru.eltex.accountsystem.repository.SubjectRepository;
 import ru.eltex.accountsystem.repository.TeacherRepository;
-import ru.eltex.api.StudentController;
 import ru.eltex.api.TeacherController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -33,17 +33,19 @@ public class TeacherControllerTest {
     private TeacherController teacherController;
 
     @Test
-    public void contextLoads() throws Exception {
+    public void contextLoads() {
         org.assertj.core.api.Assertions.assertThat(teacherController).isNotNull();
     }
 
     @Autowired
     private TeacherRepository teacherRepository;
+    @Autowired
+    private SubjectRepository subjectRepository;
 
     @Autowired
     private MockMvc mockMvc;
     @Test
-    public void getUser() throws Exception {
+    public void getTeacher() throws Exception {
         Teacher teacher = new Teacher("login_test", "password_test", "email_test", "fio_test", Role.TEACHER, null);
         teacherRepository.save(teacher);
         Teacher teacher1 = teacherRepository.findByFio("fio_test");
@@ -57,17 +59,31 @@ public class TeacherControllerTest {
         }
     }
 
+    @Test
+    public void getTeacherSubject() throws Exception {
+        String subjectId = null;
+        Teacher teacherTest = null;
+        try {
+            Subject subject = new Subject();
+            subject.setTitle("test_title");
+            subjectRepository.save(subject);
+            subjectId = subject.getId();
+            List<String> subjectsId = new ArrayList<>();
+            subjectsId.add(subjectId);
+            Teacher teacher = new Teacher("login_test", "password_test", "email_test", "fio_test", Role.TEACHER, subjectsId);
+            teacherRepository.save(teacher);
+            teacherTest = teacherRepository.findByFio("fio_test");
+            this.mockMvc.perform(get("http://localhost:8089/teacher/" + teacherTest.getId() + "/subjects")).andDo(print()).andExpect(status().isOk())
+                    .andExpect(content().string(containsString("Добавить предмет"))).andExpect(content().string(containsString("test_title")));
+        }
+        finally {
+            if (subjectId != null){
+                subjectRepository.deleteById(subjectId);
+            }
+            if(teacherTest.getId() != null ) {
+                teacherRepository.deleteById(teacherTest.getId());
 
-
-
+            }
+        }
+    }
 }
-
-//    @Test
-//    public void getUser() {
-//        Student student1 = new Student("log", "pass", "ema", "fio", Role.STUDENT, null);
-//        Student student2 = new Student("log2", "pass2", "ema2", "fio2", Role.STUDENT, null);
-//        Student st1 = studentRepository.save(student1);
-//        Student st2 = studentRepository.save(student2);
-//        studentRepository.findAll();
-//
-//    }

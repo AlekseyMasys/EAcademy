@@ -1,3 +1,4 @@
+Мари, [30.08.19 11:36]
 <!DOCTYPE html>
 <html xml:th="http://thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml" lang="ru">
 
@@ -73,7 +74,7 @@
                         <!--                        </li>-->
 
                         <li class="dropdown">
-                            <a class="external" href="index/html" data-nav-section="testimony" класс
+                            <a href="#" onclick="location.href='index.html';" data-nav-section="testimony"
                                data-toggle="dropdown" class="dropdown-toggle">
                                 Меню
                                 <b class="caret"></b>
@@ -132,7 +133,7 @@
                         </div>
                         <ul class="pricing__feature-list">
                             <li class="pricing__feature"><a style="color:#000000"
-                                                            th:href="@{__${#httpServletRequest.requestURI}__/subjects}"
+                                                            th:href="@{${#httpServletRequest.requestURI}/subjects}"
                                                             data-nav-section="blog"><span>Дисциплины</span></a></li>
                             <li class="pricing__feature"><a style="color:#000000"
                                                             onclick="location.href='authorization.html';"

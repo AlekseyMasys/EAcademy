@@ -26,9 +26,6 @@ public class TeacherController {
         this.studentService = studentService;
     }
 
-    // В методах, отдающих страницы, в URL адрессе не должно содержаться слэшей, это меняет работу Thymeleaf.
-    // Страницы html НЕ менуются по верблюжьей нотации. Лучше использовать нижнее подчеркивание.
-
     @RequestMapping(value = "/teacher/{idTeacher}", method = RequestMethod.GET)
     public String getTeacher(@PathVariable("idTeacher") String idTeacher, Model modelTeacher) {
         modelTeacher.addAttribute("teacher", teacherService.getTeacher(idTeacher));
@@ -42,21 +39,15 @@ public class TeacherController {
         return "teacher_subjects";
     }
 
-//    @RequestMapping(value = "/teacher_{idTeacher}_subject_{idSubject}", method = RequestMethod.GET)
     @RequestMapping(value = "/teacher/{idTeacher}/subjects/{idSubject}", method = RequestMethod.GET)
     public String getSubjectGroups(@PathVariable("idTeacher") String idTeacher,
                                    @PathVariable("idSubject") String idSubject,
                                    Model model) {
         model.addAttribute("teacher", teacherService.getTeacher(idTeacher));
         model.addAttribute("teacherSubjects", teacherService.getTeacherSubjects(idTeacher));
-        model.addAttribute("students",studentService.getAllStudent());
+//        model.addAttribute("students",studentService.getAllStudent());
         return "teacher_sbjct_grps";
     }
-
-//    @RequestMapping(value = "/teacher/{idTeacher}/subjects/add_subject", method = RequestMethod.GET)
-//    public String addSubject(Model model){
-//        return "teacher_add_subject";
-//    }
 
     @RequestMapping(value = "/teacher_{idTeacher}_groups", method = RequestMethod.GET)
     public String getTeacherGroups(@PathVariable("idTeacher") String idTeacher, Model modelGroup) {
@@ -69,7 +60,6 @@ public class TeacherController {
         modelStudents.addAllAttributes(teacherService.getStudentsFromGroup(idGroup));
         return "teacher_students_from_group";
     }
-
 
     //REST METHODS
     @GetMapping(value = "/teacher/{id}/getInfo")
@@ -96,8 +86,8 @@ public class TeacherController {
 
     @RequestMapping(value = "/teacher/{teacherId}/subjects/add_subject", method = RequestMethod.POST)
     @ResponseBody
-    public String addSubject(@PathVariable("teacherId") String teacherId,@RequestBody JsonNode subject) {
-     return   teacherService.addSubject(teacherId,subject);
+    public String addSubject(@PathVariable("teacherId") String teacherId, @RequestBody JsonNode subject) {
+        return teacherService.addSubject(teacherId, subject);
     }
 
     @RequestMapping(value = "/addScores/{studentId}/{taskId}/{scores}/{status}", method = RequestMethod.POST)
@@ -108,7 +98,6 @@ public class TeacherController {
                           @PathVariable("status") String status) {
         teacherService.addScores(studentId, taskId, status, scores);
     }
-
 
     @RequestMapping(value = "teacher_{teacherId}_subjects_{subjectId}_addTask", method = RequestMethod.POST)
     public void addTask(@PathVariable("teacherId") String teacherId, @PathVariable("subjectId") String subjectId, @RequestBody Task task) {

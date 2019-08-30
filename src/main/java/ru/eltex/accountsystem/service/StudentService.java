@@ -33,9 +33,12 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public ArrayList<Subject> getAllSubjects(String idStudent) {
-        ArrayList<Subject> subjects = new ArrayList<>();
-        getStudentById(idStudent).getSubjects().forEach(elem-> subjects.add(subjectRepository.findById(elem).get()));
+    public List<Subject> getAllSubjects(String idStudent) {
+        List<Subject> subjects = new ArrayList<>();
+
+        List<String> subjectIds = getStudentById(idStudent).getSubjectIds();
+        subjectIds.forEach(idSubject -> subjects.add(subjectRepository.findById(idSubject).get()));
+
         return subjects;
     }
 
@@ -75,7 +78,7 @@ public class StudentService {
 
     public List<String> getTests(String idStudent) {
         ArrayList<Subject> subjects = new ArrayList<>();
-        getStudentById(idStudent).getSubjects().forEach(elem-> subjects.add(subjectRepository.findById(elem).get()));
+        getStudentById(idStudent).getSubjectIds().forEach(elem-> subjects.add(subjectRepository.findById(elem).get()));
         List<String> tests = new ArrayList<>();
 
         for (Subject subject : subjects) {
@@ -91,7 +94,7 @@ public class StudentService {
         // присутсвует группа с grId то добавляем id предмета к списку id предметов студента.
 
         subjectRepository.findAll().forEach(subject -> subject.getGroupIds().stream().filter(groupId -> groupId.equals(student.getGroupId())).forEach(elem2 -> subjects.add(subject.getId())));
-        student.setSubjects(subjects);
+        student.setSubjectIds(subjects);
         studentRepository.save(student);
     }
 

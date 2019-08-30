@@ -1,6 +1,8 @@
 package ru.eltex.accountsystem.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -8,6 +10,8 @@ import ru.eltex.testsystem.model.TestAnswers;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Document(collection = "testResult")
 public class TestResult {
     @Id
@@ -24,6 +28,7 @@ public class TestResult {
         this.studentId = studentId;
         this.testId = testId;
         this.result = result;
+        this.mark = mark;
         this.timeOfTest = timeOfTest;
         this.testCurrentAnswers = testCurrentAnswers;
         this.testFinishAnswers = testFinishAnswers;

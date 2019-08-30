@@ -1,23 +1,33 @@
 package ru.eltex.accountsystem.model.users;
 
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.data.mongodb.core.mapping.Document;
 import ru.eltex.accountsystem.enums.Role;
 import ru.eltex.accountsystem.model.User;
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@ToString
 @Document(collection = "teachers")
 public class Teacher extends User {
-    private ArrayList<String> subjects;
+    private List<String> subjectIds;
 
     public Teacher(String login, String password, String email,
                    String fio, Role role,
-                   ArrayList<String> subjects) {
+                   List<String> subjectIds) {
         super(login, password, email, fio, role);
 
-        this.subjects = subjects;
+        this.subjectIds = subjectIds;
+    }
+
+    public Teacher(Map<String, String> user, List<String> subjectIds) {
+        super(user.get("login"), user.get("password"), user.get("email"), user.get("fio"), Role.valueOf(user.get("role")));
+        this.subjectIds = subjectIds;
     }
 }

@@ -1,7 +1,11 @@
 <!DOCTYPE html>
+<!--[if lt IE 7]>
 <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
 <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
 <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
 <html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
@@ -23,29 +27,27 @@
     <meta name="twitter:url" content=""/>
     <meta name="twitter:card" content=""/>
 
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <link rel="shortcut icon" href="favicon.ico">
-
     <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400" rel="stylesheet">
 
     <!-- Animate.css -->
-    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="css/animate.css">
     <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="../css/icomoon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
     <!-- Simple Line Icons -->
-    <link rel="stylesheet" href="../css/simple-line-icons.css">
+    <link rel="stylesheet" href="css/simple-line-icons.css">
     <!-- Bootstrap  -->
-    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
     <!-- Style -->
-    <link rel="stylesheet" href="../css/style.css">
-
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- Modernizr JS -->
     <script src="js/modernizr-2.6.2.min.js"></script>
-
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
     <script src="js/respond.min.js"></script>
-</head>
+    <![endif]-->
 
+</head>
 <body>
 <header role="banner" id="fh5co-header">
     <div class="container">
@@ -55,22 +57,15 @@
                     <!-- Mobile Toggle Menu Button -->
                     <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse"
                        data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-                    <a class="navbar-brand" href="../index.html">EAcademy</a>
+                    <a class="navbar-brand" href="index.html">EAcademy</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="active"><a onclick="location.href='index.html';" data-nav-section="home">
-                            <span>Группы</span></a>
+                            <span>О нас</span></a>
                         </li>
-
-                        <li><a onclick="location.href='index.html';" data-nav-section="testimony">
-                            <span>Дисциплины</span></a>
-                        </li>
-
                         <li><a onclick="location.href='index.html';"
-                               data-nav-section="pricing"><span>Моя страница</span></a>
-                        </li>
-                        <li><a onclick="location.href='authorization.html';" data-nav-section="blog"><span>Выход</span></a>
+                               data-nav-section="pricing"><span>Зарегистрироваться</span></a>
                         </li>
                     </ul>
                 </div>
@@ -79,46 +74,36 @@
     </div>
 </header>
 
-<section id="fh5co-explore" data-section="explore">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="col-md-12 section-heading text-center">
-                    <h2 class="animate-box">Учебный процесс</h2>
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2 subtext animate-box">
-                            <h3>Действия, связанные с обучением</h3>
-                        </div>
+<section id="fh5co-services" data-section="services">
+    <div class="fh5co-services">
+        <div class="container">
+            <div class="row">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="login" class="sr-only">Ваш логин</label>
+                        <input id="login" class="form-control" placeholder="Ваш логин">
                     </div>
-                    <a onclick="location.href='authorization.html';" data-nav-section="blog"><span>Мои группы</span></a><br/>
-                    <a onclick="location.href='teacher_subjects.html';"
-                       data-nav-section="blog"><span>Мои дисциплины</span></a>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="col-md-12 section-heading text-center">
-                    <h2 class="animate-box">Пользователь</h2>
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2 subtext animate-box">
-                            <h3>Моя страница</h3>
-                        </div>
+                    <div class="form-group">
+                        <label for="fio" class="sr-only">Ваше Ф.И.О.</label>
+                        <input id="fio" class="form-control" placeholder="Ваше Ф.И.О.">
                     </div>
-                    Здесь будет вывод информации о пользователе
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="col-md-12 section-heading text-center">
-                    <h2 class="animate-box">Справка</h2>
-                    <div class="row">
-                        <div class="col-md-8 col-md-offset-2 subtext animate-box">
-                            <h3>Дополнительные сведения о системе или учебном процессе</h3>
-                        </div>
+                    <div class="form-group">
+                        <label for="email" class="sr-only">Ваш email</label>
+                        <input type="email" id="email" class="form-control" placeholder="Ваш email">
                     </div>
-                    <a onclick="location.href='authorization.html';"
-                       data-nav-section="blog"><span>Помощь</span></a><br/>
-                    <a onclick="location.href='teacher_subjects.html';"
-                       data-nav-section="blog"><span>Поддержка</span></a>
-                </div>
+                    <div class="form-group">
+                        <label for="role" class="sr-only">Роль</label>
+                        <input id="role" class="form-control" placeholder="Роль">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="sr-only">Ваш пароль</label>
+                        <input type="password" id="password" class="form-control" placeholder="Ваш пароль">
+                    </div>
+                    <div class="form-group">
+                        <input onclick="getRegistration()" type="submit" class="btn btn-send-message btn-md"
+                               value="Зарегистрироваться">
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -130,9 +115,7 @@
             <div class="col-md-4 animate-box">
                 <h3 class="section-title">EAcademy</h3>
                 <p>Серверное программное решение для учета успеваемости и тестирования студентов.</p>
-
             </div>
-
             <div class="col-md-4 animate-box">
                 <h3 class="section-title">Наш адрес</h3>
                 <ul class="contact-info">
@@ -153,12 +136,12 @@
                 <h3 class="section-title">Обратная связь</h3>
                 <form class="contact-form">
                     <div class="form-group">
-                        <label for="name" class="sr-only">Введите логин</label>
-                        <input type="name" class="form-control" id="name" placeholder="Введите логин">
+                        <label for="login2" class="sr-only">Введите логин</label>
+                        <input  class="form-control" id="login2" placeholder="Введите логин">
                     </div>
                     <div class="form-group">
-                        <label for="email" class="sr-only">Введите email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Введите email">
+                        <label for="email2" class="sr-only">Введите email</label>
+                        <input type="email" class="form-control" id="email2" placeholder="Введите email">
                     </div>
                     <div class="form-group">
                         <label for="message" class="sr-only">Сообщение</label>
@@ -188,7 +171,7 @@
 <script src="js/jquery.countTo.js"></script>
 <!-- Main JS (Do not remove) -->
 <script src="js/main.js"></script>
-
+<script src="js/registration.js"></script>
 </body>
 </html>
 

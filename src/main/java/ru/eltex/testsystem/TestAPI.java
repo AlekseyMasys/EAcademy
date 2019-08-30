@@ -8,6 +8,8 @@ import ru.eltex.accountsystem.service.TestResultService;
 import ru.eltex.testsystem.model.TestAnswers;
 import ru.eltex.testsystem.service.TestStructureService;
 
+import java.util.ArrayList;
+
 @Controller
 public class TestAPI {
     private final TestStructureService testStructureService;
@@ -26,37 +28,42 @@ public class TestAPI {
     }
 
     @RequestMapping(value = "/student/{id}/{testId}", method = RequestMethod.GET)
-    public String showtest(Model model, @PathVariable("id") String id,  @PathVariable("testId") String testId) {
-        model.addAttribute("testmodel", testStructureService.loadTest(id, testId));
-        testResultService.initTestResult(id,testId); // Если в БД нет Такого TestResult то создаем его в БД
-        TestAnswers testCurrentAnswers = testResultService.getTestResult(id,testId).getTestCurrentAnswers();
+    public String showtest(Model model, @PathVariable("id") String id, @PathVariable("testId") String testId) {
+        model.addAttribute("testmodel", testStructureService.loadTest(testId));
+        testResultService.initTestResult(id, testId); // Если в БД нет Такого TestResult то создаем его в БД
+        TestAnswers testCurrentAnswers = testResultService.getTestResult(id, testId).getTestCurrentAnswers();
+        model.addAttribute("testResult", testResultService.getTestResult(id, testId));
+        model.addAttribute("testAnswers", testCurrentAnswers);
+
         System.out.println(testCurrentAnswers);
-        if(testResultService.getTestResult(id,testId).getTestFinishAnswers()!=null) {
-            model.addAttribute("testResult", testResultService.getTestResult(id, testId));
+        //TODO вместо true вставить перем.теста из шаблона
+        // отвеч за повторное прохождение (true- запрет повторного) !!!!!!!!*******
+        if (testResultService.getTestResult(id, testId).getTestFinishAnswers() != null && true) {
+            model.addAttribute("badAnswers", testResultService.checkBadAnswers(id,testId));
+
             return "test_alredy_done";
         }
-        model.addAttribute("testAnswers",testCurrentAnswers);
-        return "showTest";
+        return "test_form";
     }
 
     @RequestMapping(value = "/student/{id}/{testId}/saveCurrentResult", method = RequestMethod.POST)
     @ResponseBody
-    public void addGroup(@RequestBody String testCurrentAnswers, @PathVariable("id") String id
-            ,@PathVariable("testId") String idTest) {
+    public void addGroup(@RequestBody TestAnswers testCurrentAnswers, @PathVariable("id") String id
+            , @PathVariable("testId") String idTest) {
         System.out.println(testCurrentAnswers);
         System.out.println("Внести в БД текущие данные теста");
-//        testResultService.setTestCurrentAnswers(id,idTest,testCurrentAnswers);
+        testResultService.setTestCurrentAnswers(id, idTest, testCurrentAnswers);
     }
 
     @PostMapping("/student/{id}/{testId}/finishtest")
     public String getDataTest(Model model, @ModelAttribute("testAnswers") TestAnswers testAnswers,
-                              @PathVariable("id") String id,  @PathVariable("testId") String testId) {
-//        model.addAttribute("testmodel", testStructureService.loadTest(id, testId));
-//        model.addAttribute("testResult", testResultService.getTestResult(id, testId));
-
+                              @PathVariable("id") String id, @PathVariable("testId") String testId) {
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!  ТЕСТ ЗАВЕРШЕН  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         System.out.println(testAnswers.toString());
-        testResultService.setTestResult(id,testId,testAnswers);
+        testResultService.setTestResult(id, testId, testAnswers);
+        model.addAttribute("badAnswers", testResultService.checkBadAnswers(id,testId));
+        model.addAttribute("testmodel", testStructureService.loadTest(testId));
+        model.addAttribute("testResult", testResultService.getTestResult(id, testId));
         return "test_result";
     }
 

@@ -6,6 +6,4 @@ import ru.eltex.accountsystem.dao.TestResultRepositoryCustom;
 import ru.eltex.accountsystem.model.TestResult;
 @Repository
 public interface TestResultRepository extends MongoRepository<TestResult, String>, TestResultRepositoryCustom {
-
-
 }

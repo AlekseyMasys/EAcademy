@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('../../static/fonts/icomoon/icomoon.eot?qtatmt');
+	src:url('/fonts/icomoon/icomoon.eot?qtatmt');
 	src:url('../../static/fonts/icomoon/icomoon.eot?qtatmt#iefix') format('embedded-opentype'),
 		url('../../static/fonts/icomoon/icomoon.ttf?qtatmt') format('truetype'),
 		url('../../static/fonts/icomoon/icomoon.woff?qtatmt') format('woff'),

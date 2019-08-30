@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@NoArgsConstructor
+
 @Document(collection = "groups")
 public class Group {
     private String id;
@@ -19,14 +19,18 @@ public class Group {
     private String table;
     private ArrayList<String> studentIds;
 
+    public Group() {
+        this.id=UUID.randomUUID().toString();
+    }
+
     public Group(String title, ArrayList<String> studentIds) {
-        id = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString();
         this.title = title;
         this.studentIds = studentIds;
     }
 
     public Group(String title, String table, ArrayList<String> studentIds) {
-        id = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString();
         this.title = title;
         this.table = table;
         this.studentIds = studentIds;

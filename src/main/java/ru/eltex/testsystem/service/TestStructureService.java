@@ -30,11 +30,15 @@ public class TestStructureService {
         testStructureRepository.save(request);
     }
 
-    public TestStructure loadTest(String testId) {
+    public TestStructure loadTest(String testId) { //метод для загрузки тестового задания для прохождения теста
         TestStructure testStructure = testStructureRepository.getById(testId);
         for (QuestionModel q : testStructure.getTest()) {
             q.setTrueAnswer(null);
         }
+        return testStructure;
+    }
+    public TestStructure getTest(String testId) {
+        TestStructure testStructure = testStructureRepository.getById(testId);
         return testStructure;
     }
 

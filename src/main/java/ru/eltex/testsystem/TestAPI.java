@@ -22,13 +22,13 @@ public class TestAPI {
         this.testResultService = testResultService;
     }
 
-    @GetMapping(value = "/index")
+    @GetMapping(value = "/teacher/{id}/subjects/{idSubject}/test")
     public String index() {
-        return "bootstrap4/file_upload";
+        return "teacher_file_upload";
     }
 
 
-    @RequestMapping(value = "/student/{id}/{testId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/student/{id}/tests/{testId}", method = RequestMethod.GET)
     public String showtest(Model model, @PathVariable("id") String id,  @PathVariable("testId") String testId) {
         model.addAttribute("testmodel", testStructureService.loadTest(testId));
         testResultService.initTestResult(id,testId);

@@ -6,6 +6,7 @@ import ru.eltex.accountsystem.model.*;
 import ru.eltex.accountsystem.model.users.Student;
 import ru.eltex.accountsystem.repository.StudentRepository;
 import ru.eltex.accountsystem.repository.SubjectRepository;
+import ru.eltex.testsystem.model.TestStructure;
 import ru.eltex.testsystem.repository.TestStructureRepository;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class StudentService {
 
     public ArrayList<Subject> getAllSubjects(String idStudent) {
         ArrayList<Subject> subjects = new ArrayList<>();
-        getStudentById(idStudent).getSubjects().forEach(elem-> subjects.add(subjectRepository.findById(elem).get()));
+        getStudentById(idStudent).getSubjectIds().forEach(elem-> subjects.add(subjectRepository.findById(elem).get()));
         return subjects;
     }
 
@@ -73,13 +74,13 @@ public class StudentService {
         return subject.getTaskIds();
     }
 
-    public List<String> getTests(String idStudent) {
+    public List<TestStructure> getTests(String idStudent) {
         ArrayList<Subject> subjects = new ArrayList<>();
-        getStudentById(idStudent).getSubjects().forEach(elem-> subjects.add(subjectRepository.findById(elem).get()));
-        List<String> tests = new ArrayList<>();
+        getStudentById(idStudent).getSubjectIds().forEach(elem-> subjects.add(subjectRepository.findById(elem).get()));
+        List<TestStructure> tests = new ArrayList<>();
 
         for (Subject subject : subjects) {
-            subject.getTestIds().forEach(elem->tests.add(testStructureRepository.findById(elem).get().getName()));
+            subject.getTestIds().forEach(elem->tests.add(testStructureRepository.findById(elem).get()));
         }
         return tests;
     }
@@ -91,7 +92,7 @@ public class StudentService {
         // присутсвует группа с grId то добавляем id предмета к списку id предметов студента.
 
         subjectRepository.findAll().forEach(subject -> subject.getGroupIds().stream().filter(groupId -> groupId.equals(student.getGroupId())).forEach(elem2 -> subjects.add(subject.getId())));
-        student.setSubjects(subjects);
+        student.setSubjectIds(subjects);
         studentRepository.save(student);
     }
 

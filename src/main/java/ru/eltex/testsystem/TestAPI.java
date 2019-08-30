@@ -27,14 +27,12 @@ public class TestAPI {
         return "bootstrap4/file_upload";
     }
 
-
     @RequestMapping(value = "/student/{id}/{testId}", method = RequestMethod.GET)
     public String showtest(Model model, @PathVariable("id") String id,  @PathVariable("testId") String testId) {
         model.addAttribute("testmodel", testStructureService.loadTest(testId));
         testResultService.initTestResult(id,testId);
 
 //      Если в БД нет Такого TestResult то создаем его в БД
-
 
         List<String> list = new ArrayList<>();
         list.add("1");

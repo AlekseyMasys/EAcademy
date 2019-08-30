@@ -11,12 +11,20 @@ import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Класс представления студента
+ * @author Maria Koloskova
+ * @version v2.0
+ */
 @Getter
 @Setter
 @NoArgsConstructor
 @Document(collection = "students")
 public class Student extends User {
+    /** Поле идентификаторов дисциплин */
     ArrayList<String> subjects;
+
+    /** Поле идентификатора группы*/
     String groupId;
 
     public Student(String login, String password,

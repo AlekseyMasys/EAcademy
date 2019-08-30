@@ -30,7 +30,12 @@ public class Task {
     /** Поле максимальных баллов за задание */
     private Integer maxScores;
 
-    public Task(String title, String description, Integer maxScores){
+    public Task() {
+        id = UUID.randomUUID().toString();
+    }
+
+    public Task(String title, String description, Integer maxScores) {
+        id = UUID.randomUUID().toString();
         this.title = title;
         this.description = description;
         this.maxScores = maxScores;

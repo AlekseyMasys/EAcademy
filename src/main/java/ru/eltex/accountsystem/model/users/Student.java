@@ -22,22 +22,21 @@ import lombok.Setter;
 @Document(collection = "students")
 public class Student extends User {
     /** Поле идентификаторов дисциплин */
-    ArrayList<String> subjects;
+    ArrayList<String> subjectIds;
 
     /** Поле идентификатора группы*/
     String groupId;
 
     public Student(String login, String password,
                    String email, String fio, Role role,
-                   ArrayList<String> subjects) {
+                   ArrayList<String> subjectIds) {
         super(login, password, email, fio, role);
-
-        this.subjects = subjects;
+        this.subjectIds = subjectIds;
     }
 
-    public Student(Map<String, String> user, ArrayList<String> subjects, String groupId) {
+    public Student(Map<String, String> user, ArrayList<String> subjectIds, String groupId) {
         super(user.get("login"), user.get("password"), user.get("email"), user.get("fio"), Role.valueOf(user.get("role")));
-        this.subjects = subjects;
+        this.subjectIds = subjectIds;
         this.groupId = groupId;
     }
 }

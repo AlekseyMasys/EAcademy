@@ -71,14 +71,11 @@ public class TeacherController {
         logger.debug("request teacherId = " + idTeacher);
         logger.debug("response teacher_sbjct_grps");
         model.addAttribute("teacher", teacherService.getTeacher(idTeacher));
-        model.addAttribute("teacherSubject", teacherService.getTeacherSubjects(idTeacher));
+        model.addAttribute("teacherSubjects", teacherService.getTeacherSubjects(idTeacher));
+//        model.addAttribute("students",studentService.getAllStudent());
         return "teacher_sbjct_grps";
     }
 
-    /**
-     * Метод для получения групп преподавателя <b>/teacher_{idTeacher}_groups"</b>
-     * @return Страница с группами
-     */
     @RequestMapping(value = "/teacher_{idTeacher}_groups", method = RequestMethod.GET)
     public String getTeacherGroups(@PathVariable("idTeacher") String idTeacher, Model modelGroup) {
         logger.info("start getTeacherGroups()");
@@ -130,6 +127,7 @@ public class TeacherController {
         logger.info("start addGroup()");
         logger.debug("request idSubject = " + idSubject + "Group " + group.toString());
         groupService.addGroup(idSubject, group);
+        //если group.students != null заполнение у студентов subjects
         return "cool";
     }
 
@@ -143,6 +141,7 @@ public class TeacherController {
         logger.debug("request groupId = " + groupId + "studentId = " + studentId);
         groupService.addStudent(groupId, studentId);
         studentService.addSubjectForStudent(studentId);
+        //заполнение у студента subjects
     }
 
     /**

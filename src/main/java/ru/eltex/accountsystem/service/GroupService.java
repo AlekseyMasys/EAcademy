@@ -3,6 +3,8 @@ package ru.eltex.accountsystem.service;
 import org.springframework.stereotype.Service;
 import ru.eltex.accountsystem.model.Group;
 import ru.eltex.accountsystem.model.Subject;
+
+
 import ru.eltex.accountsystem.model.users.Student;
 import ru.eltex.accountsystem.repository.GroupRepository;
 import ru.eltex.accountsystem.repository.StudentRepository;
@@ -25,7 +27,7 @@ public class GroupService {
         subject.getGroupIds().add(group.getId());
         group.getStudentIds().stream().forEach(studentId->
         {
-            Student student=studentRepository.findById(studentId).get();
+            Student student= studentRepository.findById(studentId).get();
             student.setGroupId(group.getId());
             studentRepository.save(student);
         });

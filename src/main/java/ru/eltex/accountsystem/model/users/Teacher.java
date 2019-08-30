@@ -10,12 +10,18 @@ import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Класс представления учителя
+ * @author Maria Koloskova
+ * @version v2.0
+ */
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
 @Document(collection = "teachers")
 public class Teacher extends User {
+    /** Поле идентификаторов дисциплин */
     private List<String> subjectIds;
 
     public Teacher(String login, String password, String email,

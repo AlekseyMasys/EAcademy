@@ -1,16 +1,16 @@
 package ru.eltex.testsystem.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
+@Getter
+@Setter
 public class TestAnswers {
 
-    public List<List<String>> getCheckedItems() {
-        return checkedItems;
-    }
+    private List<List<String>> checkedItems;
 
-    public void setCheckedItems(List<List<String>> checkedItems) {
-        this.checkedItems = checkedItems;
-    }
 
     @Override
     public String toString() {
@@ -18,8 +18,6 @@ public class TestAnswers {
                 "checkedItems=" + checkedItems +
                 '}';
     }
-
-    private List<List<String>> checkedItems; //
 
 }
 

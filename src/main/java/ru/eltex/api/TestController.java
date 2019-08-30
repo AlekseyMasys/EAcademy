@@ -9,6 +9,11 @@ import ru.eltex.testsystem.service.TestStructureService;
 
 import java.util.List;
 
+/**
+ * Класс-контроллер тестов
+ * @author VladimirT8520
+ * @version v2.0
+ */
 @RestController
 public class TestController {
     private final TestStructureService testStructureService;
@@ -19,6 +24,10 @@ public class TestController {
         this.testStructureService = testStructureService;
     }
 
+    /**
+     * Метод для сохранения теста<b>/teacher/{id}/subject/{idSubject}/createTest</b>
+     * @see TestStructure#TestStructure()
+     */
     @RequestMapping(value = "/teacher/{id}/subject/{idSubject}/createTest", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
     public void saveTest(@PathVariable("id") java.lang.String id, @PathVariable("idSubject") java.lang.String idSubject,
                          @RequestBody TestStructure request) {
@@ -27,6 +36,11 @@ public class TestController {
         testStructureService.saveTest(request, idSubject);
     }
 
+    /**
+     * Метод для добавления теста <b>/get_users</b>
+     * @return Тест
+     * @see TestStructure#TestStructure()
+     */
     @RequestMapping(value = "/loadTest", method = RequestMethod.POST)
     public TestStructure loadTest(@RequestBody String request) {
         logger.info("start loadTest()");
@@ -36,6 +50,10 @@ public class TestController {
         return testStructure;
     }
 
+    /**
+     * Метод для получения всех тестов <b>/getAllTests</b>
+     * @return Список id тестов
+     */
     @RequestMapping(value = "/getAllTests", method = RequestMethod.GET)
     public List<java.lang.String> getAllTests() {
         logger.info("start getAllTests()");

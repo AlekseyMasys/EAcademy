@@ -14,6 +14,11 @@ import ru.eltex.accountsystem.service.StudentService;
 import ru.eltex.accountsystem.service.TeacherService;
 import ru.eltex.accountsystem.service.UserService;
 
+/**
+ * Класс-контроллер юзеров
+ * @author Artem
+ * @version v2.0
+ */
 @Controller
 public class UserController {
     private final TeacherService teacherService;
@@ -28,15 +33,21 @@ public class UserController {
         this.userService = userService;
     }
 
-    // В методах, отдающих страницы, в URL адрессе не должно содержаться слэшей, это меняет работу Thymeleaf.
-    // Страницы html НЕ именуются по верблюжьей нотации. Лучше использовать нижнее подчеркивание.
-
+    /**
+     * Метод для сопоставлением со страницей авторизации<b>/</b>
+     * @return Сттаница авторизации
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String get() {
         logger.info("start get()");
         logger.debug("response authorization");
         return "authorization";
     }
+
+    /**
+     * Метод для получения пользователя <b>/user_{id}</b>
+     * @return Массив объектов пользователей
+     */
     @RequestMapping(value = "user_{id}", method = RequestMethod.POST)
     public String getUser(@PathVariable("id") String id, Model modelUser) {
         logger.info("start getUser()");

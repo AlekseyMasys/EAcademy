@@ -6,7 +6,6 @@ import ru.eltex.accountsystem.model.*;
 import ru.eltex.accountsystem.model.users.Student;
 import ru.eltex.accountsystem.repository.StudentRepository;
 import ru.eltex.accountsystem.repository.SubjectRepository;
-import ru.eltex.testsystem.model.TestStructure;
 import ru.eltex.testsystem.repository.TestStructureRepository;
 
 import java.util.ArrayList;
@@ -34,9 +33,12 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public ArrayList<Subject> getAllSubjects(String idStudent) {
-        ArrayList<Subject> subjects = new ArrayList<>();
-        getStudentById(idStudent).getSubjectIds().forEach(elem-> subjects.add(subjectRepository.findById(elem).get()));
+    public List<Subject> getAllSubjects(String idStudent) {
+        List<Subject> subjects = new ArrayList<>();
+
+        List<String> subjectIds = getStudentById(idStudent).getSubjectIds();
+        subjectIds.forEach(idSubject -> subjects.add(subjectRepository.findById(idSubject).get()));
+
         return subjects;
     }
 
@@ -74,13 +76,13 @@ public class StudentService {
         return subject.getTaskIds();
     }
 
-    public List<TestStructure> getTests(String idStudent) {
+    public List<String> getTests(String idStudent) {
         ArrayList<Subject> subjects = new ArrayList<>();
         getStudentById(idStudent).getSubjectIds().forEach(elem-> subjects.add(subjectRepository.findById(elem).get()));
-        List<TestStructure> tests = new ArrayList<>();
+        List<String> tests = new ArrayList<>();
 
         for (Subject subject : subjects) {
-            subject.getTestIds().forEach(elem->tests.add(testStructureRepository.findById(elem).get()));
+            subject.getTestIds().forEach(elem->tests.add(testStructureRepository.findById(elem).get().getName()));
         }
         return tests;
     }

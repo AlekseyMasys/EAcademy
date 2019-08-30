@@ -1,22 +1,33 @@
 package ru.eltex.accountsystem.model;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import ru.eltex.accountsystem.model.users.Student;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
+/**
+ * Класс представления групп
+ * @author Arina Nedobitkova
+ * @version v2.0
+ */
 @Getter
 @Setter
-
 @Document(collection = "groups")
 public class Group {
+    /** Поле идентификатора */
+    @Id
     private String id;
+
+    /** Поле названия */
     private String title;
+
+    /** Поле расписания */
     private String table;
+
+    /** Поле идентификаторов студентов */
     private ArrayList<String> studentIds;
 
     public Group() {
@@ -24,13 +35,13 @@ public class Group {
     }
 
     public Group(String title, ArrayList<String> studentIds) {
-        this.id = UUID.randomUUID().toString();
+        id = UUID.randomUUID().toString();
         this.title = title;
         this.studentIds = studentIds;
     }
 
     public Group(String title, String table, ArrayList<String> studentIds) {
-        this.id = UUID.randomUUID().toString();
+        id = UUID.randomUUID().toString();
         this.title = title;
         this.table = table;
         this.studentIds = studentIds;
@@ -42,5 +53,15 @@ public class Group {
 
     public String getTable() {
         return table;
+    }
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", table='" + table + '\'' +
+                ", studentIds=" + studentIds +
+                '}';
     }
 }

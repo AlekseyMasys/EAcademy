@@ -13,6 +13,6 @@ public class TestResultRepositoryCustomImpl implements TestResultRepositoryCusto
     private MongoTemplate mongoTemplate;
 
     public TestResult getByIdAndIdTest(String id, String testId) {
-        return mongoTemplate.findOne(Query.query(Criteria.where("id").regex(id).and("testId").regex(testId)), TestResult.class);
+        return mongoTemplate.findOne(Query.query(Criteria.where("studentId").regex(id).and("testId").regex(testId)), TestResult.class);
     }
 }

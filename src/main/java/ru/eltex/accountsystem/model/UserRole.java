@@ -6,19 +6,32 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import ru.eltex.accountsystem.enums.Role;
-
 import java.util.Map;
 
+/**
+ * Класс представления роли пользователя
+ * @author Arishenk
+ * @version v2.0
+ */
 @Getter
 @Setter
 @NoArgsConstructor
 @Document(collection = "user_role")
 public class UserRole {
+    /** Поле идентификатора */
     @Id
     private String id;
+
+    /** Поле логина */
     private String userLogin;
+
+    /** Поле пароля */
     private String userPassword;
+
+    /** Поле роли */
     private Role userRole;
+
+    /** Поле идентификатора пользователя в БД учителя/студента*/
     private String userId;
 
     public UserRole(String userLogin, String userPassword, Role userRole, String userId) {

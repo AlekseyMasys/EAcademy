@@ -22,46 +22,51 @@ public class TestAPI {
         this.testResultService = testResultService;
     }
 
-    @GetMapping(value = "/teacher/{id}/subjects/{idSubject}/test")
+    @GetMapping(value = "/index")
     public String index() {
-        return "teacher_file_upload";
+        return "bootstrap4/file_upload";
     }
 
 
-    @RequestMapping(value = "/student/{id}/tests/{testId}", method = RequestMethod.GET)
-    public String showtest(Model model, @PathVariable("id") String id,  @PathVariable("testId") String testId) {
+    @RequestMapping(value = "/student/{id}/{testId}", method = RequestMethod.GET)
+    public String showtest(Model model, @PathVariable("id") String id, @PathVariable("testId") String testId) {
         model.addAttribute("testmodel", testStructureService.loadTest(testId));
-        testResultService.initTestResult(id,testId);
+        testResultService.initTestResult(id, testId); // Если в БД нет Такого TestResult то создаем его в БД
+        TestAnswers testCurrentAnswers = testResultService.getTestResult(id, testId).getTestCurrentAnswers();
+        model.addAttribute("testResult", testResultService.getTestResult(id, testId));
+        model.addAttribute("testAnswers", testCurrentAnswers);
+        model.addAttribute("testmodelFinal", testStructureService.getTest(testId));
 
-//      Если в БД нет Такого TestResult то создаем его в БД
+        System.out.println(testCurrentAnswers);
+        //TODO вместо true вставить перем.теста из шаблона
+        // отвеч за повторное прохождение (true- запрет повторного) !!!!!!!!*******
+        if (testResultService.getTestResult(id, testId).getTestFinishAnswers() != null && true) {
+            model.addAttribute("badAnswers", testResultService.checkBadAnswers(id,testId));
 
-
-        List<String> list = new ArrayList<>();
-        list.add("1");
-        list.add("2");
-        List<List<String>> list2 = new ArrayList<>();
-        list2.add(list);
-        TestAnswers testAnswers = new TestAnswers();
-        testAnswers.setCheckedItems(list2);
-        model.addAttribute("testAnswers",testAnswers);
-
-        System.out.println(testAnswers.toString());
-
-        return "showTest";
-    }
-
-    @PostMapping("/student/{id}/{testId}/finishtest")
-    public String getDataTest( @ModelAttribute("testAnswers") TestAnswers testAnswers) {
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!  ТЕСТ ЗАВЕРШЕН  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        System.out.println(testAnswers.toString());
-
-        return "help";
+            return "test_alredy_done";
+        }
+        return "test_form";
     }
 
     @RequestMapping(value = "/student/{id}/{testId}/saveCurrentResult", method = RequestMethod.POST)
     @ResponseBody
-    public void addGroup(@RequestBody TestAnswers testAnswers, @PathVariable("id") String id,  @PathVariable("idTest") String idTest) {
+    public void addGroup(@RequestBody TestAnswers testCurrentAnswers, @PathVariable("id") String id
+            , @PathVariable("testId") String idTest) {
+        System.out.println(testCurrentAnswers);
         System.out.println("Внести в БД текущие данные теста");
-        testResultService.setTestCurrentResult(id,idTest,testAnswers  );
+        testResultService.setTestCurrentAnswers(id, idTest, testCurrentAnswers);
     }
+
+    @PostMapping("/student/{id}/{testId}/finishtest")
+    public String getDataTest(Model model, @ModelAttribute("testAnswers") TestAnswers testAnswers,
+                              @PathVariable("id") String id, @PathVariable("testId") String testId) {
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!  ТЕСТ ЗАВЕРШЕН  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println(testAnswers.toString());
+        testResultService.setTestResult(id, testId, testAnswers);
+        model.addAttribute("badAnswers", testResultService.checkBadAnswers(id,testId));
+        model.addAttribute("testmodelFinal", testStructureService.getTest(testId));
+        model.addAttribute("testResult", testResultService.getTestResult(id, testId));
+        return "test_result";
+    }
+
 }

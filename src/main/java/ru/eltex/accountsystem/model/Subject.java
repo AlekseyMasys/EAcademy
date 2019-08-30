@@ -1,21 +1,48 @@
 package ru.eltex.accountsystem.model;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Класс представления дисциплин
+ * @author Alexey Masis
+ * @version v2.0
+ */
 @Getter
 @Setter
 @Document(collection = "subjects")
 public class Subject {
+
+    @Id
+    /** Поле идентификатора */
     private String id;
+
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", taskIds=" + taskIds +
+                ", groupIds=" + groupIds +
+                ", testIds=" + testIds +
+                '}';
+    }
+
+    /** Поле названия */
     private String title;
+
+    /** Поле идентификаторов заданий */
     private List<String> taskIds;
+
+    /** Поле идентификаторов групп */
     private List<String> groupIds;
+
+    /** Поле идентификаторов тестов */
     private List<String> testIds;
 
     public Subject() {

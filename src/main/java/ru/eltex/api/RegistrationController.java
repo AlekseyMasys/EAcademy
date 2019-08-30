@@ -10,6 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.eltex.accountsystem.service.UserRegistrationService;
 
+/**
+ * Класс-контроллер для осуществления регистрации
+ * @author Masis Alexey
+ * @version v2.0
+ */
 @Controller
 @RequestMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
 public class RegistrationController {
@@ -21,14 +26,28 @@ public class RegistrationController {
         this.userRegistrationService = userRegistrationService;
     }
 
+    /**
+     * Метод для получения страницы регистрации <b>/registration</b>
+     * @return имя возвращаемой страницы
+     */
     @GetMapping(value = "/registration")
     public String registerPage() {
+        logger.info("start registerPage()");
+        logger.debug("response registration.html");
         return "registration";
     }
 
-    @RequestMapping(value = "/registration2", method = RequestMethod.POST)
+    /**
+     * Метод для регистрации пользователя <b>/registration_user</b>
+     * @return Статус ответа в виде строки
+     */
+    @RequestMapping(value = "/registration_user", method = RequestMethod.POST)
     @ResponseBody
     public String register(@RequestBody JsonNode jsonNode) {
-        return userRegistrationService.register(jsonNode);
+        logger.info("start registry"); // обычное информационное сообщение
+        logger.debug("request " + jsonNode.toString());
+        String result = userRegistrationService.register(jsonNode);
+        logger.debug("response " + result);
+        return result;
     }
 }

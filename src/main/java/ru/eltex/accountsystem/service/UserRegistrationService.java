@@ -2,8 +2,6 @@ package ru.eltex.accountsystem.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.eltex.accountsystem.enums.Role;
@@ -26,8 +24,6 @@ public class UserRegistrationService {
     private final GraduateRepository graduateRepository;
     private final ObjectMapper objectMapper;
 
-    private final Logger logger = LoggerFactory.getLogger(UserRegistrationService.class);
-
     @Autowired
     public UserRegistrationService(AllUserRepository allUserRepository, StudentRepository studentRepository, TeacherRepository teacherRepository,
                                    AdminRepository adminRepository, GraduateRepository graduateRepository, ObjectMapper objectMapper) {
@@ -40,8 +36,6 @@ public class UserRegistrationService {
     }
 
     public String register(JsonNode jsonNode) {
-        logger.info(String.format("request: %s", jsonNode.toString()));
-
         Map<String, String> userMap = objectMapper.convertValue(jsonNode, Map.class);
 
         if (allUserRepository.findByUserLoginAndUserPassword(userMap.get("login"), userMap.get("password")) != null) {

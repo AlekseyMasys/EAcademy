@@ -9,11 +9,19 @@ import lombok.Setter;
 
 import java.util.Map;
 
+/**
+ * Класс представления выпускника
+ * @author Maria Koloskova
+ * @version v2.0
+ */
 @Getter
 @Setter
 @Document(collection = "graduates")
 public class Graduate extends User {
+    /** Поле возраста */
     Integer age;
+
+    /** Поле пола */
     Sex sex;
 
     public Graduate(String login, String password,

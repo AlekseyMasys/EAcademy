@@ -24,33 +24,33 @@
 
 
 
-    function displayContents() {
-        <!-- var line="";-->
-        <!--     for (let i=0; i<testmodel.test.length; i++){-->
-        <!---->
-        <!--        for (let j=0; j<length; j++){-->
-        <!--            var idUser = document.getElementById('checkedItems'+i+j).value;-->
-        <!--            var line += idUser"<br/>" ;-->
-        <!--        }-->
-        <!--     }-->
-        var contents = $("#testform").serialize("") ;
+function displayContents() {
+<!-- var line="";-->
+<!--     for (let i=0; i<testmodel.test.length; i++){-->
+<!---->
+<!--        for (let j=0; j<length; j++){-->
+<!--            var idUser = document.getElementById('checkedItems'+i+j).value;-->
+<!--            var line += idUser"<br/>" ;-->
+<!--        }-->
+<!--     }-->
+    var contents = $("#testform").serialize("") ;
 
-        <!--    var indexed_array = {};-->
-        <!---->
-        <!--    $.map(contents, function(n, i){-->
-        <!--        indexed_array[n['name']] = n['value'];-->
-        <!--    });-->
-        console.log(contents);
-        $.ajax({
-            type: "POST",
-            contentType: "application/json; charset=UTF-8",
-            url: document.URL + "/saveCurrentResult",
-            data: JSON.stringify(contents),
-            dataType: "Json",
-        });
-    }
-    <!--/student/128/47e26186-2dca-4345-835c-cc5391327688-->
-    <!--               url: "/student/128/47e26186-2dca-4345-835c-cc5391327688/saveCurrentResult",-->
+<!--    var indexed_array = {};-->
+<!---->
+<!--    $.map(contents, function(n, i){-->
+<!--        indexed_array[n['name']] = n['value'];-->
+<!--    });-->
+    console.log(contents);
+    $.ajax({
+               type: "POST",
+               contentType: "application/json; charset=UTF-8",
+               url: document.URL + "/saveCurrentResult",
+               data: JSON.stringify(contents),
+               dataType: "Json",
+    });
+}
+<!--/student/128/47e26186-2dca-4345-835c-cc5391327688-->
+<!--               url: "/student/128/47e26186-2dca-4345-835c-cc5391327688/saveCurrentResult",-->
 
 
 
@@ -81,15 +81,13 @@
 
                         <legend th:utext="${task.question}"></legend>
                         <th:block th:each="answer,answerStat : ${task.answers}">
-<!--                            <input type="checkbox" th:field="*{checkedItems[__${taskStat.index}__]}"-->
-<!--                                   th:value="${answerStat.count}"/>-->
                             <input type="checkbox" th:field="*{checkedItems[__${taskStat.index}__]}"
-                                                               th:value="${answerStat.count}"/>
+                                   th:value="${answerStat.count}"/>
                             <label th:for="'checkedItems' + ${taskStat.index}+${answerStat.count}"
                                    th:text="${answer}"></label>
                             <br/>
                         </th:block>
-                        <!--                        <button type="button" onclick="displayContents()">Сохранить текущий результат</button>-->
+<!--                        <button type="button" onclick="displayContents()">Сохранить текущий результат</button>-->
                         <!--                        <button type="button" onclick="'javascript:displayContents(\'' + ${testmodel} + '\');'">Current Result</button>-->
 
                     </div>

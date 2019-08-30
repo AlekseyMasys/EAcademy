@@ -16,6 +16,7 @@ import java.util.List;
 
 /**
  * Класс-контроллер студентов
+ *
  * @author Maria Koloskova
  * @version v2.0
  */
@@ -31,19 +32,21 @@ public class StudentController {
 
     /**
      * Метод для получения страницы студента <b>/student/{id}</b>
+     *
      * @return Страница студента
      */
-    @RequestMapping(value = "/student/{id}", method = RequestMethod.GET)
-    public String getStudent(@PathVariable("id") String id, Model modelTeacher) {
+    @RequestMapping(value = "/student/{studentId}", method = RequestMethod.GET)
+    public String getStudent(@PathVariable("studentId") String studentId, Model modelStudent) {
         logger.info("start getStudent()");
-        logger.debug("request id = " + id);
+        logger.debug("request id = " + studentId);
         logger.debug("response student_main");
-        modelTeacher.addAttribute("student", studentService.getStudentById(id));
+        modelStudent.addAttribute("student", studentService.getStudentById(studentId));
         return "student_main";
     }
 
     /**
      * Метод для получение страницы дисциплин<b>/student/{studentId}/subjects</b>
+     *
      * @return Страница с дисциплинами
      */
     @RequestMapping(value = "student/{studentId}/subjects", method = RequestMethod.GET)
@@ -51,12 +54,14 @@ public class StudentController {
         logger.info("start getSubjects()");
         logger.debug("request studentId = " + studentId);
         logger.debug("response student_subjects");
+        model.addAttribute("student", studentService.getStudentById(studentId));
         model.addAttribute("subjects", studentService.getAllSubjects(studentId));
         return "student_subjects";
     }
 
     /**
      * Метод для получения заданий<b>/student/{studentId}/subjects/{subjectId}/tasks</b>
+     *
      * @return Страница с предметами
      */
     @RequestMapping(value = "student/{studentId}/subjects/{subjectId}/tasks", method = RequestMethod.GET)
@@ -64,12 +69,14 @@ public class StudentController {
         logger.info("start getTasks()");
         logger.debug("request studentId = " + studentId + "subjectId = " + studentId);
         logger.debug("response student_tasks");
-        model.addAttribute("subjects", studentService.getAllTasksByOneSubject(subjectId));
+        model.addAttribute("student", studentService.getStudentById(studentId));
+        model.addAttribute("tasks", studentService.getSubjectTasks(subjectId));
         return "student_tasks";
     }
 
     /**
      * Метод для получения страницы с тестами <b>/student/{studentId}/tests</b>
+     *
      * @return Страница с тестами
      */
     @RequestMapping(value = "student/{studentId}/tests", method = RequestMethod.GET)
@@ -83,6 +90,7 @@ public class StudentController {
 
     /**
      * Метод для получения расписания <b>/student/{studentId}/table</b>
+     *
      * @return Страница с расписанием
      */
     @RequestMapping(value = "student/{studentId}/table", method = RequestMethod.GET)
@@ -101,8 +109,10 @@ public class StudentController {
 //    }
 
     //REST METHOD
+
     /**
      * Метод для получения дисциплин<b>/student/{studentId}/subjects</b>
+     *
      * @return Список дисциплин
      * @see Subject#Subject()
      */
@@ -113,7 +123,7 @@ public class StudentController {
         logger.debug("request studentId = " + idStudent);
         List<Subject> subjects = studentService.getAllSubjects(idStudent);
         StringBuilder subjectsToString = new StringBuilder();
-        for (Subject subject: subjects) {
+        for (Subject subject : subjects) {
             subjectsToString.append(subject);
             subjectsToString.append(" ");
         }

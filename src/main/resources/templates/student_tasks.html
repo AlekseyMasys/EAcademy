@@ -4,7 +4,7 @@
 <html class="no-js lt-ie9 lt-ie8 lt-ie7">
 <html class="no-js lt-ie9 lt-ie8">
 <html class="no-js lt-ie9">
-<html class="no-js">
+<html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -51,32 +51,42 @@
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="navbar-header">
                     <!-- Mobile Toggle Menu Button -->
-                    <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse"
+                    <a th:href="@{#}" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse"
                        data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-                    <a class="navbar-brand" href="index.html">EAcademy</a>
+                    <a class="navbar-brand" th:href="@{index}">EAcademy</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a onclick="location.href='index.html';" data-nav-section="home">
-                            <span>Дисциплины</span></a>
+                        <li class="dropdown">
+                            <a class="external" data-nav-section="testimony" data-toggle="dropdown">
+                                Дисциплины
+                                <b class="caret external"></b>
+                            </a>
+                            <ul class="dropdown-menu external">
+                                <label>
+                                    <select th:object="${subject}">
+                                        <option class="external" th:each="subject : ${subjects}">
+                                            <div th:text="${subject.title}"></div>
+                                        </option>
+                                    </select>
+                                </label>
+                            </ul>
                         </li>
-
-                        <li><a onclick="location.href='index.html';" data-nav-section="testimony">
-                            <span>Тестирования</span></a>
-                        </li>
-
-                        <li><a onclick="location.href='index.html';" data-nav-section="testimony">
+                        <li><a class="external" th:href="@{'/student/'+${student.id}}"
+                               data-nav-section="blog">
                             <span>Расписание</span></a>
                         </li>
-
-                        <li><a onclick="location.href='index.html';" data-nav-section="testimony">
+                        <li><a class="external" th:href="@{'/student/'+${student.id}}"
+                               data-nav-section="blog">
                             <span>Оценки</span></a>
                         </li>
-
-                        <li><a onclick="location.href='index.html';"
-                               data-nav-section="pricing"><span>Моя страница</span></a>
+                        <li><a class="external" th:href="@{'/student/'+${student.id}}"
+                               data-nav-section="pricing">
+                            <span>Моя страница</span></a>
                         </li>
-                        <li><a onclick="location.href='authorization.html';" data-nav-section="blog"><span>Выход</span></a>
+                        <li><a class="external" th:href="@{/}"
+                               data-nav-section="blog">
+                            <span>Выход</span></a>
                         </li>
                     </ul>
                 </div>
@@ -90,53 +100,21 @@
         <div class="row" style="margin-bottom: 25px">
             <div class="col-md-8" style="color:#000000">Задание</div>
             <div class="col-md-2" style="color:#000000">Отправить работу</div>
-            <div class="col-md-2" style="color:#000000">Баллы</div>
+            <div class="col-md-1" style="color:#000000">Баллы</div>
+            <div class="col-md-1" style="color:#000000">Макс. баллы</div>
         </div>
-        <div class="row">
-            <div class="col-md-8" style="color:#000000">Решить линейное уравнение</div>
-            <div class="col-md-8">Задание зачтено и в журнал выставлена оценка</div>
-            <div class="form-group col-md-2">
-                <input type="submit" class="btn btn-send-message btn-md"
-                       value="Отправить работу">
+        <th:block th:each="task : ${tasks}">
+            <div class="row">
+                <div class="col-md-8" style="color:#000000" th:utext="${task.title}"></div>
+                <div class="col-md-8">Задание зачтено и в журнал выставлена оценка</div>
+                <div class="form-group col-md-2">
+                    <input type="submit" class="btn btn-send-message btn-md"
+                           value="Отправить работу">
+                </div>
+                <div class="col-md-1" style="color:#000000" th:utext="${task.maxScores}"></div>
+                <div class="col-md-1" style="color:#000000" th:utext="${task.maxScores}"></div>
             </div>
-            <div class="col-md-2" style="color:#000000">18</div>
-        </div>
-        <div class="row">
-            <div class="col-md-8" style="color:#000000">Лаба1</div>
-            <div class="col-md-8">Задание зачтено и в журнал выставлена оценка</div>
-            <div class="form-group col-md-2">
-                <input type="submit" class="btn btn-send-message btn-md"
-                       value="Отправить работу">
-            </div>
-            <div class="col-md-2" style="color:#000000">18</div>
-        </div>
-        <div class="row">
-            <div class="col-md-8" style="color:#000000">Лаба2</div>
-            <div class="col-md-8">Отправленных заданий нет</div>
-            <div class="form-group col-md-2">
-                <input type="submit" class="btn btn-send-message btn-md"
-                       value="Отправить работу">
-            </div>
-            <div class="col-md-2" style="color:#000000"></div>
-        </div>
-        <div class="row">
-            <div class="col-md-8" style="color:#000000">Лаба3</div>
-            <div class="col-md-8">Задание зачтено и в журнал выставлена оценка</div>
-            <div class="form-group col-md-2">
-                <input type="submit" class="btn btn-send-message btn-md"
-                       value="Отправить работу">
-            </div>
-            <div class="col-md-2" style="color:#000000">18</div>
-        </div>
-        <div class="row">
-            <div class="col-md-8" style="color:#000000">Лаба4</div>
-            <div class="col-md-8">Отправленных заданий нет</div>
-            <div class="form-group col-md-2">
-                <input type="submit" class="btn btn-send-message btn-md"
-                       value="Отправить работу">
-            </div>
-            <div class="col-md-2" style="color:#000000"></div>
-        </div>
+        </th:block>
     </div>
 </section>
 

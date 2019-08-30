@@ -1,3 +1,4 @@
+Мари, [30.08.19 11:36]
 <!DOCTYPE html>
 <html xml:th="http://thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml" lang="ru">
 
@@ -122,7 +123,7 @@
                         </div>
                         <ul class="pricing__feature-list">
                             <li class="pricing__feature"><a style="color:#000000"
-                                                            th:href="@{__${#httpServletRequest.requestURI}__/subjects}"
+                                                            th:href="@{${#httpServletRequest.requestURI}/subjects}"
                                                             data-nav-section="blog"><span>Дисциплины</span></a></li>
                             <li class="pricing__feature"><a style="color:#000000"
                                                             th:href="@{__${#httpServletRequest.requestURI}__/tests}"
@@ -145,6 +146,16 @@
                             Моя страница
                         </div>
                         </p>
+                        <ul class="pricing__feature-list" style="color: #0b0b0b">
+                            <li class="pricing__feature">
+                                <p th:utext="'Логин: ' + ${student.getLogin()}"></p></li>
+                            <li class="pricing__feature">
+                                <p th:utext="'Ф.И.О.: ' + ${student.getFio()}"></p></li>
+                            <li class="pricing__feature">
+                                <p th:utext="'Email: ' + ${student.getEmail()}"></p></li>
+                            <li class="pricing__feature">
+                                <p th:utext="'Статус: ' + ${student.getRole()}"></p></li>
+                        </ul>
                         <ul class="pricing__feature-list">
                             <li class="pricing__feature"></li>
                         </ul>

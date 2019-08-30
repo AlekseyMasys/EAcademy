@@ -2,9 +2,7 @@ package ru.eltex.accountsystem.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.util.List;
 import java.util.UUID;
 
@@ -17,21 +15,8 @@ import java.util.UUID;
 @Setter
 @Document(collection = "subjects")
 public class Subject {
-
-    @Id
     /** Поле идентификатора */
     private String id;
-
-    @Override
-    public String toString() {
-        return "Subject{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", taskIds=" + taskIds +
-                ", groupIds=" + groupIds +
-                ", testIds=" + testIds +
-                '}';
-    }
 
     /** Поле названия */
     private String title;
@@ -54,5 +39,16 @@ public class Subject {
         this.taskIds = taskIds;
         this.groupIds = groupIds;
         this.testIds = testIds;
+    }
+
+    @Override
+    public String toString() {
+        return "Subject{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", taskIds=" + taskIds +
+                ", groupIds=" + groupIds +
+                ", testIds=" + testIds +
+                '}';
     }
 }

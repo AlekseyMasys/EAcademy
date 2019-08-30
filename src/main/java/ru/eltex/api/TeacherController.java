@@ -153,7 +153,7 @@ public class TeacherController {
     public String addSubject(@PathVariable("teacherId") String teacherId, @RequestBody JsonNode subject) {
         logger.info("start addSubject()");
         logger.debug("request subject = " + subject.toString());
-        return teacherService.addSubject(teacherId,subject);
+        return teacherService.addSubject(teacherId, subject);
     }
 
     /**
@@ -175,9 +175,10 @@ public class TeacherController {
      * Метод для добавления задания<b>/teacher_{teacherId}_subjects_{subjectId}_addTask</b>
      * @see Task#Task(String, String, Integer)
      */
-    @RequestMapping(value = "teacher_{teacherId}_subjects_{subjectId}_addTask", method = RequestMethod.POST)
-    public void addTask(@PathVariable("teacherId") String teacherId, @PathVariable("subjectId") String subjectId, @
-            RequestBody Task task) {
+    @RequestMapping(value = "teacher/{teacherId}/subjects/{subjectId}/addTask", method = RequestMethod.POST)
+    public void addTask(@PathVariable("teacherId") String teacherId,
+                        @PathVariable("subjectId") String subjectId,
+                        @RequestBody Task task) {
         logger.info("start addTask()");
         logger.debug("request teacherId = " + teacherId + " subjectId = " + subjectId);
         teacherService.addTask(teacherId, subjectId, task);
@@ -187,7 +188,6 @@ public class TeacherController {
      * Метод для получения ответов на задания<b>/teacher_{teacherId}_subjects_{subjectId}_{groupId}_TasksResults</b>
      * @return Страница с ответами на задания
      */
-    // нужна отдельная страничка (Работа для Маши=))
     @RequestMapping(value = "teacher_{teacherId}_subjects_{subjectId}_{groupId}_TasksResults", method = RequestMethod.GET)
     public String getTasksResults(@PathVariable("groupId") String groupId, Model model) {
         logger.info("start getTasksResults()");

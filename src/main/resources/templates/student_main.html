@@ -52,52 +52,42 @@
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="navbar-header">
                     <!-- Mobile Toggle Menu Button -->
-                    <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse"
+                    <a th:href="@{#}" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse"
                        data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-                    <a class="navbar-brand" href="index.html">EAcademy</a>
+                    <a class="navbar-brand" th:href="@{index}">EAcademy</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-
-                        <!--                        <li class="active">-->
-                        <!--                            <a class="custom-select" required onclick="location.href='index.html';"-->
-                        <!--                               data-nav-section="testimony">-->
-                        <!--                                <span>-->
-                        <!--                                    <select>-->
-                        <!--                                        <option value="">Open this select menu</option>-->
-                        <!--                                        <option value="1">One</option>-->
-                        <!--                                        <option value="2">Two</option>-->
-                        <!--                                        <option value="3">Three</option>-->
-                        <!--                                    </select>-->
-                        <!--                                </span>-->
-                        <!--                            </a>-->
-                        <!--                        </li>-->
-
                         <li class="dropdown">
-                            <a href="#" onclick="location.href='index.html';" data-nav-section="testimony"
-                               data-toggle="dropdown" class="dropdown-toggle">
-                                Меню
-                                <b class="caret"></b>
+                            <a class="external" data-nav-section="testimony" data-toggle="dropdown">
+                                Дисциплины
+                                <b class="caret external"></b>
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Текст подпункта</a></li>
-                                <li><a href="#">Текст подпункта</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">Текст подпункта</a></li>
+                            <ul class="dropdown-menu external">
+                                <label>
+                                    <select th:object="${subject}">
+                                        <option class="external" th:each="subject : ${teacherSubjects}">
+                                            <div th:text="${subject.title}"></div>
+                                        </option>
+                                    </select>
+                                </label>
                             </ul>
                         </li>
-
-
-                        <li><a onclick="location.href='index.html';" data-nav-section="testimony">
+                        <li><a class="external" th:href="@{'/student/'+${student.id}}"
+                               data-nav-section="blog">
                             <span>Расписание</span></a>
                         </li>
-                        <li><a onclick="location.href='index.html';" data-nav-section="testimony">
+                        <li><a class="external" th:href="@{'/student/'+${student.id}}"
+                               data-nav-section="blog">
                             <span>Оценки</span></a>
                         </li>
-                        <li><a onclick="location.href='index.html';" data-nav-section="pricing">
+                        <li><a class="external" th:href="@{'/student/'+${student.id}}"
+                               data-nav-section="pricing">
                             <span>Моя страница</span></a>
                         </li>
-                        <li><a onclick="location.href='authorization.html';" data-nav-section="blog"><span>Выход</span></a>
+                        <li><a class="external" th:href="@{/}"
+                               data-nav-section="blog">
+                            <span>Выход</span></a>
                         </li>
                     </ul>
                 </div>

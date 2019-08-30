@@ -23,12 +23,18 @@ public class RegistrationController {
 
     @GetMapping(value = "/registration")
     public String registerPage() {
+        logger.info("start registerPage()");
+        logger.debug("response registration.html");
         return "registration";
     }
 
     @RequestMapping(value = "/registration2", method = RequestMethod.POST)
     @ResponseBody
     public String register(@RequestBody JsonNode jsonNode) {
-        return userRegistrationService.register(jsonNode);
+        logger.info("start registry"); // обычное информационное сообщение
+        logger.debug("request " + jsonNode.toString());
+        String result = userRegistrationService.register(jsonNode);
+        logger.debug("response " + result);
+        return result;
     }
 }

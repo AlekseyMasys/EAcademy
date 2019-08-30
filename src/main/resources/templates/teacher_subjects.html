@@ -44,25 +44,24 @@
     <script src="../../js/respond.min.js"></script>
 
     <script>function setSubjectName() {
-        document.getElementById("subject_name").style.display='block';}
-        function createSubject() {
-        var subjectName= document.getElementById("text").value;
-            $.ajax({
-                type: "POST",
-                contentType: "application/json",
-                url:location.href+"/add_subject",
-                data:"{\"subjectName\":\""+subjectName+"\"}",
-                success:function(response){
-                    alert(response);
-                    document.location.replace(location.href+"/"+response);
-                      //  $("#subject_name").attr("action",location.href+"/"+response).submit;
-                }
-             });
-            
-        }
+        document.getElementById("subject_name").style.display = 'block';
+    }
+
+    function createSubject() {
+        var subjectName = document.getElementById("text").value;
+        $.ajax({
+            type: "POST",
+            contentType: "application/json",
+            url: location.href + "/add_subject",
+            data: "{\"subjectName\":\"" + subjectName + "\"}",
+            success: function (response) {
+                alert(response);
+                document.location.replace(location.href + "/" + response);
+                //  $("#subject_name").attr("action",location.href+"/"+response).submit;
+            }
+        });
+    }
     </script>
-    
-    
 </head>
 
 <body>
@@ -139,14 +138,12 @@
                 </div>
             </div>
         </div>
-        <div id="teacherInfo" class="row">
+        <div id="teacherInfo" class="row col-md-8">
             <th:block th:each="subject : ${teacherSubjects}">
                 <div class="col-md-5 external"><a th:utext="${subject.title}" style="color: #0b0b0b"
-                                                  th:href="@{'/teacher/' + ${teacher.id} + '/subjects/'+${subject.id}}"></a>
+                                                  th:href="@{'/teacher/' + ${teacher.id} + '/subjects/' + ${subject.id}}"></a>
                 </div>
-                <div class="col-md-5" id="teacherFio">
-                    <!-- <p th:utext="${teacher.fio}"></p> -->
-                </div>
+                <div class="col-md-5" id="teacherFio"></div>
                 <div class="form-group col-md-3">
                     <input type="submit" class="btn btn-send-message btn-md"
                            value="Перейти к проверке работ"/>
@@ -240,7 +237,9 @@
 <!-- Main JS (Do not remove) -->
 <!-- Main JS (Do not remove) -->
 <script src="../../js/main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>

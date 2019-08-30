@@ -63,6 +63,7 @@ public class TeacherController {
         return "teacher_sbjct_grps";
     }
 
+    //@RequestMapping(value = "/teacher_{id}_groups", method = RequestMethod.GET)
 //    @RequestMapping(value = "/teacher/{idTeacher}/subjects/add_subject", method = RequestMethod.GET)
 //    public String addSubject(Model model){
 //        return "teacher_add_subject";

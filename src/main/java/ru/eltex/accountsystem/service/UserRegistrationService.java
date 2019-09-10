@@ -22,17 +22,17 @@ public class UserRegistrationService {
     private final TeacherRepository teacherRepository;
     private final AdminRepository adminRepository;
     private final GraduateRepository graduateRepository;
-    private final ObjectMapper objectMapper;
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @Autowired
     public UserRegistrationService(AllUserRepository allUserRepository, StudentRepository studentRepository, TeacherRepository teacherRepository,
-                                   AdminRepository adminRepository, GraduateRepository graduateRepository, ObjectMapper objectMapper) {
+                                   AdminRepository adminRepository, GraduateRepository graduateRepository) {
         this.allUserRepository = allUserRepository;
         this.studentRepository = studentRepository;
         this.teacherRepository = teacherRepository;
         this.adminRepository = adminRepository;
         this.graduateRepository = graduateRepository;
-        this.objectMapper = objectMapper;
     }
 
     public String register(JsonNode jsonNode) {

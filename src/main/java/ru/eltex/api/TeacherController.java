@@ -76,7 +76,7 @@ public class TeacherController {
         return "teacher_sbjct_grps";
     }
 
-    @RequestMapping(value = "/teacher_{idTeacher}_groups", method = RequestMethod.GET)
+    @RequestMapping(value = "/teacher/{idTeacher}/groups", method = RequestMethod.GET)
     public String getTeacherGroups(@PathVariable("idTeacher") String idTeacher, Model modelGroup) {
         logger.info("start getTeacherGroups()");
         logger.debug("request id = " + idTeacher);

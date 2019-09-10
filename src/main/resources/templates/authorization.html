@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xml:th="http://thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml" lang="ru">
+<html xml:th="http://thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml" lang="ru"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+>
 
 <!--[if lt IE 7]>
 <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -68,31 +70,30 @@
                         <li><a class="external" th:href="@{'/registration'}"
                                data-nav-section="pricing"><span>Зарегистрироваться</span></a>
                         </li>
+                        <li><a class="external" th:href="@{'/user'}"
+                               data-nav-section="pricing">
+                            <span>Моя страница</span></a>
+                        </li>
+                        <li><a class="external" th:href="@{'/logout'}"
+                               data-nav-section="blog">
+                            <span>Выход</span></a>
+                        </li>
                     </ul>
                 </div>
             </nav>
         </div>
     </div>
 </header>
-
-<section id="fh5co-services" data-section="services">
-    <div class="fh5co-services">
-        <div class="container">
-            <div class="row">
-                <form class="contact-form">
-                    <div class="form-group">
-                        <label for="login" class="sr-only">Логин</label>
-                        <input id="login" class="form-control" placeholder="Введите логин">
+<section class="pricing-section bg-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 section-heading text-center">
+                <h2 class="animate-box">Мы EAcademy</h2>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 subtext animate-box">
+                        <h3>Лучшая система учета студентов.</h3>
                     </div>
-                    <div class="form-group">
-                        <label for="password" class="sr-only">Пароль</label>
-                        <input type="password" id="password" class="form-control" placeholder="Введите пароль">
-                    </div>
-                    <div class="form-group">
-                        <input onclick="Authorize()" type="submit" class="btn btn-send-message btn-md"
-                               value="Авторизироваться">
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

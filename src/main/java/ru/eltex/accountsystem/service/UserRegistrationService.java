@@ -38,7 +38,7 @@ public class UserRegistrationService {
     public String register(JsonNode jsonNode) {
         Map<String, String> userMap = objectMapper.convertValue(jsonNode, Map.class);
 
-        if (allUserRepository.findByUserLoginAndUserPassword(userMap.get("login"), userMap.get("password")) != null) {
+        if (allUserRepository.findByUsernameAndPassword(userMap.get("login"), userMap.get("password")) != null) {
             return "Ошибка, пользователь с таким логином и паролем уже существует.";
         } else {
             switch (Role.valueOf(userMap.get("role"))) {

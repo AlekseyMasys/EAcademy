@@ -8,11 +8,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import ru.eltex.accountsystem.enums.Role;
 import ru.eltex.accountsystem.model.UserRole;
 import ru.eltex.accountsystem.service.StudentService;
 import ru.eltex.accountsystem.service.TeacherService;
 import ru.eltex.accountsystem.service.UserService;
+
+import java.security.Principal;
 
 /**
  * Класс-контроллер юзеров
@@ -44,16 +47,22 @@ public class UserController {
         return "authorization";
     }
 
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    @ResponseBody
+    public String currentUserName(Principal principal) {
+        return principal.getName();
+    }
+
     /**
      * Метод для получения пользователя <b>/user_{id}</b>
      * @return Массив объектов пользователей
      */
-    @RequestMapping(value = "user_{id}", method = RequestMethod.POST)
-    public String getUser(@PathVariable("id") String id, Model modelUser) {
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public String getUser(Principal principal, Model modelUser) {
         logger.info("start getUser()");
-        logger.debug("request id = " + id);
-        UserRole userRole = userService.getUserRole(id);
-        if (userRole.getUserRole().equals(Role.TEACHER)) {
+        logger.debug("request id = " + principal.getName());
+        UserRole userRole = userService.getUserRole(principal.getName());
+        if (userRole.getAuthorities().get(0).equals(Role.TEACHER)) {
             logger.debug("response teacher_main");
             modelUser.addAttribute("teacher", teacherService.getTeacher(userRole.getUserId()));
             return "teacher_main";

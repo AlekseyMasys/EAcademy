@@ -13,6 +13,7 @@ import ru.eltex.accountsystem.model.users.Teacher;
 import ru.eltex.accountsystem.repository.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -25,8 +26,9 @@ public class UserRegistrationService {
     private final ObjectMapper objectMapper;
 
     @Autowired
-    public UserRegistrationService(AllUserRepository allUserRepository, StudentRepository studentRepository, TeacherRepository teacherRepository,
-                                   AdminRepository adminRepository, GraduateRepository graduateRepository, ObjectMapper objectMapper) {
+    public UserRegistrationService(AllUserRepository allUserRepository, StudentRepository studentRepository,
+                                   TeacherRepository teacherRepository, AdminRepository adminRepository,
+                                   GraduateRepository graduateRepository, ObjectMapper objectMapper) {
         this.allUserRepository = allUserRepository;
         this.studentRepository = studentRepository;
         this.teacherRepository = teacherRepository;
@@ -62,8 +64,13 @@ public class UserRegistrationService {
                     adminRepository.save(admin);
                 }
             }
-            UserRole userRole = new UserRole(userMap);
+
+            List<Role> role = new ArrayList<>();
+            role.add(Role.valueOf(userMap.get("role")));
+
+            UserRole userRole = new UserRole(role, userMap);
             allUserRepository.save(userRole);
+
             return "Регистрация прошла успешно.";
         }
     }

@@ -3,7 +3,6 @@ package ru.eltex.accountsystem.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.eltex.accountsystem.model.*;
-
 import ru.eltex.accountsystem.model.users.Student;
 import ru.eltex.accountsystem.repository.StudentRepository;
 import ru.eltex.accountsystem.repository.SubjectRepository;
@@ -12,6 +11,12 @@ import ru.eltex.testsystem.repository.TestStructureRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Класс-сервис
+ * @author Koloskova Maria
+ * @version v2.0
+ */
 
 @Service
 public class StudentService {

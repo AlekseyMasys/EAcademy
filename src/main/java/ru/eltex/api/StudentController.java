@@ -84,7 +84,7 @@ public class StudentController {
         logger.info("start getTests()");
         logger.debug("request studentId = " + studentId);
         logger.debug("response student_tests");
-        model.addAttribute("tests", studentService.getTests(studentId));
+        //model.addAttribute("tests", studentService.getTests(studentId));
         return "student_tests";
     }
 

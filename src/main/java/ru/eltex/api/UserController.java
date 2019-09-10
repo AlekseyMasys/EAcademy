@@ -64,11 +64,11 @@ public class UserController {
         if (userRole.getAuthorities().get(0).equals(Role.TEACHER)) {
             logger.debug("response teacher_main");
             modelUser.addAttribute("teacher", teacherService.getTeacher(userRole.getUserId()));
-            return "teacher_main";
+            return "redirect:/teacher/"+userRole.getUserId();
         } else {
             logger.debug("response student_main");
             modelUser.addAttribute("student", studentService.getStudentById(userRole.getUserId()));
-            return "student_main";
+            return "redirect:/student/"+userRole.getUserId();
         }
     }
 }

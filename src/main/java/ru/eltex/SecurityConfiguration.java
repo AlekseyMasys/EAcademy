@@ -18,11 +18,14 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/**").permitAll()
+                .antMatchers("/registration_user").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()
                 .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll();
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
+                .and()
+                .csrf().disable();
     }
 
     @Autowired

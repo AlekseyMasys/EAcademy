@@ -54,7 +54,7 @@
                     <!-- Mobile Toggle Menu Button -->
                     <a th:href="@{#}" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse"
                        data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-                    <a class="navbar-brand" th:href="@{index.html}">EAcademy</a>
+                    <a class="navbar-brand" href="/">EAcademy</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -79,11 +79,11 @@
 <!--                               data-nav-section="testimony">-->
 <!--                            <span>Дисциплины</span></a>-->
 <!--                        </li>-->
-                        <li><a class="external" th:href="@{/teacher_{id}}"
+                        <li><a class="external" th:href="@{'/user'}"
                                data-nav-section="pricing">
                             <span>Моя страница</span></a>
                         </li>
-                        <li><a class="external" th:href="@{/}"
+                        <li><a class="external" th:href="@{'/logout'}"
                                data-nav-section="blog">
                             <span>Выход</span></a>
                         </li>

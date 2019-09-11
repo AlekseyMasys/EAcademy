@@ -1,9 +1,9 @@
 package ru.eltex.accountsystem.service;
 
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.eltex.accountsystem.model.*;
-
 import ru.eltex.accountsystem.model.users.Student;
 import ru.eltex.accountsystem.repository.StudentRepository;
 import ru.eltex.accountsystem.repository.SubjectRepository;
@@ -12,6 +12,12 @@ import ru.eltex.testsystem.repository.TestStructureRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * Класс-сервис
+ * @author Koloskova Maria
+ * @version v2.0
+ */
 
 @Service
 public class StudentService {
@@ -37,7 +43,12 @@ public class StudentService {
     public List<Student> getAllStudent() {
         return studentRepository.findAll();
     }
-
+    public List<Student> getAllStudentWithoutGroup() {
+        List<Student> students=getAllStudent();
+        List<Student> studentsWithoutGroup=new ArrayList<>();
+        students.stream().filter(student -> student.getGroupId().equals("")).forEach(student -> studentsWithoutGroup.add(student));
+        return studentsWithoutGroup;
+    }
     public List<Subject> getAllSubjects(String idStudent) {
         List<Subject> subjects = new ArrayList<>();
 

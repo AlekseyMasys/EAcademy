@@ -90,7 +90,7 @@
                     <!-- Mobile Toggle Menu Button -->
                     <a th:href="@{#}" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse"
                        data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-                    <a class="navbar-brand" th:href="@{index.html}">EAcademy</a>
+                    <a class="navbar-brand" href="/">EAcademy</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -101,7 +101,7 @@
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu external" th:each="group : ${groups}">
-                                <li><a th:href="@{'/teacher_' + ${teacher.id} + '_group'}"
+                                <li><a th:href="@{'/teacher/' + ${teacher.id} + '/group/'+${group.id}}"
                                        class="external" th:utext="'privet ' + ${group.title}"></a></li>
                             </ul>
                         </li>
@@ -122,11 +122,10 @@
                             </ul>
                         </li>
 
-                        <li><a class="external" data-nav-section="pricing">
-                            <!--                               th:href="@{'/teacher_' + ${teacher.id}}" -->
+                        <li><a class="external" data-nav-section="pricing" th:href="@{'/user'}">
                             <span>Моя страница</span></a>
                         </li>
-                        <li><a class="external" th:href="@{/}"
+                        <li><a class="external" th:href="@{'/logout'}"
                                data-nav-section="blog">
                             <span>Выход</span></a>
                         </li>
@@ -181,6 +180,16 @@
 <!--                       value="Перейти к проверке работ"/>-->
 <!--            </div>-->
 <!--        </div>-->
+        <th:block th:each="group : ${groups}">
+            <div class="col-md-5 external"><a th:href="@{'/teacher/' + ${teacher.id} + '/group/'+${group.id}}"
+                                              class="external" th:utext="'privet ' + ${group.title}"></a>
+            </div>
+            <div class="col-md-5" id="teacherFio"></div>
+            <div class="form-group col-md-3">
+                <input type="submit" class="btn btn-send-message btn-md"
+                       value="Перейти к проверке работ"/>
+            </div>
+        </th:block>
     </div>
 </section>
 

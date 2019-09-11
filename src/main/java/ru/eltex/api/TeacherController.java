@@ -65,22 +65,24 @@ public class TeacherController {
      * @return Станица с дисциплинами
      */
     @RequestMapping(value = "/teacher/{idTeacher}/subjects/{idSubject}", method = RequestMethod.GET)
-    public String getSubjectGroups(@PathVariable("idTeacher") String idTeacher, Model model) {
+    public String getSubjectGroups(@PathVariable("idTeacher") String idTeacher, @PathVariable("idSubject") String idSubject,Model model) {
         logger.info("start getSubjectGroups()");
         logger.debug("request teacherId = " + idTeacher);
         logger.debug("response teacher_sbjct_grps");
         model.addAttribute("teacher", teacherService.getTeacher(idTeacher));
         model.addAttribute("teacherSubjects", teacherService.getTeacherSubjects(idTeacher));
-//        model.addAttribute("students",studentService.getAllStudent());
+        model.addAttribute("students",studentService.getAllStudentWithoutGroup());
+        model.addAttribute("groups",teacherService.getTeacherGroupsBySubject(idTeacher,idSubject));
         return "teacher_sbjct_grps";
     }
 
     @RequestMapping(value = "/teacher/{idTeacher}/groups", method = RequestMethod.GET)
-    public String getTeacherGroups(@PathVariable("idTeacher") String idTeacher, Model modelGroup) {
+    public String getTeacherGroups(@PathVariable("idTeacher") String idTeacher, Model model) {
         logger.info("start getTeacherGroups()");
         logger.debug("request id = " + idTeacher);
         logger.debug("response teacher_groups");
-        modelGroup.addAllAttributes(teacherService.getTeacherGroups(idTeacher));
+        model.addAttribute("teacher", teacherService.getTeacher(idTeacher));
+        model.addAttribute("groups",teacherService.getTeacherGroups(idTeacher));
         return "teacher_groups";
     }
 
@@ -88,13 +90,13 @@ public class TeacherController {
      * Метод для получения страницы студентов из группы <b>/teacher_{idTeacher}_getStudentsFromGroup_{idGroup}</b>
      * @return Сттаница с группами студентов
      */
-    @RequestMapping(value = "/teacher_{idTeacher}_getStudentsFromGroup_{idGroup}", method = RequestMethod.GET)
+    @RequestMapping(value = "/teacher/{idTeacher}/groups/{idGroup}", method = RequestMethod.GET)
     public String getStudentsFromGroup(@PathVariable("idTeacher") String id, @PathVariable("idGroup") String idGroup,
                                        Model modelStudents) {
         logger.info("start getStudentsFromGroup()");
         logger.debug("request id = " + id);
         logger.debug("response teacher_students_from_group");
-        modelStudents.addAllAttributes(teacherService.getStudentsFromGroup(idGroup));
+        modelStudents.addAttribute("students",teacherService.getStudentsFromGroup(idGroup));
         return "teacher_students_from_group";
     }
 

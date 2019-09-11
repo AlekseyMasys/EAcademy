@@ -46,6 +46,12 @@
     <script src="../js/modernizr-2.6.2.min.js"></script>
 
     <script src="../js/respond.min.js"></script>
+
+    <script >
+        function serRole(id){
+            document.getElementById("dropdownMenuButton").innerText=document.getElementById(id).innerText
+        }
+    </script>
 </head>
 <body>
 <header role="banner" id="fh5co-header">
@@ -56,7 +62,7 @@
                     <!-- Mobile Toggle Menu Button -->
                     <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse"
                        data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-                    <a class="navbar-brand" href="index.html">EAcademy</a>
+                    <a class="navbar-brand" href="/">EAcademy</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -90,16 +96,26 @@
                         <label for="email" class="sr-only">Ваш email</label>
                         <input type="email" id="email" class="form-control" placeholder="Ваш email">
                     </div>
-                    <div class="form-group">
-                        <label for="role" class="sr-only">Роль</label>
-                        <input id="role" class="form-control" placeholder="Роль">
+<!--                    <div class="form-group">-->
+<!--                        <label for="role" class="sr-only">Роль</label>-->
+<!--                        <input id="role" class="form-control" placeholder="Роль">-->
+<!--                    </div>-->
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Роль
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" id="student"  onclick="serRole(this.id);" href="#">STUDENT</a>
+                            <a class="dropdown-item" id="teacher"  onclick="serRole(this.id);" href="#">TEACHER</a>
+                            <a class="dropdown-item" id="graduate" onclick="serRole(this.id);" href="#">GRADUATE</a>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="password" class="sr-only">Ваш пароль</label>
                         <input type="password" id="password" class="form-control" placeholder="Ваш пароль">
                     </div>
                     <div class="form-group">
-                        <input onclick="getRegistration()" type="submit" class="btn btn-send-message btn-md"
+                        <input onclick="getRegistration()" type="button" class="btn btn-send-message btn-md"
                                value="Зарегистрироваться">
                     </div>
                 </form>

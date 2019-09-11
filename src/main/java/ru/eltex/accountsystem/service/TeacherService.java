@@ -68,7 +68,12 @@ public class TeacherService {
         groupIds.forEach(group -> groups.add(groupRepository.findById(group).get()));
         return groups;
     }
-
+    public List<Group> getTeacherGroupsBySubject(String id,String idSubject) {
+        Subject teacherSubject = subjectRepository.findById(idSubject).get();
+        List<Group> groups = new ArrayList<>();
+        teacherSubject.getGroupIds().forEach(group -> groups.add(groupRepository.findById(group).get()));
+        return groups;
+    }
     public List<Group> getSubjectGroups(String idSubject) {
         Subject subject = subjectRepository.findById(idSubject).get();
         List<Group> groups = new ArrayList<>();

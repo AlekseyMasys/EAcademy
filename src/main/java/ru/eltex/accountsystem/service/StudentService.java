@@ -1,5 +1,6 @@
 package ru.eltex.accountsystem.service;
 
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.eltex.accountsystem.model.*;
@@ -43,7 +44,12 @@ public class StudentService {
     public List<Student> getAllStudent() {
         return studentRepository.findAll();
     }
-
+    public List<Student> getAllStudentWithoutGroup() {
+        List<Student> students=getAllStudent();
+        List<Student> studentsWithoutGroup=new ArrayList<>();
+        students.stream().filter(student -> student.getGroupId().equals("")).forEach(student -> studentsWithoutGroup.add(student));
+        return studentsWithoutGroup;
+    }
     public List<Subject> getAllSubjects(String idStudent) {
         List<Subject> subjects = new ArrayList<>();
 

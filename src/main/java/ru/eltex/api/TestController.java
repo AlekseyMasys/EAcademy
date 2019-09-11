@@ -25,10 +25,10 @@ public class TestController {
     }
 
     /**
-     * Метод для сохранения теста<b>/teacher/{id}/subject/{idSubject}/createTest</b>
+     * Метод для сохранения теста<b>/teacher/{id}/subject/{idSubject}/load_test/createTest</b>
      * @see TestStructure#TestStructure()
      */
-    @RequestMapping(value = "/teacher/{id}/subject/{idSubject}/createTest", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
+    @RequestMapping(value = "/teacher/{id}/subjects/{idSubject}/load_test/createTest", method = RequestMethod.POST, produces = {"application/json; charset=UTF-8"})
     public void saveTest(@PathVariable("id") java.lang.String id, @PathVariable("idSubject") java.lang.String idSubject,
                          @RequestBody TestStructure request) {
         logger.info("start saveTest()");

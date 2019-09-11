@@ -18,7 +18,7 @@ function displayContents(contents) {
   $.ajax({
                type: "POST",
                contentType: "application/json; charset=UTF-8",
-               url: "/teacher/123/subject/5d5d1220f494475475d12c40/createTest",
+               url: document.location.href+"/createTest",
                data: contents,
                dataType: "Json"
            });
@@ -94,5 +94,4 @@ function parseFile(contents){
     displayContents(data) ;
     }
 
-    document.getElementById('file-input');
-    document.addEventListener('change', readSingleFile, false);
+    document.getElementById('file-input').addEventListener('change', readSingleFile, false);

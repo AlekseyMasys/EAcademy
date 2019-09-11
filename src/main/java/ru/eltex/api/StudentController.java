@@ -69,6 +69,7 @@ public class StudentController {
         logger.info("start getTasks()");
         logger.debug("request studentId = " + studentId + "subjectId = " + studentId);
         logger.debug("response student_tasks");
+
         model.addAttribute("student", studentService.getStudentById(studentId));
         model.addAttribute("tasks", studentService.getSubjectTasks(subjectId));
         return "student_tasks";
@@ -84,7 +85,9 @@ public class StudentController {
         logger.info("start getTests()");
         logger.debug("request studentId = " + studentId);
         logger.debug("response student_tests");
+
         model.addAttribute("tests", studentService.getTests(studentId));
+
         return "student_tests";
     }
 
@@ -98,6 +101,7 @@ public class StudentController {
         logger.info("start getTable()");
         logger.debug("request studentId = " + studentId);
         logger.debug("response student_timetable");
+
         model.addAttribute("table", studentService.getTableForStudent(studentId));
         return "student_timetable";
     }
@@ -121,6 +125,7 @@ public class StudentController {
     public List<Subject> getSubjects(@PathVariable("studentId") String idStudent) {
         logger.info("start getSubjects()");
         logger.debug("request studentId = " + idStudent);
+
         List<Subject> subjects = studentService.getAllSubjects(idStudent);
         StringBuilder subjectsToString = new StringBuilder();
         for (Subject subject : subjects) {

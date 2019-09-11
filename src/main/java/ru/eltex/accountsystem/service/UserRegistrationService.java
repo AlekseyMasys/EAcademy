@@ -23,24 +23,24 @@ public class UserRegistrationService {
     private final TeacherRepository teacherRepository;
     private final AdminRepository adminRepository;
     private final GraduateRepository graduateRepository;
-    private final ObjectMapper objectMapper;
 
     @Autowired
-    public UserRegistrationService(AllUserRepository allUserRepository, StudentRepository studentRepository,
-                                   TeacherRepository teacherRepository, AdminRepository adminRepository,
-                                   GraduateRepository graduateRepository, ObjectMapper objectMapper) {
+    private ObjectMapper objectMapper;
+
+    @Autowired
+    public UserRegistrationService(AllUserRepository allUserRepository, StudentRepository studentRepository, TeacherRepository teacherRepository,
+                                   AdminRepository adminRepository, GraduateRepository graduateRepository) {
         this.allUserRepository = allUserRepository;
         this.studentRepository = studentRepository;
         this.teacherRepository = teacherRepository;
         this.adminRepository = adminRepository;
         this.graduateRepository = graduateRepository;
-        this.objectMapper = objectMapper;
     }
 
     public String register(JsonNode jsonNode) {
         Map<String, String> userMap = objectMapper.convertValue(jsonNode, Map.class);
 
-        if (allUserRepository.findByUsernameAndPassword(userMap.get("login"), userMap.get("password")) != null) {
+        if (allUserRepository.findByUserLoginAndUserPassword(userMap.get("login"), userMap.get("password")) != null) {
             return "Ошибка, пользователь с таким логином и паролем уже существует.";
         } else {
             switch (Role.valueOf(userMap.get("role"))) {

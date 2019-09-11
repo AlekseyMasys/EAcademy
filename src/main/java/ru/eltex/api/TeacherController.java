@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.eltex.accountsystem.model.Group;
 import ru.eltex.accountsystem.model.Task;
-import ru.eltex.accountsystem.model.users.Student;
 import ru.eltex.accountsystem.model.users.Teacher;
 import ru.eltex.accountsystem.service.GroupService;
 import ru.eltex.accountsystem.service.StudentService;
@@ -76,7 +75,7 @@ public class TeacherController {
         return "teacher_sbjct_grps";
     }
 
-    @RequestMapping(value = "/teacher_{idTeacher}_groups", method = RequestMethod.GET)
+    @RequestMapping(value = "/teacher/{idTeacher}/groups", method = RequestMethod.GET)
     public String getTeacherGroups(@PathVariable("idTeacher") String idTeacher, Model modelGroup) {
         logger.info("start getTeacherGroups()");
         logger.debug("request id = " + idTeacher);

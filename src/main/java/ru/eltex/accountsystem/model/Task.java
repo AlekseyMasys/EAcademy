@@ -35,7 +35,6 @@ public class Task {
     }
 
     public Task(String title, String description, Integer maxScores) {
-        id = UUID.randomUUID().toString();
         this.title = title;
         this.description = description;
         this.maxScores = maxScores;

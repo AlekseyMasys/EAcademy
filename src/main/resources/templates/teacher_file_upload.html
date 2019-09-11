@@ -54,7 +54,7 @@
                     <!-- Mobile Toggle Menu Button -->
                     <a th:href="@{#}" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse"
                        data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-                    <a class="navbar-brand" th:href="@{index.html}">EAcademy</a>
+                    <a class="navbar-brand" href="/">EAcademy</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -79,11 +79,11 @@
 <!--                               data-nav-section="testimony">-->
 <!--                            <span>Дисциплины</span></a>-->
 <!--                        </li>-->
-                        <li><a class="external" th:href="@{/teacher_{id}}"
+                        <li><a class="external" th:href="@{'/user'}"
                                data-nav-section="pricing">
                             <span>Моя страница</span></a>
                         </li>
-                        <li><a class="external" th:href="@{/}"
+                        <li><a class="external" th:href="@{'/logout'}"
                                data-nav-section="blog">
                             <span>Выход</span></a>
                         </li>
@@ -134,15 +134,16 @@
                     </div>
                     <form enctype="multipart/form-data" method="post">
                         <div class="form-group">
-                            <input type="file" name="file" id="file" class="inputfile"/>
+                            <input type="file" id="file-input" name="file"  class="inputfile"/>
                             <!--                            <label for="file">Choose a file</label>-->
-                            <label for="file" id="file-input" class="custom-file-label"> Выбрать файл </label>
+                            <label for="file-input"  class="custom-file-label"> Выбрать файл </label>
                         </div>
                         <label>
                             <!-- <input type="file" id="file-input"/> -->
                             <input type="submit" id="btn-submit" class="btn btn-send-message btn-md"
                                    value="Отправить">
                         </label>
+                        <pre id="file-content"></pre>
                     </form>
                 </div>
             </div>
@@ -215,6 +216,7 @@
 <!-- Main JS (Do not remove) -->
 <!-- Main JS (Do not remove) -->
 <script src="../../../../../js/main.js"></script>
+<script src="../../../../../js/add_filereader.js"></script>
 
 </body>
 </html>

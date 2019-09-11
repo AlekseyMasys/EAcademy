@@ -11,20 +11,27 @@ import ru.eltex.accountsystem.service.UserService;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
                 .antMatchers("/css/**").permitAll()
-                .antMatchers("/**").permitAll()
-//                .antMatchers("/registration").permitAll()
-//                .antMatchers("/registration_user").permitAll()
+                .antMatchers("/js/**").permitAll()
+                .antMatchers("/webjar/**").permitAll()
+                .antMatchers("/fonts/**").permitAll()
+                .antMatchers("/sass/**").permitAll()
+                .antMatchers("/images/**").permitAll()
+                .antMatchers("/").permitAll()
+                .antMatchers("/registration").permitAll()
+                .antMatchers("/registration_user").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().permitAll()
                 .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll();
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
+                .and()
+                .csrf().disable();
     }
 
     @Autowired

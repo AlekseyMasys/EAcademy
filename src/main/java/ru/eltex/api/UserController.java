@@ -68,7 +68,7 @@ public class UserController {
         } else {
             logger.debug("response student_main");
             modelUser.addAttribute("student", studentService.getStudentById(userRole.getUserId()));
-            return "redirect:/student/"+userRole.getUserId();
+            return "redirect:/student/" + userRole.getUserId();
         }
     }
 }

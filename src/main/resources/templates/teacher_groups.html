@@ -54,7 +54,7 @@
                     <!-- Mobile Toggle Menu Button -->
                     <a th:href="@{#}" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse"
                        data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-                    <a class="navbar-brand" th:href="@{index.html}">EAcademy</a>
+                    <a class="navbar-brand" href="/">EAcademy</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -86,11 +86,10 @@
                             </ul>
                         </li>
 
-                        <li><a class="external" data-nav-section="pricing">
-                            <!--                               th:href="@{'/teacher_' + ${teacher.id}}" -->
+                        <li><a class="external" data-nav-section="pricing" th:href="@{'/user'}">
                             <span>Моя страница</span></a>
                         </li>
-                        <li><a class="external" th:href="@{/}"
+                        <li><a class="external" th:href="@{'/logout'}"
                                data-nav-section="blog">
                             <span>Выход</span></a>
                         </li>
@@ -103,10 +102,10 @@
 
 <section id="fh5co-explore" data-section="explore">
     <div class="container external" style="width: 100%">
-        <div id="teacherInfo" class="row" th:each="subject : ${teacherSubjects}">
-            <div class="col-md-10 external"><a th:utext="${subject.title}" style="color: #0b0b0b" th:href=""></a></div>
+        <div id="teacherInfo" class="row" th:each="group : ${groups}">
+            <div class="col-md-10 external"><a th:utext="${group.title}" style="color: #0b0b0b" th:href="@{'/teacher/' + ${teacher.id} + '/group/'+${group.id}}"></a></div>
             <div class="col-md-10" id="teacherFio">
-                <p th:utext="${'teacher.fio'}"></p>
+                <p th:utext="${teacher.fio}"></p>
             </div>
             <div class="form-group col-md-2">
                 <input type="submit" class="btn btn-send-message btn-md"

@@ -60,15 +60,15 @@ public class UserRole implements UserDetails {
 //        this.userId = userId;
 //    }
 
-    public UserRole(List<Role> authorities, Map<String, String> user) {
+    public UserRole(List<Role> authorities, Map<String, String> user,String userId) {
         this.authorities = authorities;
         this.accountNonExpired = true;
         this.accountNonLocked = true;
         this.credentialsNonExpired = true;
         this.enabled = true;
         this.username = user.get("login");
-        this.password = user.get("password");
-        this.userId = user.get("id");
+        this.password = "{noop}"+user.get("password");
+        this.userId = userId;
     }
 }
 

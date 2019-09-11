@@ -53,7 +53,7 @@
                     <!-- Mobile Toggle Menu Button -->
                     <a th:href="@{#}" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse"
                        data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-                    <a class="navbar-brand" th:href="@{index}">EAcademy</a>
+                    <a class="navbar-brand" href="/">EAcademy</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -80,11 +80,11 @@
                                data-nav-section="blog">
                             <span>Оценки</span></a>
                         </li>
-                        <li><a class="external" th:href="@{'/student/'+${student.id}}"
+                        <li><a class="external" th:href="@{'/user'}"
                                data-nav-section="pricing">
                             <span>Моя страница</span></a>
                         </li>
-                        <li><a class="external" th:href="@{/}"
+                        <li><a class="external" th:href="@{'/logout'}"
                                data-nav-section="blog">
                             <span>Выход</span></a>
                         </li>
@@ -96,7 +96,7 @@
 </header>
 
 <section id="fh5co-pricing" data-section="pricing"
-         style="background-image: url(../images/full_image_4.jpg); background-size: cover"
+         style="background-image: url(static/images/full_image_4.jpg); background-size: cover"
          data-stellar-background-ratio="0.5">
     <section class="pricing-section bg-3">
         <div class="container">
@@ -128,7 +128,7 @@
                                                             th:href="@{__${#httpServletRequest.requestURI}__/tests}"
                                                             data-nav-section="blog"><span>Тестирование</span></a></li>
                             <li class="pricing__feature"><a style="color:#000000"
-                                                            onclick="location.href='authorization.html';"
+                                                            th:href="@{__${#httpServletRequest.requestURI}__/subjects}"
                                                             data-nav-section="blog"><span>Расписание</span></a></li>
                             <li class="pricing__feature"><a style="color:#000000"
                                                             onclick="location.href='authorization.html';"

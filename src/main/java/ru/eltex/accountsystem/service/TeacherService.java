@@ -26,8 +26,10 @@ public class TeacherService {
     private final GroupRepository groupRepository;
     private final TaskResultRepository taskResultRepository;
     private final TaskRepository taskRepository;
+
     @Autowired
     ObjectMapper objectMapper;
+
     @Autowired
     public TeacherService(TeacherRepository _repository, StudentRepository studentRepository, SubjectRepository subjectRepository,
                           GroupRepository groupRepository, TaskResultRepository taskResultRepository, TaskRepository taskRepository) {

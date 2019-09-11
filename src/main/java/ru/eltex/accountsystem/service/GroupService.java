@@ -28,6 +28,8 @@ public class GroupService {
         {
             Student student= studentRepository.findById(studentId).get();
             student.setGroupId(group.getId());
+            student.getSubjectIds().add(idSubject);
+
             studentRepository.save(student);
         });
         subjectRepository.save(subject);

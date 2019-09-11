@@ -46,7 +46,9 @@ public class RegistrationController {
     public String register(@RequestBody JsonNode jsonNode) {
         logger.info("start registry"); // обычное информационное сообщение
         logger.debug("request " + jsonNode.toString());
+
         String result = userRegistrationService.register(jsonNode);
+
         logger.debug("response " + result);
         return result;
     }

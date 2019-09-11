@@ -102,7 +102,7 @@
                             </a>
                             <ul class="dropdown-menu external" th:each="group : ${groups}">
                                 <li><a th:href="@{'/teacher/' + ${teacher.id} + '/group/'+${group.id}}"
-                                       class="external" th:utext="'privet ' + ${group.title}"></a></li>
+                                       class="external" th:utext="${group.title}"></a></li>
                             </ul>
                         </li>
 
@@ -112,13 +112,13 @@
                                 <b class="caret external"></b>
                             </a>
                             <ul class="dropdown-menu external">
-                                <label>
-                                    <select th:object="${subject}">
-                                        <option class="external" th:each="subject : ${teacherSubjects}"
-                                                th:text="${subject.title}">
-                                        </option>
-                                    </select>
-                                </label>
+<!--                                <select th:object="${subject}">-->
+<!--                                    <option class="external" th:each="subject : ${teacherSubjects}"-->
+<!--                                            th:text="${subject.title}">-->
+<!--                                    </option>-->
+<!--                                </select>-->
+                                <li><a th:each="subject : ${teacherSubjects}"
+                                   class="external" th:utext="${subject.title}"></a></li>
                             </ul>
                         </li>
 
@@ -169,8 +169,8 @@
                     </form>
                 </div>
             </div>
-            <div class="row">
 
+            <div class="row">
                 <a class="pricing__feature" style="color:#000000" th:href="@{__${#httpServletRequest.requestURI}__/load_test}" value="">загрузить новый тест</a>
             </div>
 <!--            <th:block th:each="group : ${groups}">-->
@@ -196,7 +196,7 @@
 <!--        </div>-->
         <th:block th:each="group : ${groups}">
             <div class="col-md-5 external"><a th:href="@{'/teacher/' + ${teacher.id} + '/group/'+${group.id}}"
-                                              class="external" th:utext="'privet ' + ${group.title}"></a>
+                                              class="external" th:utext="${group.title}"></a>
             </div>
             <div class="col-md-5" id="teacherFio"></div>
             <div class="form-group col-md-3">

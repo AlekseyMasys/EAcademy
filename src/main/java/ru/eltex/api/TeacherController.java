@@ -16,6 +16,7 @@ import ru.eltex.accountsystem.service.TeacherService;
 
 /**
  * Класс-контроллер учителя
+ *
  * @author Arina Nedobitkova
  * @version v2.0
  */
@@ -35,6 +36,7 @@ public class TeacherController {
 
     /**
      * Метод для получения станицы учителя<b>/teacher/{idTeacher}</b>
+     *
      * @return Страница учителя
      */
     @RequestMapping(value = "/teacher/{idTeacher}", method = RequestMethod.GET)
@@ -42,12 +44,14 @@ public class TeacherController {
         logger.info("start getTeacher()");
         logger.debug("request id = " + idTeacher);
         logger.debug("response student_main");
+
         modelTeacher.addAttribute("teacher", teacherService.getTeacher(idTeacher));
         return "teacher_main";
     }
 
     /**
      * Метод для получения станицы дисциплин<b>/teacher/{idTeacher}/subjects</b>
+     *
      * @return Страница дисциплин
      */
     @RequestMapping(value = "/teacher/{idTeacher}/subjects", method = RequestMethod.GET)
@@ -62,17 +66,18 @@ public class TeacherController {
 
     /**
      * Метод для получения групп, подписанных на дисциплины <b>/teacher/{idTeacher}/subjects/{idSubject}</b>
+     *
      * @return Станица с дисциплинами
      */
     @RequestMapping(value = "/teacher/{idTeacher}/subjects/{idSubject}", method = RequestMethod.GET)
-    public String getSubjectGroups(@PathVariable("idTeacher") String idTeacher, @PathVariable("idSubject") String idSubject,Model model) {
+    public String getSubjectGroups(@PathVariable("idTeacher") String idTeacher, @PathVariable("idSubject") String idSubject, Model model) {
         logger.info("start getSubjectGroups()");
         logger.debug("request teacherId = " + idTeacher);
         logger.debug("response teacher_sbjct_grps");
         model.addAttribute("teacher", teacherService.getTeacher(idTeacher));
         model.addAttribute("teacherSubjects", teacherService.getTeacherSubjects(idTeacher));
-        model.addAttribute("students",studentService.getAllStudentWithoutGroup());
-        model.addAttribute("groups",teacherService.getTeacherGroupsBySubject(idTeacher,idSubject));
+        model.addAttribute("students", studentService.getAllStudentWithoutGroup());
+        model.addAttribute("groups", teacherService.getTeacherGroupsBySubject(idTeacher, idSubject));
         return "teacher_sbjct_grps";
     }
 
@@ -81,13 +86,19 @@ public class TeacherController {
         logger.info("start getTeacherGroups()");
         logger.debug("request id = " + idTeacher);
         logger.debug("response teacher_groups");
+
         model.addAttribute("teacher", teacherService.getTeacher(idTeacher));
-        model.addAttribute("groups",teacherService.getTeacherGroups(idTeacher));
+//        model.addAttribute("teacherSubjects", teacherService.getTeacherSubjects(idTeacher));
+//        model.addAttribute("groups", teacherService.getTeacherGroups(idTeacher));
+//        model.addAttribute("students", studentService.getAllStudentWithoutGroup());
+//        model.addAttribute("groups",teacherService.getTeacherGroupsBySubject(idTeacher,idSubject));
+
         return "teacher_groups";
     }
 
     /**
      * Метод для получения страницы студентов из группы <b>/teacher_{idTeacher}_getStudentsFromGroup_{idGroup}</b>
+     *
      * @return Сттаница с группами студентов
      */
     @RequestMapping(value = "/teacher/{idTeacher}/groups/{idGroup}", method = RequestMethod.GET)
@@ -96,14 +107,16 @@ public class TeacherController {
         logger.info("start getStudentsFromGroup()");
         logger.debug("request id = " + id);
         logger.debug("response teacher_students_from_group");
-        modelStudents.addAttribute("students",teacherService.getStudentsFromGroup(idGroup));
+        modelStudents.addAttribute("students", teacherService.getStudentsFromGroup(idGroup));
         return "teacher_students_from_group";
     }
 
 
     //REST METHODS
+
     /**
      * Метод для получения учителя <b>/teacher/{id}/getInfo"</b>
+     *
      * @return Учитель
      * @see Teacher#Teacher()
      */
@@ -119,6 +132,7 @@ public class TeacherController {
 
     /**
      * Метод для добавления группы<b>/teacher/{id}/subjects/{idSubject}/add_group</b>
+     *
      * @return Статус ответа
      * @see Group#Group()
      */
@@ -147,6 +161,7 @@ public class TeacherController {
 
     /**
      * Метод для добавления дисциплины в группу <b>/teacher/{teacherId}/subjects/add_subject</b>
+     *
      * @return id дисциплины
      */
     @RequestMapping(value = "/teacher/{teacherId}/subjects/add_subject", method = RequestMethod.POST)
@@ -174,6 +189,7 @@ public class TeacherController {
 
     /**
      * Метод для добавления задания<b>/teacher_{teacherId}_subjects_{subjectId}_addTask</b>
+     *
      * @see Task#Task(String, String, Integer)
      */
     @RequestMapping(value = "teacher/{teacherId}/subjects/{subjectId}/addTask", method = RequestMethod.POST)
@@ -187,6 +203,7 @@ public class TeacherController {
 
     /**
      * Метод для получения ответов на задания<b>/teacher_{teacherId}_subjects_{subjectId}_{groupId}_TasksResults</b>
+     *
      * @return Страница с ответами на задания
      */
     @RequestMapping(value = "teacher_{teacherId}_subjects_{subjectId}_{groupId}_TasksResults", method = RequestMethod.GET)

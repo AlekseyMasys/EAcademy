@@ -39,6 +39,5 @@ public class Task {
         this.title = title;
         this.description = description;
         this.maxScores = maxScores;
-        id = UUID.randomUUID().toString();
     }
 }

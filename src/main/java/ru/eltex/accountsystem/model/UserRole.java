@@ -37,6 +37,7 @@ public class UserRole implements UserDetails {
      * Поле логина
      */
     private String username;
+
     /**
      * Поле пароля
      */

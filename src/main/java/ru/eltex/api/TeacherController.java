@@ -66,14 +66,14 @@ public class TeacherController {
      * @return Станица с дисциплинами
      */
     @RequestMapping(value = "/teacher/{idTeacher}/subjects/{idSubject}", method = RequestMethod.GET)
-    public String getSubjectGroups(@PathVariable("idTeacher") String idTeacher, Model model) {
+    public String getSubjectGroups(@PathVariable("idTeacher") String idTeacher, @PathVariable("idSubject") String idSubject,Model model) {
         logger.info("start getSubjectGroups()");
         logger.debug("request teacherId = " + idTeacher);
         logger.debug("response teacher_sbjct_grps");
         model.addAttribute("teacher", teacherService.getTeacher(idTeacher));
         model.addAttribute("teacherSubjects", teacherService.getTeacherSubjects(idTeacher));
         model.addAttribute("students",studentService.getAllStudentWithoutGroup());
-        model.addAttribute("groups",teacherService.getTeacherGroups(idTeacher));
+        model.addAttribute("groups",teacherService.getTeacherGroupsBySubject(idTeacher,idSubject));
         return "teacher_sbjct_grps";
     }
 

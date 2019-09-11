@@ -169,6 +169,20 @@
                     </form>
                 </div>
             </div>
+            <div class="row">
+
+                <a class="pricing__feature" style="color:#000000" th:href="@{__${#httpServletRequest.requestURI}__/load_test}" value="">загрузить новый тест</a>
+            </div>
+<!--            <th:block th:each="group : ${groups}">-->
+<!--                <div class="col-md-5 external"><a th:href="@{'/teacher/' + ${teacher.id} + '/group/'+${group.id}}"-->
+<!--                                                  class="external" th:utext="'privet ' + ${group.title}"></a>-->
+<!--                </div>-->
+<!--                <div class="col-md-5" id="teacherFio"></div>-->
+<!--                <div class="form-group col-md-3">-->
+<!--                    <input type="submit" class="btn btn-send-message btn-md"-->
+<!--                           value="Перейти к проверке работ"/>-->
+<!--                </div>-->
+<!--            </th:block>-->
         </div>
 <!--        <div id="teacherInfo" class="row" th:each="subject : ${teacherSubjects}">-->
 <!--            <div class="col-md-10 external"><a th:utext="${subject.title}" style="color: #0b0b0b"  th:href= "@{'/teacher/' + ${teacher.id} + '/subject'/+${subject.id}"></a></div>-->

@@ -6,6 +6,6 @@ import ru.eltex.accountsystem.model.UserRole;
 
 @Repository
 public interface AllUserRepository extends MongoRepository<UserRole, String> {
-    UserRole findByUserLoginAndUserPassword(String username, String password);
+    UserRole findByUsernameAndPassword(String username, String password);
     UserRole findByUsername(String username);
 }

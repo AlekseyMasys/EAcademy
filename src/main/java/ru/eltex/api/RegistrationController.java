@@ -16,7 +16,7 @@ import ru.eltex.accountsystem.service.UserRegistrationService;
  * @version v2.0
  */
 @Controller
-@RequestMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/", produces = MediaType.TEXT_XML_VALUE)
 public class RegistrationController {
     private final UserRegistrationService userRegistrationService;
    private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);

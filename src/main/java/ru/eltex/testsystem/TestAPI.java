@@ -22,9 +22,9 @@ public class TestAPI {
         this.testResultService = testResultService;
     }
 
-    @GetMapping(value = "/index")
+    @GetMapping(value = "/teacher/{idTeacher}/subjects/{idSubject}/load_test")
     public String index() {
-        return "bootstrap4/file_upload";
+        return "teacher_file_upload";
     }
 
 
